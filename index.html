@@ -148,7 +148,16 @@ textarea{resize:vertical;min-height:70px}
 .cat-row{display:grid;grid-template-columns:1fr 1fr auto auto auto;gap:6px;align-items:center;margin-bottom:6px}
 @media (max-width:600px){.cat-row{grid-template-columns:1fr 1fr auto}}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:10px 16px;border-radius:10px;font-weight:600;z-index:100;box-shadow:var(--shadow);max-width:calc(100% - 32px)}
-.fab{position:fixed;right:18px;bottom:18px;z-index:30;border-radius:999px;padding:14px 20px;font-size:16px;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.fabs{position:fixed;right:18px;bottom:18px;z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.fab{border-radius:999px;padding:14px 20px;font-size:16px;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.scan-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:12px 0}
+.scan-thumbs figure{margin:0;position:relative;aspect-ratio:3/4;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--surface-2)}
+.scan-thumbs img{width:100%;height:100%;object-fit:cover}
+.scan-thumbs button{position:absolute;top:4px;right:4px;width:26px;height:26px;border-radius:50%;border:none;background:rgba(0,0,0,.6);color:#fff}
+.spinner{width:36px;height:36px;border-radius:50%;border:4px solid var(--line);border-top-color:var(--accent);animation:spin 1s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spinner{animation-duration:3s}}
+.note{background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:13px}
 
 /* =========================================================
    PRINT — Half Letter 5.5in x 8.5in (default) / Letter / A5
@@ -211,7 +220,10 @@ textarea{resize:vertical;min-height:70px}
   </div>
 </main>
 
-<button class="btn primary fab" id="btn-new">＋ 新しいレシピ</button>
+<div class="fabs">
+  <button class="btn fab" id="btn-scan">📷 写真から作る</button>
+  <button class="btn primary fab" id="btn-new">＋ 新しいレシピ</button>
+</div>
 
 <div id="sheet" class="sheet-wrap hidden"></div>
 <div id="print-root"></div>
@@ -699,6 +711,10 @@ function showSettings(){
           <button class="btn" data-act="import">⬆ 読み込み</button>
         </div>
       </div>
+      <div class="sec"><h3>AI読み取り <small>写真からレシピを作る機能</small></h3>
+        <p style="margin:0 0 10px;color:var(--muted);font-size:13px">手書きや印刷のレシピの写真を読み取るには、Claude の APIキーが必要です。<a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a> で作成して、ここに貼り付けてください。キーはこの端末の中だけに保存され、バックアップファイルには入りません。</p>
+        <label class="f">APIキー<input id="s-key" type="password" autocomplete="off" placeholder="sk-ant-..." value="${esc(apiKeyCache)}"></label>
+      </div>
       <div class="sec"><h3>表示</h3>
         <label class="f">画面の明るさ<select id="s-theme"><option value="auto" ${s.theme==="auto"?"selected":""}>端末に合わせる</option><option value="light" ${s.theme==="light"?"selected":""}>ライト</option><option value="dark" ${s.theme==="dark"?"selected":""}>ダーク</option></select></label>
       </div>
@@ -731,6 +747,7 @@ function showSettings(){
     if (a==="save"){
       s.categories = s.categories.filter(c=>c.ja||c.en);
       state.settings = s; await Store.setKV("settings", s); applyTheme();
+      apiKeyCache = $("#s-key").value.trim(); await Store.setKV("apiKey", apiKeyCache);
       if (state.cat!=="all" && !s.categories.some(c=>c.id===state.cat)) state.cat="all";
       closeSheet(); render(); toast("設定を保存しました");
     }
@@ -769,6 +786,133 @@ $("#file-import").addEventListener("change", async e => {
     closeSheet(); render(); toast(`${data.recipes.length} 件を読み込みました`);
   }catch(err){ alert("読み込めませんでした：" + err.message); }
 });
+
+/* ============================================================
+   AI: read recipe photos (handwritten / printed) into a recipe
+   ============================================================ */
+let apiKeyCache = "";
+const SDK_URL = "https://cdn.jsdelivr.net/npm/@anthropic-ai/sdk@0.128.0/+esm";
+const SCAN_MODEL = "claude-opus-5-5";
+function scanSchema(){
+  const str = { type:"string" };
+  return {
+    type:"object", additionalProperties:false,
+    required:["nameJa","nameEn","category","prepTime","yield","price","allergens","notes","ingredients","steps","serving"],
+    properties:{
+      nameJa:str, nameEn:str,
+      category:{ type:"string", enum:[...state.settings.categories.map(c=>c.id), ""] },
+      prepTime:str, yield:str, price:str, allergens:str, notes:str,
+      ingredients:{ type:"array", items:{ type:"object", additionalProperties:false,
+        required:["name","nameEn","qty","unit","cost"],
+        properties:{ name:str, nameEn:str, qty:str, unit:str, cost:str } } },
+      steps:{ type:"array", items:{ type:"object", additionalProperties:false, required:["ja","en"], properties:{ ja:str, en:str } } },
+      serving:{ type:"array", items:str }
+    }
+  };
+}
+function scanPrompt(){
+  const cats = state.settings.categories.map(c=>`- ${c.id}: ${c.ja} / ${c.en}`).join("\n");
+  return `These photos show one restaurant kitchen recipe, handwritten or printed, mostly in Japanese. Read everything and fill in the recipe fields.
+
+Rules:
+- Copy the Japanese text faithfully. Fix obvious reading mistakes only when the meaning is clear.
+- nameEn, ingredients[].nameEn and steps[].en: translate into natural kitchen English for staff.
+- qty: number only when possible (e.g. "200"); unit: g, ml, 個, 本, 大さじ, tbsp, etc.
+- cost and price: numbers only, no currency sign. Use "" when the photo does not show them. Never guess money.
+- yield: number of portions this recipe makes; "1" if not written.
+- serving: plates, garnishes, sauces and tools needed when serving the dish.
+- category: pick the best match from this list, or "" if none fits:
+${cats}
+- Put anything that does not fit (tips, storage, shelf life) in notes, in Japanese.
+- If a field is not in the photo, use "" or an empty list.`;
+}
+async function readRecipePhotos(images){
+  if (!apiKeyCache) throw new Error("APIキーが設定されていません。「設定」→「AI読み取り」で入力してください。");
+  let Anthropic;
+  try{ ({ default: Anthropic } = await import(SDK_URL)); }
+  catch{ throw new Error("AIの部品を読み込めませんでした。インターネット接続を確認してください。"); }
+  const client = new Anthropic({ apiKey: apiKeyCache, dangerouslyAllowBrowser: true });
+  let res;
+  try{
+    res = await client.beta.messages.create({
+      model: SCAN_MODEL,
+      max_tokens: 16000,
+      betas: ["server-side-fallback-2026-07-01"],
+      fallbacks: "default",
+      output_config: { effort: "medium", format: { type: "json_schema", schema: scanSchema() } },
+      messages: [{ role: "user", content: [
+        ...images.map(d => ({ type:"image", source:{ type:"base64", media_type:"image/jpeg", data: d.split(",")[1] } })),
+        { type:"text", text: scanPrompt() }
+      ]}]
+    });
+  }catch(err){
+    if (err instanceof Anthropic.AuthenticationError) throw new Error("APIキーが正しくありません。設定を確認してください。");
+    if (err instanceof Anthropic.RateLimitError) throw new Error("混み合っています。少し待ってからもう一度お試しください。");
+    if (err instanceof Anthropic.APIConnectionError) throw new Error("通信できませんでした。インターネット接続を確認してください。");
+    if (err instanceof Anthropic.APIError) throw new Error(`AIの読み取りに失敗しました（${err.status ?? "?"}）：${err.message}`);
+    throw err;
+  }
+  if (res.stop_reason === "refusal") throw new Error("この写真は読み取れませんでした。別の写真でお試しください。");
+  if (res.stop_reason === "max_tokens") throw new Error("レシピが長すぎて途中で止まりました。写真を分けて読み取ってください。");
+  const text = res.content.filter(b=>b.type==="text").map(b=>b.text).join("");
+  try{ return JSON.parse(text); }
+  catch{ throw new Error("読み取り結果を整理できませんでした。もう一度お試しください。"); }
+}
+function showScan(){
+  const imgs = [];
+  openSheet(`
+    <div class="sheet-head"><button class="btn icon" data-act="close">✕</button><h2>写真からレシピを作る</h2></div>
+    <div class="sheet-body" id="scan">
+      <div class="sec">
+        <p style="margin:0 0 10px">手書きや印刷のレシピ（材料・作り方など）を撮影してください。複数ページあれば全部追加できます。AIが読み取って、入力画面に自動で書き込みます。</p>
+        ${apiKeyCache?"":`<p class="note" style="margin:0 0 10px">先に「⚙︎ 設定」→「AI読み取り」でAPIキーを入れてください。</p>`}
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <label class="btn primary">📷 撮影する<input type="file" accept="image/*" capture="environment" id="scan-cam" class="hidden"></label>
+          <label class="btn">🖼 アルバムから選ぶ<input type="file" accept="image/*" multiple id="scan-file" class="hidden"></label>
+        </div>
+        <div class="scan-thumbs" id="scan-thumbs"></div>
+        <button class="btn primary" data-act="run" id="scan-run" style="width:100%;padding:14px" disabled>読み取ってレシピにする</button>
+      </div>
+      <div class="sec hidden" id="scan-busy" style="text-align:center">
+        <div class="spinner"></div><b>読み取り中…</b><div style="color:var(--muted);font-size:13px">30秒〜1分ほどかかります</div>
+      </div>
+    </div>`);
+  const draw = () => {
+    $("#scan-thumbs").innerHTML = imgs.map((d,i)=>`<figure data-i="${i}"><img src="${d}" alt="${i+1}ページ目"><button data-act="rm" title="外す">×</button></figure>`).join("");
+    $("#scan-run").disabled = !imgs.length;
+  };
+  async function add(e){
+    for (const f of e.target.files || []){
+      try{ imgs.push(await fileToDataURL(f, 1600, 0.85)); }catch(err){ alert(err.message); }
+    }
+    e.target.value = ""; draw();
+  }
+  $("#scan-cam").addEventListener("change", add);
+  $("#scan-file").addEventListener("change", add);
+  $("#sheet").onclick = async e => {
+    if (e.target.id === "sheet") return closeSheet();
+    const btn = e.target.closest("[data-act]"); if (!btn) return;
+    const a = btn.dataset.act;
+    if (a==="close") return closeSheet();
+    if (a==="rm"){ imgs.splice(+btn.closest("[data-i]").dataset.i, 1); draw(); return; }
+    if (a==="run"){
+      $("#scan-run").disabled = true; $("#scan-busy").classList.remove("hidden");
+      try{
+        const d = await readRecipePhotos(imgs);
+        const r = { ...blankRecipe(), ...d };
+        if (!r.category) r.category = blankRecipe().category;
+        if (!r.ingredients.length) r.ingredients = blankRecipe().ingredients;
+        if (!r.steps.length) r.steps = blankRecipe().steps;
+        if (!r.serving.length) r.serving = [""];
+        toast("読み取りました。内容を確認して保存してください");
+        showEditor(r, true);
+      }catch(err){
+        $("#scan-busy").classList.add("hidden"); $("#scan-run").disabled = false;
+        alert(err.message);
+      }
+    }
+  };
+}
 
 /* ============================================================
    Sample data
@@ -812,6 +956,7 @@ $("#grid").addEventListener("click", e => {
   else showDetail(id);
 });
 $("#btn-new").addEventListener("click", () => showEditor(null, true));
+$("#btn-scan").addEventListener("click", showScan);
 $("#btn-settings").addEventListener("click", showSettings);
 $("#btn-sample").addEventListener("click", addSamples);
 $("#btn-select").addEventListener("click", () => {
@@ -833,6 +978,7 @@ $("#btn-print-sel").addEventListener("click", () => {
     const saved = await Store.getKV("settings");
     if (saved) state.settings = { ...DEFAULT_SETTINGS, ...saved };
     state.recipes = (await Store.all()) || [];
+    apiKeyCache = (await Store.getKV("apiKey")) || "";
   }catch(e){ useMem = true; }
   applyTheme(); render();
   if (useMem) toast("この画面では保存ができません。ブラウザで直接開いてください");
