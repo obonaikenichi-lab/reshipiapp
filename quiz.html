@@ -272,7 +272,6 @@ const MENU = [
     menuText: "Chicken Heart",
     ja: {
       part: "鶏の心臓（ハツ）",
-      taste: "塩・タレ（店のおすすめを確認）",
       talk: "「はつ」は鶏の心臓です。心臓は筋肉なのでクセが少なく、コリッ、プリッとした弾力のある歯ごたえが楽しめます。内臓系が初めての方にもおすすめしやすい一本です。",
       points: [
         "部位は「心臓」。レバー（肝臓）や砂肝（胃）と間違えない",
@@ -293,7 +292,6 @@ const MENU = [
     menuText: "Grilled Chicken Thigh w/ Tare Sauce",
     ja: {
       part: "鶏もも肉",
-      taste: "タレ（甘辛い醤油ベースのたれ）",
       talk: "「モモタレ」は鶏のもも肉を、甘辛いタレで焼いた焼き鳥の定番です。もも肉は適度に脂があってジューシー。焼き鳥が初めての方にも一番おすすめしやすい一本です。",
       points: [
         "部位は「もも肉（Thigh）」",
@@ -314,7 +312,6 @@ const MENU = [
     menuText: "Chicken Oyster: Juiciest Part Of Chicken",
     ja: {
       part: "ソリレス（チキンオイスター）…もものつけ根、背中側にある小さな肉",
-      taste: "（店の味付けを確認）",
       talk: "「ゴキゲン串」は店名がついた当店の看板串です。使っているのは「ソリレス（チキンオイスター）」という部位で、もものつけ根の背中側にある小さなお肉です。1羽から2つしか取れない希少部位で、鶏の中で一番ジューシーと言われています。",
       points: [
         "店名がついた看板メニュー（メニューに★マーク＝おすすめ）",
@@ -335,7 +332,7 @@ const MENU = [
    ========================================================= */
 const T = {
   ja: {
-    study: "説明を読む", test: "テスト", part: "部位", taste: "味付け", menu: "メニュー表記",
+    study: "説明を読む", test: "テスト", part: "部位", menu: "メニュー表記",
     talk: "お客様への説明（例）", points: "覚えるポイント", star: "★ おすすめ",
     right: "正解！", wrong: "不正解", answerIs: "正解は", q: "問", of: "問中",
     noName: "名前なし", verdicts: [[100,"満点！お客様にしっかり説明できます。"],[80,"合格。間違えたところだけ見直しましょう。"],[0,"もう一度「説明を読む」で復習しましょう。"]],
@@ -403,7 +400,7 @@ function renderStudy(){
     <div class="eyebrow">焼き鳥 YAKITORI${m.star?` ・ ${t("star")}`:""}</div>
     <div class="study-name"><h2>${esc(m.kana)}</h2><span class="muted">${esc(m.name)}</span><span class="price">$${m.price}</span></div>
     <div class="menu-line">${t("menu")}：${esc(m.menuText)}</div>
-    <dl class="facts"><dt>${t("part")}</dt><dd>${esc(d.part)}</dd><dt>${t("taste")}</dt><dd>${esc(d.taste)}</dd></dl>
+    <dl class="facts"><dt>${t("part")}</dt><dd>${esc(d.part)}</dd></dl>
     <div class="talk"><div class="eyebrow">${t("talk")}</div><p>${esc(d.talk)}</p></div>
     <div><div class="eyebrow" style="margin-bottom:6px">${t("points")}</div><ul class="points">${d.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>`;
   $("studyPrev").disabled = sIdx===0;
