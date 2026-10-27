@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gokigen Menu Quiz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#23262e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: one narrow column like a staff handbook page; menu items read like skewer tags on a charcoal counter. */
+:root{
+  --bg:#f3f1ec;        /* 生成りの紙 */
+  --surface:#ffffff;
+  --sunk:#ebe8e1;
+  --ink:#23262e;       /* 炭 */
+  --muted:#6a6b70;
+  --line:#dcd8cf;
+  --accent:#9a3b1c;    /* 焼き色・タレ */
+  --accent-ink:#ffffff;
+  --accent-soft:#f3e2d8;
+  --good:#2e6b45; --good-soft:#dcecdf;
+  --bad:#a42d25;  --bad-soft:#f5dcd8;
+  --display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17181c; --surface:#212328; --sunk:#1b1c20; --ink:#ecebe7; --muted:#a2a2a6;
+    --line:#34363d; --accent:#e58a5c; --accent-ink:#1b0e07; --accent-soft:#3a2419;
+    --good:#6cc28c; --good-soft:#1d3226; --bad:#f0857a; --bad-soft:#3d1f1c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17181c; --surface:#212328; --sunk:#1b1c20; --ink:#ecebe7; --muted:#a2a2a6;
+  --line:#34363d; --accent:#e58a5c; --accent-ink:#1b0e07; --accent-soft:#3a2419;
+  --good:#6cc28c; --good-soft:#1d3226; --bad:#f0857a; --bad-soft:#3d1f1c; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.7 var(--body);-webkit-text-size-adjust:100%}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.wrap{max-width:680px;margin:0 auto;padding-block:20px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
+
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{margin-right:auto;display:flex;flex-direction:column;line-height:1.2}
+.brand b{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.02em}
+.brand span{font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.lang button{border:0;background:none;padding:6px 14px;font-size:13px;font-weight:700;color:var(--muted)}
+.lang button.on{background:var(--ink);color:var(--bg)}
+.lang button:disabled{opacity:.45;cursor:not-allowed}
+
+h1,h2,h3{text-wrap:balance;margin:0}
+h2{font-family:var(--display);font-weight:800;font-size:22px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+
+label.field{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:14px}
+input[type=text]{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--sunk);font-size:17px;width:100%}
+
+.btn{border:1px solid var(--line);background:var(--surface);padding:12px 18px;border-radius:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn:hover{background:var(--sunk)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn.block{width:100%}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row > .btn{flex:1 1 160px}
+
+/* 串札（メニュー項目） */
+.items{display:flex;flex-direction:column;gap:10px}
+.item{display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.item .tag{grid-row:span 2;writing-mode:vertical-rl;font-family:var(--display);font-weight:800;font-size:18px;background:var(--ink);color:var(--bg);padding:10px 6px;border-radius:4px;letter-spacing:.08em;min-height:64px;text-align:center}
+.item .name{font-weight:700;min-width:0}
+.item .name small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.item .price{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent)}
+.item .star{color:var(--accent)}
+.item .actions{grid-column:2 / 4}
+.item .actions .btn{padding:6px 12px;font-size:13px}
+
+/* 学習カード */
+.study-name{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.study-name h2{font-size:28px}
+.study-name .price{font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;font-size:18px}
+.menu-line{border-left:3px solid var(--line);padding:4px 0 4px 12px;color:var(--muted);font-size:14px}
+.talk{background:var(--accent-soft);border-radius:12px;padding:14px 16px}
+.talk .eyebrow{color:var(--accent)}
+.talk p{margin:4px 0 0}
+dl.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0}
+dl.facts dt{font-weight:700;color:var(--muted);font-size:14px}
+dl.facts dd{margin:0;min-width:0}
+ul.points{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+
+/* テスト */
+.progress{display:flex;align-items:center;gap:12px}
+.bar{flex:1;height:6px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.count{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted);font-weight:700}
+.q-item{font-family:var(--display);font-weight:800;font-size:15px;color:var(--accent)}
+.q-text{font-size:20px;font-weight:700;line-height:1.5}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{text-align:left;border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;font-size:16px}
+.choice:hover:not(:disabled){border-color:var(--ink)}
+.choice .k{flex:none;width:28px;height:28px;border-radius:50%;background:var(--sunk);display:grid;place-items:center;font-weight:700;font-size:14px}
+.choice:disabled{cursor:default}
+.choice.right{border-color:var(--good);background:var(--good-soft)}
+.choice.right .k{background:var(--good);color:var(--surface)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.choice.wrong .k{background:var(--bad);color:var(--surface)}
+.feedback{border-radius:12px;padding:14px 16px;background:var(--sunk)}
+.feedback b.ok{color:var(--good)}
+.feedback b.ng{color:var(--bad)}
+
+/* 結果 */
+.score{display:flex;align-items:baseline;gap:8px}
+.score b{font-family:var(--display);font-size:56px;line-height:1;font-variant-numeric:tabular-nums}
+.score span{color:var(--muted);font-weight:700}
+.verdict{font-weight:700}
+.tbl-wrap{overflow-x:auto}
+table.res{width:100%;border-collapse:collapse;font-size:14px}
+table.res th,table.res td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+table.res th{font-size:12px;color:var(--muted);letter-spacing:.06em}
+table.res td.mk{font-weight:800;width:2em;text-align:center}
+table.res tr.ng td.mk{color:var(--bad)}
+table.res tr.ok td.mk{color:var(--good)}
+table.res td.your{color:var(--bad)}
+.print-note{font-size:13px;color:var(--muted);background:var(--sunk);border-radius:10px;padding:10px 12px}
+
+.hist{display:flex;flex-direction:column;gap:6px}
+.hist .h{display:flex;gap:10px;align-items:center;font-size:14px;border-bottom:1px dashed var(--line);padding:6px 0}
+.hist .h .who{font-weight:700;margin-right:auto;min-width:0}
+.hist .h .pct{font-variant-numeric:tabular-nums;font-weight:700}
+.linkbtn{border:0;background:none;color:var(--accent);font-weight:700;padding:0;font-size:13px;text-decoration:underline}
+
+/* 印刷用 */
+#printArea{display:none}
+@media print{
+  @page{size:letter;margin:14mm}
+  body{background:#fff;color:#000;font-size:11pt}
+  .wrap{display:none!important}
+  #printArea{display:block}
+  .sheet{page-break-after:always}
+  .sheet:last-child{page-break-after:auto}
+  .sheet h1{font-family:var(--display);font-size:18pt;margin:0 0 4pt}
+  .sheet .meta{display:flex;gap:18pt;flex-wrap:wrap;border-bottom:1.5pt solid #000;padding-bottom:6pt;margin-bottom:8pt;font-size:10.5pt}
+  .sheet table{width:100%;border-collapse:collapse;font-size:9.5pt}
+  .sheet th,.sheet td{border:0.75pt solid #999;padding:4pt 5pt;text-align:left;vertical-align:top}
+  .sheet th{background:#eee}
+  .sheet td.mk{text-align:center;font-weight:800;width:2.2em}
+  .sheet tr{page-break-inside:avoid}
+  .sheet .sign{margin-top:14pt;display:flex;gap:30pt;font-size:10pt}
+  .sheet .sign span{flex:1;border-bottom:0.75pt solid #000;padding-bottom:16pt}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand"><b>ゴキゲン メニューテスト</b><span>Staff Menu Training</span></div>
+    <div class="lang" role="group" aria-label="言語">
+      <button type="button" id="langJa" class="on">日本語</button>
+      <button type="button" id="langEn" disabled title="英語版は準備中です">English（準備中）</button>
+    </div>
+  </header>
+
+  <!-- ホーム -->
+  <section id="home" class="wrap-sec" style="display:flex;flex-direction:column;gap:20px">
+    <div class="panel">
+      <label class="field" for="staffName">スタッフ名
+        <input type="text" id="staffName" placeholder="例：山田 花子" autocomplete="off">
+      </label>
+      <p class="muted small" style="margin:0">まず「説明を読む」で覚えてから、テストに挑戦してください。答えの選択肢は毎回シャッフルされます。</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="eyebrow">焼き鳥 YAKITORI</div>
+      <div class="items" id="itemList"></div>
+    </div>
+
+    <div class="row">
+      <button type="button" class="btn" id="studyAll">説明をまとめて読む</button>
+      <button type="button" class="btn primary" id="testAll">全部のテストを始める</button>
+    </div>
+
+    <div class="panel" id="histPanel" hidden>
+      <div style="display:flex;align-items:center;gap:10px">
+        <h3 style="margin-right:auto">これまでのテスト結果</h3>
+        <button type="button" class="btn" id="printHist" style="padding:6px 12px;font-size:13px">すべて印刷</button>
+      </div>
+      <div class="hist" id="histList"></div>
+      <button type="button" class="linkbtn" id="clearHist" style="align-self:flex-start">履歴を消す</button>
+      <div id="clearConfirm" class="row" hidden>
+        <span class="small" style="flex:1 1 100%">この端末の結果をすべて消します。よろしいですか？</span>
+        <button type="button" class="btn" id="clearNo">やめる</button>
+        <button type="button" class="btn primary" id="clearYes">消す</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 学習 -->
+  <section id="study" hidden style="flex-direction:column;gap:16px">
+    <div class="progress"><span class="count" id="studyCount"></span><div class="bar"><i id="studyBar"></i></div></div>
+    <article class="panel" id="studyCard"></article>
+    <div class="row">
+      <button type="button" class="btn" id="studyPrev">← 前へ</button>
+      <button type="button" class="btn" id="studyNext">次へ →</button>
+    </div>
+    <div class="row">
+      <button type="button" class="btn" id="studyHome">メニュー一覧に戻る</button>
+      <button type="button" class="btn primary" id="studyTest">この串のテストへ</button>
+    </div>
+  </section>
+
+  <!-- テスト -->
+  <section id="test" hidden style="flex-direction:column;gap:16px">
+    <div class="progress"><span class="count" id="qCount"></span><div class="bar"><i id="qBar"></i></div></div>
+    <div class="panel">
+      <div class="q-item" id="qItem"></div>
+      <div class="q-text" id="qText"></div>
+      <div class="choices" id="choices"></div>
+      <div class="feedback" id="feedback" hidden></div>
+      <button type="button" class="btn primary block" id="nextQ" hidden>次の問題へ</button>
+    </div>
+    <button type="button" class="linkbtn" id="quitTest" style="align-self:center">テストをやめてメニュー一覧に戻る</button>
+  </section>
+
+  <!-- 結果 -->
+  <section id="result" hidden style="flex-direction:column;gap:16px">
+    <div class="panel">
+      <div class="eyebrow" id="rMeta"></div>
+      <div class="score"><b id="rScore"></b><span id="rOf"></span></div>
+      <div class="verdict" id="rVerdict"></div>
+    </div>
+    <div class="panel">
+      <h3>問題ごとの結果</h3>
+      <div class="tbl-wrap"><table class="res" id="rTable"></table></div>
+    </div>
+    <div class="row">
+      <button type="button" class="btn" id="retryWrong">間違えた問題だけやり直す</button>
+      <button type="button" class="btn primary" id="printResult">結果を印刷する</button>
+    </div>
+    <p class="print-note" id="printNote" hidden>このプレビュー画面からは印刷できません。印刷はGitHub Pages版（quiz.html）を開いて行ってください。</p>
+    <button type="button" class="btn" id="resultHome">メニュー一覧に戻る</button>
+  </section>
+
+</div>
+
+<div id="printArea"></div>
+
+<script>
+/* =========================================================
+   メニューデータ
+   ・ja = 日本語版、en = 英語版（あとで追加）
+   ・answer は常に choices の 1 番目に書く（画面では毎回シャッフル）
+   ========================================================= */
+const MENU = [
+  {
+    id: "hatsu",
+    section: "yakitori",
+    name: "HATSU", kana: "はつ", price: 6, star: false,
+    menuText: "Chicken Heart",
+    ja: {
+      part: "鶏の心臓（ハツ）",
+      taste: "塩・タレ（店のおすすめを確認）",
+      talk: "「はつ」は鶏の心臓です。心臓は筋肉なのでクセが少なく、コリッ、プリッとした弾力のある歯ごたえが楽しめます。内臓系が初めての方にもおすすめしやすい一本です。",
+      points: [
+        "部位は「心臓」。レバー（肝臓）や砂肝（胃）と間違えない",
+        "食感は「コリッ・プリッ」とした弾力",
+        "クセが少ないので、ホルモンが初めての方にもすすめやすい"
+      ],
+      questions: [
+        { q: "「はつ（HATSU）」は鶏のどの部位？", choices: ["心臓", "肝臓（レバー）", "胃（砂肝）"], why: "はつ＝心臓（Heart）。レバーは肝臓、砂肝は胃の筋肉です。" },
+        { q: "お客様に「はつはどんな食感？」と聞かれたら？", choices: ["コリッ、プリッとした弾力のある歯ごたえ", "口の中でとろけるような柔らかさ", "パリパリと香ばしい食感"], why: "心臓は筋肉なので、コリッとした弾力が特徴。とろける系はレバー、パリパリは皮です。" },
+        { q: "はつ1本の値段は？", choices: ["$6", "$8", "$9"], why: "HATSU は $6 です。" }
+      ]
+    }
+  },
+  {
+    id: "momotare",
+    section: "yakitori",
+    name: "MOMO TARE", kana: "モモタレ", price: 6, star: false,
+    menuText: "Grilled Chicken Thigh w/ Tare Sauce",
+    ja: {
+      part: "鶏もも肉",
+      taste: "タレ（甘辛い醤油ベースのたれ）",
+      talk: "「モモタレ」は鶏のもも肉を、甘辛いタレで焼いた焼き鳥の定番です。もも肉は適度に脂があってジューシー。焼き鳥が初めての方にも一番おすすめしやすい一本です。",
+      points: [
+        "部位は「もも肉（Thigh）」",
+        "味付けは「タレ」。名前の「タレ」がそのまま味付け",
+        "ジューシーで食べやすい定番。迷っている方におすすめ"
+      ],
+      questions: [
+        { q: "「モモタレ」に使う鶏の部位は？", choices: ["もも肉", "むね肉", "ささみ"], why: "モモ＝もも肉（Thigh）。むね肉は MUNE NIKU、ささみは SASAMI です。" },
+        { q: "モモタレの味付けは？", choices: ["甘辛いタレ", "塩", "柚子胡椒"], why: "名前の通り「タレ」で焼きます。英語表記も “w/ Tare Sauce”。" },
+        { q: "「初めてなので定番を食べたい」というお客様へ、モモタレのすすめ方で正しいのは？", choices: ["ジューシーなもも肉を甘辛いタレで焼いた、焼き鳥の定番です", "あっさりした鶏むね肉に柚子胡椒をのせた串です", "鶏の首の肉にネギをのせた、希少な串です"], why: "モモタレ＝もも肉×タレの定番。むね肉＋柚子胡椒は MUNE NIKU、首の肉＋ネギは SESERI です。" }
+      ]
+    }
+  },
+  {
+    id: "gokigen",
+    section: "yakitori",
+    name: "GOKIGEN KUSHI", kana: "ゴキゲン串", price: 8, star: true,
+    menuText: "Chicken Oyster: Juiciest Part Of Chicken",
+    ja: {
+      part: "ソリレス（チキンオイスター）…もものつけ根、背中側にある小さな肉",
+      taste: "（店の味付けを確認）",
+      talk: "「ゴキゲン串」は店名がついた当店の看板串です。使っているのは「ソリレス（チキンオイスター）」という部位で、もものつけ根の背中側にある小さなお肉です。1羽から2つしか取れない希少部位で、鶏の中で一番ジューシーと言われています。",
+      points: [
+        "店名がついた看板メニュー（メニューに★マーク＝おすすめ）",
+        "部位は「ソリレス／チキンオイスター」。1羽から2つだけの希少部位",
+        "「一番ジューシーな部位」と説明する（メニュー英語表記：Juiciest Part Of Chicken）"
+      ],
+      questions: [
+        { q: "「ゴキゲン串」に使っている部位は？", choices: ["ソリレス（チキンオイスター）", "せせり（首の肉）", "ぼんじり（しっぽの肉）"], why: "ゴキゲン串＝チキンオイスター（ソリレス）。せせりは SESERI、ぼんじりは BONJIRI です。" },
+        { q: "ゴキゲン串の部位の説明として正しいのは？", choices: ["1羽から2つしか取れない、一番ジューシーな希少部位", "脂が少なく、さっぱりとした部位", "コリコリした軟骨の部位"], why: "ソリレスは1羽から2つだけ。メニューにも “Juiciest Part Of Chicken” とあります。" },
+        { q: "ゴキゲン串1本の値段は？", choices: ["$8", "$6", "$9"], why: "GOKIGEN KUSHI は $8。★マークの店のおすすめです。" }
+      ]
+    }
+  }
+];
+
+/* =========================================================
+   画面の文言（英語版はあとで en を追加）
+   ========================================================= */
+const T = {
+  ja: {
+    study: "説明を読む", test: "テスト", part: "部位", taste: "味付け", menu: "メニュー表記",
+    talk: "お客様への説明（例）", points: "覚えるポイント", star: "★ おすすめ",
+    right: "正解！", wrong: "不正解", answerIs: "正解は", q: "問", of: "問中",
+    noName: "名前なし", verdicts: [[100,"満点！お客様にしっかり説明できます。"],[80,"合格。間違えたところだけ見直しましょう。"],[0,"もう一度「説明を読む」で復習しましょう。"]],
+    resultTitle: "メニューテスト結果", staff: "スタッフ", date: "日時", score: "得点",
+    colItem: "メニュー", colQ: "問題", colYour: "あなたの答え", colAns: "正解",
+    lastQ: "結果を見る", nextQ: "次の問題へ"
+  }
+};
+let lang = "ja";
+const t = k => T[lang][k];
+
+/* ---------- 保存（この端末だけ） ---------- */
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* 印刷できる環境か（プレビュー枠の中では印刷できない） */
+let canPrint = true;
+try{ canPrint = window.self === window.top; }catch(e){ canPrint = false; }
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const shuffle = a => { a = a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const fmtDate = d => { const p=n=>String(n).padStart(2,"0"); return `${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`; };
+
+function show(id){
+  ["home","study","test","result"].forEach(s => { const el=$(s); el.hidden = s!==id; if(s===id) el.style.display="flex"; });
+  window.scrollTo(0,0);
+}
+
+/* ---------- ホーム ---------- */
+$("staffName").value = store.get("gq_name","");
+$("staffName").addEventListener("input", e => store.set("gq_name", e.target.value));
+
+function renderHome(){
+  $("itemList").innerHTML = MENU.map((m,i) => `
+    <div class="item">
+      <div class="tag">${esc(m.kana)}</div>
+      <div class="name">${m.star?'<span class="star">★ </span>':''}${esc(m.name)}<small>${esc(m.menuText)}</small></div>
+      <div class="price">$${m.price}</div>
+      <div class="actions row">
+        <button type="button" class="btn" data-study="${i}">${t("study")}</button>
+        <button type="button" class="btn" data-test="${i}">${t("test")}（${m[lang].questions.length}${t("q")}）</button>
+      </div>
+    </div>`).join("");
+  renderHist();
+}
+$("itemList").addEventListener("click", e => {
+  const s = e.target.closest("[data-study]"), q = e.target.closest("[data-test]");
+  if(s) openStudy(+s.dataset.study);
+  if(q) startTest([MENU[+q.dataset.test]]);
+});
+$("studyAll").onclick = () => openStudy(0);
+$("testAll").onclick = () => startTest(MENU);
+
+/* ---------- 学習 ---------- */
+let sIdx = 0;
+function openStudy(i){ sIdx = i; renderStudy(); show("study"); }
+function renderStudy(){
+  const m = MENU[sIdx], d = m[lang];
+  $("studyCount").textContent = `${sIdx+1} / ${MENU.length}`;
+  $("studyBar").style.width = `${(sIdx+1)/MENU.length*100}%`;
+  $("studyCard").innerHTML = `
+    <div class="eyebrow">焼き鳥 YAKITORI${m.star?` ・ ${t("star")}`:""}</div>
+    <div class="study-name"><h2>${esc(m.kana)}</h2><span class="muted">${esc(m.name)}</span><span class="price">$${m.price}</span></div>
+    <div class="menu-line">${t("menu")}：${esc(m.menuText)}</div>
+    <dl class="facts"><dt>${t("part")}</dt><dd>${esc(d.part)}</dd><dt>${t("taste")}</dt><dd>${esc(d.taste)}</dd></dl>
+    <div class="talk"><div class="eyebrow">${t("talk")}</div><p>${esc(d.talk)}</p></div>
+    <div><div class="eyebrow" style="margin-bottom:6px">${t("points")}</div><ul class="points">${d.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>`;
+  $("studyPrev").disabled = sIdx===0;
+  $("studyNext").disabled = sIdx===MENU.length-1;
+}
+$("studyPrev").onclick = () => { if(sIdx>0){ sIdx--; renderStudy(); } };
+$("studyNext").onclick = () => { if(sIdx<MENU.length-1){ sIdx++; renderStudy(); } };
+$("studyHome").onclick = () => { renderHome(); show("home"); };
+$("studyTest").onclick = () => startTest([MENU[sIdx]]);
+
+/* ---------- テスト ---------- */
+let qs = [], qi = 0, answers = [];
+function startTest(items, list){
+  qs = list || items.flatMap(m => m[lang].questions.map(x => ({
+    itemId:m.id, item:`${m.kana}（${m.name}）`, q:x.q, answer:x.choices[0], choices:shuffle(x.choices), why:x.why
+  })));
+  qs = qs.map(x => ({...x, choices: shuffle(x.choices)}));
+  qi = 0; answers = [];
+  renderQ(); show("test");
+}
+function renderQ(){
+  const x = qs[qi];
+  $("qCount").textContent = `${qi+1} / ${qs.length}`;
+  $("qBar").style.width = `${qi/qs.length*100}%`;
+  $("qItem").textContent = x.item;
+  $("qText").textContent = x.q;
+  $("choices").innerHTML = x.choices.map((c,i) => `<button type="button" class="choice" data-c="${i}"><span class="k">${"ABC"[i]}</span><span>${esc(c)}</span></button>`).join("");
+  $("feedback").hidden = true; $("nextQ").hidden = true;
+}
+$("choices").addEventListener("click", e => {
+  const b = e.target.closest(".choice"); if(!b || b.disabled) return;
+  const x = qs[qi], pick = x.choices[+b.dataset.c], ok = pick === x.answer;
+  answers.push({...x, pick, ok});
+  [...$("choices").children].forEach((el,i) => {
+    el.disabled = true;
+    if(x.choices[i] === x.answer) el.classList.add("right");
+    else if(el === b) el.classList.add("wrong");
+  });
+  $("feedback").innerHTML = ok
+    ? `<b class="ok">○ ${t("right")}</b>　${esc(x.why)}`
+    : `<b class="ng">× ${t("wrong")}</b>　${t("answerIs")}「${esc(x.answer)}」。${esc(x.why)}`;
+  $("feedback").hidden = false;
+  $("nextQ").textContent = qi === qs.length-1 ? t("lastQ") : t("nextQ");
+  $("nextQ").hidden = false;
+  $("qBar").style.width = `${(qi+1)/qs.length*100}%`;
+  $("nextQ").focus();
+});
+$("nextQ").onclick = () => { if(qi < qs.length-1){ qi++; renderQ(); } else finish(); };
+$("quitTest").onclick = () => { renderHome(); show("home"); };
+
+/* ---------- 結果 ---------- */
+let lastRecord = null;
+function finish(){
+  const correct = answers.filter(a=>a.ok).length;
+  const rec = {
+    name: $("staffName").value.trim() || t("noName"),
+    date: fmtDate(new Date()), lang,
+    correct, total: answers.length,
+    rows: answers.map(a => ({item:a.item, q:a.q, pick:a.pick, answer:a.answer, ok:a.ok}))
+  };
+  lastRecord = rec;
+  const hist = store.get("gq_hist", []); hist.unshift(rec); store.set("gq_hist", hist.slice(0,200));
+  renderResult(rec); show("result");
+}
+function renderResult(r){
+  const pct = Math.round(r.correct/r.total*100);
+  $("rMeta").textContent = `${r.name} ・ ${r.date}`;
+  $("rScore").textContent = r.correct;
+  $("rOf").textContent = `/ ${r.total}問（${pct}%）`;
+  $("rVerdict").textContent = t("verdicts").find(v => pct >= v[0])[1];
+  $("rTable").innerHTML = `<tr><th></th><th>${t("colQ")}</th><th>${t("colYour")}</th><th>${t("colAns")}</th></tr>` +
+    r.rows.map(x => `<tr class="${x.ok?"ok":"ng"}"><td class="mk">${x.ok?"○":"×"}</td><td><span class="muted small">${esc(x.item)}</span><br>${esc(x.q)}</td><td class="${x.ok?"":"your"}">${esc(x.pick)}</td><td>${esc(x.answer)}</td></tr>`).join("");
+  $("retryWrong").disabled = r.rows.every(x=>x.ok);
+  $("printResult").hidden = !canPrint;
+  $("printNote").hidden = canPrint;
+}
+$("retryWrong").onclick = () => startTest(null, answers.filter(a=>!a.ok).map(({pick,ok,...x})=>x));
+$("resultHome").onclick = () => { renderHome(); show("home"); };
+$("printResult").onclick = () => printSheets([lastRecord]);
+
+/* ---------- 履歴 ---------- */
+function renderHist(){
+  const hist = store.get("gq_hist", []);
+  $("histPanel").hidden = hist.length === 0;
+  $("printHist").hidden = !canPrint;
+  $("histList").innerHTML = hist.slice(0,30).map((r,i) => `
+    <div class="h"><span class="who">${esc(r.name)}</span><span class="muted small">${esc(r.date)}</span>
+    <span class="pct">${r.correct}/${r.total}</span>
+    ${canPrint?`<button type="button" class="linkbtn" data-ph="${i}">印刷</button>`:""}</div>`).join("");
+}
+$("histList").addEventListener("click", e => {
+  const b = e.target.closest("[data-ph]"); if(b) printSheets([store.get("gq_hist",[])[+b.dataset.ph]]);
+});
+$("printHist").onclick = () => printSheets(store.get("gq_hist", []));
+$("clearHist").onclick = () => { $("clearConfirm").hidden = false; };
+$("clearNo").onclick = () => { $("clearConfirm").hidden = true; };
+$("clearYes").onclick = () => { store.set("gq_hist", []); $("clearConfirm").hidden = true; renderHist(); };
+
+/* ---------- 印刷 ---------- */
+function printSheets(recs){
+  $("printArea").innerHTML = recs.map(r => `
+    <div class="sheet">
+      <h1>GOKIGEN ${T.ja.resultTitle}</h1>
+      <div class="meta"><span>${T.ja.staff}：<b>${esc(r.name)}</b></span><span>${T.ja.date}：${esc(r.date)}</span><span>${T.ja.score}：<b>${r.correct} / ${r.total}（${Math.round(r.correct/r.total*100)}%）</b></span></div>
+      <table><tr><th></th><th>${T.ja.colItem}</th><th>${T.ja.colQ}</th><th>${T.ja.colYour}</th><th>${T.ja.colAns}</th></tr>
+      ${r.rows.map(x=>`<tr><td class="mk">${x.ok?"○":"×"}</td><td>${esc(x.item)}</td><td>${esc(x.q)}</td><td>${esc(x.pick)}</td><td>${esc(x.answer)}</td></tr>`).join("")}
+      </table>
+      <div class="sign"><span>確認者サイン：</span><span>日付：</span></div>
+    </div>`).join("");
+  window.print();
+}
+
+renderHome();
+</script>
+</body>
+</html>
