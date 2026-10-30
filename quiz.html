@@ -193,6 +193,11 @@ table.res td.your{color:var(--bad)}
       <button type="button" class="btn primary" id="testAll">全部のテストを始める</button>
     </div>
 
+    <div class="panel">
+      <h3>3品ずつテスト</h3>
+      <div class="row" id="groupList"></div>
+    </div>
+
     <div class="panel" id="histPanel" hidden>
       <div style="display:flex;align-items:center;gap:10px">
         <h3 style="margin-right:auto">これまでのテスト結果</h3>
@@ -266,9 +271,29 @@ table.res td.your{color:var(--bad)}
    ========================================================= */
 const MENU = [
   {
+    id: "omakase",
+    section: "yakitori",
+    name: "OMAKASE COURSE", kana: "焼き鳥コース", price: "$35 / $55", star: false,
+    menuText: "Chef’s Selection of Today’s Yakitori Skewers — 5 Skewers / 8 Skewers",
+    ja: {
+      part: "その日のおすすめの串（シェフが選ぶ）",
+      talk: "「焼き鳥コース（おまかせ）」は、シェフがその日のおすすめの焼き鳥を選んでお出しするコースです。5本で$35、8本で$55の2種類があります。何を頼めばいいか迷っている方や、初めてご来店の方にぴったりです。",
+      points: [
+        "シェフがその日のおすすめを選ぶ「おまかせ」。お客様が串を選ぶのではない",
+        "5本 $35／8本 $55",
+        "初めての方・迷っている方におすすめ"
+      ],
+      questions: [
+        { q: "焼き鳥コース（OMAKASE COURSE）の内容は？", choices: ["シェフがその日のおすすめの串を選んでお出しする", "お客様がメニューから好きな串を選ぶ", "毎日決まった同じ串が出る"], why: "おまかせ＝シェフが今日のおすすめを選びます（Chef’s Selection of Today’s Yakitori Skewers）。" },
+        { q: "焼き鳥コースの本数と値段は？", choices: ["5本 $35／8本 $55", "5本 $30／8本 $50", "6本 $35／10本 $55"], why: "5本で$35、8本で$55です。" },
+        { q: "焼き鳥コースを一番おすすめしたいお客様は？", choices: ["初めてのご来店で、何を頼めばいいか迷っている方", "1本だけ軽く食べたい方", "鶏肉が苦手な方"], why: "いろいろな串をシェフのおすすめで楽しめるので、迷っている方・初めての方にぴったりです。" }
+      ]
+    }
+  },
+  {
     id: "hatsu",
     section: "yakitori",
-    name: "HATSU", kana: "はつ", price: 6, star: false,
+    name: "HATSU", kana: "はつ", price: "$6", star: false,
     menuText: "Chicken Heart",
     ja: {
       part: "鶏の心臓（ハツ）",
@@ -288,7 +313,7 @@ const MENU = [
   {
     id: "momotare",
     section: "yakitori",
-    name: "MOMO TARE", kana: "モモタレ", price: 6, star: false,
+    name: "MOMO TARE", kana: "モモタレ", price: "$6", star: false,
     menuText: "Grilled Chicken Thigh w/ Tare Sauce",
     ja: {
       part: "鶏もも肉",
@@ -308,7 +333,7 @@ const MENU = [
   {
     id: "gokigen",
     section: "yakitori",
-    name: "GOKIGEN KUSHI", kana: "ゴキゲン串", price: 8, star: true,
+    name: "GOKIGEN KUSHI", kana: "ゴキゲン串", price: "$8", star: true,
     menuText: "Chicken Oyster: Juiciest Part Of Chicken",
     ja: {
       part: "ソリレス（チキンオイスター）…もものつけ根、背中側にある小さな肉",
@@ -322,6 +347,306 @@ const MENU = [
         { q: "「ゴキゲン串」に使っている部位は？", choices: ["ソリレス（チキンオイスター）", "せせり（首の肉）", "ぼんじり（しっぽの肉）"], why: "ゴキゲン串＝チキンオイスター（ソリレス）。せせりは SESERI、ぼんじりは BONJIRI です。" },
         { q: "ゴキゲン串の部位の説明として正しいのは？", choices: ["1羽から2つしか取れない、一番ジューシーな希少部位", "脂が少なく、さっぱりとした部位", "コリコリした軟骨の部位"], why: "ソリレスは1羽から2つだけ。メニューにも “Juiciest Part Of Chicken” とあります。" },
         { q: "ゴキゲン串1本の値段は？", choices: ["$8", "$6", "$9"], why: "GOKIGEN KUSHI は $8。★マークの店のおすすめです。" }
+      ]
+    }
+  },
+  {
+    id: "seseri",
+    section: "yakitori",
+    name: "SESERI", kana: "せせり", price: "$9", star: true,
+    menuText: "Chicken Neck w/ Chopped Tokyo Negi",
+    ja: {
+      part: "鶏の首の肉",
+      talk: "「せせり」は鶏の首の肉です。よく動かす部分なので身がしまっていて弾力があり、脂ものってうまみが強いのが特徴です。上に刻んだ東京ねぎをのせてお出しします。1羽から少ししか取れない部位で、当店のおすすめ（★）です。",
+      points: [
+        "部位は「首（Neck）」",
+        "刻んだ東京ねぎをのせる",
+        "弾力のある歯ごたえと、強いうまみ。★おすすめ・$9"
+      ],
+      questions: [
+        { q: "「せせり（SESERI）」は鶏のどの部位？", choices: ["首", "しっぽ", "手羽（翼）"], why: "せせり＝首の肉（Chicken Neck）。しっぽはぼんじり、翼は手羽先です。" },
+        { q: "せせりの上にのっているものは？", choices: ["刻んだ東京ねぎ", "大根おろし", "柚子胡椒"], why: "刻んだ東京ねぎをのせます（w/ Chopped Tokyo Negi）。大根おろしはおろし肉、柚子胡椒はムネ肉です。" },
+        { q: "せせりの説明として正しいのは？", choices: ["よく動かす部位なので弾力があり、うまみが強い", "脂が少なく、とても柔らかい", "コリコリした軟骨の部位"], why: "首はよく動かす部位なので、身がしまって弾力があり、脂ものってうまみが強いです。" }
+      ]
+    }
+  },
+  {
+    id: "reba",
+    section: "yakitori",
+    name: "REBA", kana: "レバー", price: "$6", star: false,
+    menuText: "Chicken Liver",
+    ja: {
+      part: "鶏の肝臓",
+      talk: "「レバー」は鶏の肝臓です。とろっとした柔らかい食感と、濃厚な味わいが特徴です。鉄分などの栄養も豊富です。",
+      points: [
+        "部位は「肝臓（Liver）」",
+        "とろっと柔らかく、濃厚な味",
+        "はつ（心臓）・砂肝（胃）と間違えない"
+      ],
+      questions: [
+        { q: "「レバー（REBA）」は鶏のどの部位？", choices: ["肝臓", "心臓", "胃"], why: "レバー＝肝臓（Liver）。心臓ははつ、胃は砂肝です。" },
+        { q: "レバーの食感は？", choices: ["とろっと柔らかく、濃厚", "コリコリとした歯ごたえ", "パリッとクリスピー"], why: "レバーはとろっと柔らかく濃厚。コリコリは砂肝やなんこつ、パリッは皮です。" },
+        { q: "レバー1本の値段は？", choices: ["$6", "$8", "$5"], why: "REBA は $6。ねぎ塩レバーは $8 です。" }
+      ]
+    }
+  },
+  {
+    id: "negishio",
+    section: "yakitori",
+    name: "NEGI-SHIO REBA", kana: "ねぎ塩レバー", price: "$8", star: false,
+    menuText: "Liver Topped w/ Tokyo Negi & Sesame Oil",
+    ja: {
+      part: "鶏の肝臓（レバー）",
+      talk: "「ねぎ塩レバー」は、レバーの上に東京ねぎとごま油をのせた一本です。濃厚なレバーに、ねぎとごま油の香りが加わって、さっぱり食べられます。",
+      points: [
+        "部位はレバー（肝臓）",
+        "東京ねぎとごま油をのせる",
+        "普通のレバー（$6）との違いはトッピング。ねぎ塩レバーは $8"
+      ],
+      questions: [
+        { q: "ねぎ塩レバーにのっているものは？", choices: ["東京ねぎとごま油", "大根おろし", "生卵"], why: "Liver Topped w/ Tokyo Negi & Sesame Oil。東京ねぎとごま油です。" },
+        { q: "ねぎ塩レバーと普通のレバーの違いは？", choices: ["ねぎとごま油がのって、香りよくさっぱり食べられる", "部位が心臓になる", "骨付きになる"], why: "部位は同じレバー。ねぎとごま油がのる分、香りがよくさっぱりします。" },
+        { q: "ねぎ塩レバー1本の値段は？", choices: ["$8", "$6", "$9"], why: "NEGI-SHIO REBA は $8。普通のレバーは $6 です。" }
+      ]
+    }
+  },
+  {
+    id: "kokoro",
+    section: "yakitori",
+    name: "KOKORO-NOKORI", kana: "心残り", price: "$7", star: false,
+    menuText: "Heart-&-Liver Connective Parts (Delicacy)",
+    ja: {
+      part: "心臓（はつ）と肝臓（レバー）をつなぐ部分",
+      talk: "「心残り」は、心臓（はつ）と肝臓（レバー）をつなぐ部分のお肉です。1羽から少ししか取れない珍しい部位で、焼き鳥好きの方に人気の珍味です。",
+      points: [
+        "部位は「心臓と肝臓をつなぐ部分」",
+        "1羽から少ししか取れない珍味（Delicacy）",
+        "焼き鳥好き・珍しい部位を食べたい方におすすめ"
+      ],
+      questions: [
+        { q: "「心残り（KOKORO-NOKORI）」はどの部位？", choices: ["心臓と肝臓をつなぐ部分", "首の肉", "しっぽの肉"], why: "Heart-&-Liver Connective Parts。心臓と肝臓をつなぐ部分です。" },
+        { q: "「珍しい部位を食べてみたい」というお客様におすすめする理由は？", choices: ["1羽から少ししか取れない珍味だから", "どこのお店にもある定番だから", "一番脂が少ないから"], why: "心残りは1羽から少ししか取れない珍味（Delicacy）です。" },
+        { q: "心残り1本の値段は？", choices: ["$7", "$6", "$9"], why: "KOKORO-NOKORI は $7 です。" }
+      ]
+    }
+  },
+  {
+    id: "mune",
+    section: "yakitori",
+    name: "MUNE NIKU", kana: "ムネ肉", price: "$7", star: false,
+    menuText: "Chicken Breast Meat w/ Yuzu-Kosho",
+    ja: {
+      part: "鶏むね肉",
+      talk: "「ムネ肉」は鶏のむね肉に柚子胡椒をのせた一本です。むね肉は脂が少なくあっさり。柚子胡椒は柚子の皮と青唐辛子で作る薬味で、さわやかな香りとピリッとした辛さがあります。",
+      points: [
+        "部位は「むね肉（Breast）」。脂が少なくあっさり",
+        "柚子胡椒をのせる",
+        "柚子胡椒＝柚子の皮と青唐辛子の薬味。少しピリッと辛い"
+      ],
+      questions: [
+        { q: "「ムネ肉（MUNE NIKU）」にのっているものは？", choices: ["柚子胡椒", "わさび", "大根おろし"], why: "Chicken Breast Meat w/ Yuzu-Kosho。柚子胡椒です。" },
+        { q: "お客様に「柚子胡椒って何？」と聞かれたら？", choices: ["柚子の皮と青唐辛子で作る、さわやかでピリッとした薬味です", "柚子の果汁と醤油で作るたれです", "黒胡椒に柚子の香りをつけたスパイスです"], why: "柚子胡椒は柚子の皮と青唐辛子で作る薬味。辛いものが苦手な方には一言伝えましょう。" },
+        { q: "ムネ肉の特徴は？", choices: ["脂が少なく、あっさりしている", "脂がたっぷりでジューシー", "コリコリした歯ごたえ"], why: "むね肉は脂が少なくあっさり。脂がのっているのはぼんじりなどです。" }
+      ]
+    }
+  },
+  {
+    id: "bonjiri",
+    section: "yakitori",
+    name: "BONJIRI", kana: "ぼんじり", price: "$5", star: false,
+    menuText: "Juicy Chicken Tail",
+    ja: {
+      part: "鶏のしっぽのつけ根",
+      talk: "「ぼんじり」は鶏のしっぽのつけ根の部分です。よく動かす筋肉に脂がたっぷりのっていて、とてもジューシー。プリッとした食感です。1羽から少ししか取れない部位です。",
+      points: [
+        "部位は「しっぽ（Tail）」",
+        "脂がのってジューシー、プリッとした食感",
+        "$5 と手ごろ"
+      ],
+      questions: [
+        { q: "「ぼんじり（BONJIRI）」は鶏のどの部位？", choices: ["しっぽのつけ根", "首", "胃"], why: "ぼんじり＝しっぽ（Chicken Tail）。首はせせり、胃は砂肝です。" },
+        { q: "ぼんじりの特徴は？", choices: ["脂がのっていてジューシー", "脂が少なくあっさり", "コリコリした軟骨"], why: "Juicy Chicken Tail。脂がのってジューシーです。" },
+        { q: "ぼんじり1本の値段は？", choices: ["$5", "$6", "$7"], why: "BONJIRI は $5 です。" }
+      ]
+    }
+  },
+  {
+    id: "sunagimo",
+    section: "yakitori",
+    name: "SUNAGIMO", kana: "砂肝", price: "$5", star: false,
+    menuText: "Chicken Gizzard",
+    ja: {
+      part: "鶏の胃（砂肝・砂ずり）",
+      talk: "「砂肝」は鶏の胃の筋肉です。鶏は歯がないので、この胃で食べ物をすりつぶします。コリコリとした歯ごたえが特徴で、脂が少なくあっさりしています。",
+      points: [
+        "部位は「胃（Gizzard）」",
+        "コリコリした歯ごたえ、脂が少なくあっさり",
+        "レバー（肝臓）・はつ（心臓）と間違えない"
+      ],
+      questions: [
+        { q: "「砂肝（SUNAGIMO）」は鶏のどの部位？", choices: ["胃", "肝臓", "心臓"], why: "砂肝＝胃（Chicken Gizzard）。肝臓はレバー、心臓ははつです。" },
+        { q: "砂肝の食感は？", choices: ["コリコリとした歯ごたえ", "とろっと柔らかい", "ふわふわ"], why: "胃の筋肉なのでコリコリしています。" },
+        { q: "砂肝1本の値段は？", choices: ["$5", "$6", "$8"], why: "SUNAGIMO は $5 です。" }
+      ]
+    }
+  },
+  {
+    id: "negima",
+    section: "yakitori",
+    name: "NEGIMA", kana: "ねぎ間", price: "$7", star: false,
+    menuText: "Chicken Thigh w/ Tokyo Negi",
+    ja: {
+      part: "鶏もも肉と東京ねぎ",
+      talk: "「ねぎ間」は鶏のもも肉と東京ねぎを交互に刺した、焼き鳥の定番です。ジューシーなもも肉と、焼いて甘みが出たねぎを一緒に楽しめます。",
+      points: [
+        "鶏もも肉と東京ねぎを交互に刺す定番",
+        "焼いたねぎの甘みも楽しめる",
+        "プレミアムの「MAGURO NEGIMA」（本マグロ・$29）とは別物"
+      ],
+      questions: [
+        { q: "「ねぎ間（NEGIMA）」は何と何の串？", choices: ["鶏もも肉と東京ねぎ", "鶏むね肉と玉ねぎ", "つくねとししとう"], why: "Chicken Thigh w/ Tokyo Negi。もも肉とねぎを交互に刺します。" },
+        { q: "メニューにある「MAGURO NEGIMA」との違いは？", choices: ["ねぎ間は鶏もも肉、マグロねぎ間は本マグロを使う", "どちらも鶏肉で、味付けだけが違う", "マグロねぎ間はねぎを使わない"], why: "MAGURO NEGIMA は本マグロ（Bluefin Tuna）と東京ねぎ、$29 のプレミアム串です。" },
+        { q: "ねぎ間1本の値段は？", choices: ["$7", "$6", "$9"], why: "NEGIMA は $7 です。" }
+      ]
+    }
+  },
+  {
+    id: "oroshi",
+    section: "yakitori",
+    name: "OROSHI NIKU", kana: "おろし肉", price: "$8", star: false,
+    menuText: "Chicken Thigh w/ Grated Japanese Radish",
+    ja: {
+      part: "鶏もも肉",
+      talk: "「おろし肉」は鶏のもも肉に大根おろしをのせた一本です。ジューシーなもも肉を、大根おろしでさっぱり食べられます。",
+      points: [
+        "部位は「もも肉」",
+        "大根おろし（Grated Japanese Radish）をのせる",
+        "ジューシーなのにさっぱり"
+      ],
+      questions: [
+        { q: "「おろし肉（OROSHI NIKU）」にのっているものは？", choices: ["大根おろし", "東京ねぎとごま油", "柚子胡椒"], why: "Chicken Thigh w/ Grated Japanese Radish。大根おろしです。" },
+        { q: "おろし肉に使う部位は？", choices: ["もも肉", "むね肉", "ささみ"], why: "もも肉（Thigh）に大根おろしをのせます。" },
+        { q: "おろし肉1本の値段は？", choices: ["$8", "$6", "$7"], why: "OROSHI NIKU は $8 です。" }
+      ]
+    }
+  },
+  {
+    id: "tsukune",
+    section: "yakitori",
+    name: "TSUKUNE", kana: "つくね", price: "$9", star: false,
+    menuText: "Chicken Meatballs (Raw Dipping Egg + $2)",
+    ja: {
+      part: "鶏ひき肉の肉だんご",
+      talk: "「つくね」は鶏のひき肉で作った肉だんごの串です。プラス$2で、つけて食べる生卵をおつけできます。",
+      points: [
+        "鶏ひき肉の肉だんご（Chicken Meatballs）",
+        "生卵（つけて食べる）は +$2",
+        "注文を受けたら「生卵をおつけしますか？」と聞く"
+      ],
+      questions: [
+        { q: "「つくね（TSUKUNE）」とは？", choices: ["鶏ひき肉で作った肉だんご", "鶏の皮を巻いたもの", "豚肉のソーセージ"], why: "Chicken Meatballs。鶏ひき肉の肉だんごです。" },
+        { q: "つくねに追加できるオプションは？", choices: ["つけて食べる生卵（+$2）", "チーズ（+$2）", "大根おろし（+$1）"], why: "Raw Dipping Egg +$2。注文時に一言おすすめしましょう。" },
+        { q: "つくね1本の値段（生卵なし）は？", choices: ["$9", "$7", "$11"], why: "TSUKUNE は $9。生卵をつけると +$2 です。" }
+      ]
+    }
+  },
+  {
+    id: "tebasaki",
+    section: "yakitori",
+    name: "TEBASAKI", kana: "手羽先", price: "$7", star: false,
+    menuText: "Grilled Chicken Wing",
+    ja: {
+      part: "鶏の手羽先（翼）",
+      talk: "「手羽先」は鶏の翼の先の部分です。皮はパリッと、中はジューシーに焼き上げます。骨付きなので、お出しするときに一言お伝えください。",
+      points: [
+        "部位は「翼（Wing）」",
+        "皮はパリッ、中はジューシー",
+        "骨付き。お出しするときに一言伝える"
+      ],
+      questions: [
+        { q: "「手羽先（TEBASAKI）」は鶏のどの部位？", choices: ["翼（手羽）", "首", "しっぽ"], why: "手羽先＝翼（Chicken Wing）。" },
+        { q: "手羽先をお出しするときに伝えることは？", choices: ["骨付きなので気をつけて召し上がってください", "生なので早めに召し上がってください", "ソースをかけてから召し上がってください"], why: "手羽先は骨付きです。一言伝えると親切です。" },
+        { q: "手羽先1本の値段は？", choices: ["$7", "$5", "$9"], why: "TEBASAKI は $7 です。" }
+      ]
+    }
+  },
+  {
+    id: "nankotsu",
+    section: "yakitori",
+    name: "NANKOTSU", kana: "なんこつ", price: "$6", star: false,
+    menuText: "Chicken Cartilage",
+    ja: {
+      part: "鶏の軟骨",
+      talk: "「なんこつ」は鶏の軟骨です。コリコリとした食感が楽しく、お酒のおつまみにぴったりです。",
+      points: [
+        "部位は「軟骨（Cartilage）」",
+        "コリコリした食感",
+        "お酒のおつまみにおすすめ"
+      ],
+      questions: [
+        { q: "「なんこつ（NANKOTSU）」とは？", choices: ["鶏の軟骨", "鶏の胃", "鶏の皮"], why: "Chicken Cartilage。胃は砂肝、皮は KAWA です。" },
+        { q: "なんこつの食感は？", choices: ["コリコリ", "とろっと柔らかい", "ふわふわ"], why: "軟骨なのでコリコリしています。" },
+        { q: "なんこつ1本の値段は？", choices: ["$6", "$5", "$8"], why: "NANKOTSU は $6 です。" }
+      ]
+    }
+  },
+  {
+    id: "kawa",
+    section: "yakitori",
+    name: "KAWA", kana: "皮", price: "$6", star: false,
+    menuText: "Crispy Chicken Skin",
+    ja: {
+      part: "鶏の皮",
+      talk: "「皮」は鶏の皮をパリッと香ばしく焼いた一本です。外はパリパリ、かむとうまみのある脂が出てきます。",
+      points: [
+        "部位は「皮（Skin）」",
+        "パリッとクリスピーに焼く",
+        "メニュー英語表記：Crispy Chicken Skin"
+      ],
+      questions: [
+        { q: "「皮（KAWA）」の食感は？", choices: ["パリッとクリスピー", "とろっと柔らかい", "コリコリ"], why: "Crispy Chicken Skin。パリッと焼き上げます。" },
+        { q: "「KAWA」はメニューの英語で何と書いてある？", choices: ["Crispy Chicken Skin", "Chicken Cartilage", "Juicy Chicken Tail"], why: "KAWA＝Crispy Chicken Skin。Cartilage はなんこつ、Tail はぼんじりです。" },
+        { q: "皮1本の値段は？", choices: ["$6", "$5", "$7"], why: "KAWA は $6 です。" }
+      ]
+    }
+  },
+  {
+    id: "sasami",
+    section: "yakitori",
+    name: "SASAMI", kana: "ささみ", price: "$7", star: false,
+    menuText: "Chicken Tenderloin w/ Your Choice of Topping: Wasabi | Yuzu-Kosho | Ume-Shiso | Natto",
+    ja: {
+      part: "鶏ささみ（むね肉の内側にある部位）",
+      talk: "「ささみ」は、むね肉の内側にある、脂が少なく柔らかい部位です。トッピングを、わさび・柚子胡椒・梅しそ・納豆の4つから1つお選びいただけます。",
+      points: [
+        "脂が少なく柔らかい、ヘルシーな部位",
+        "トッピングは4種類から選ぶ：わさび／柚子胡椒／梅しそ／納豆",
+        "注文時に必ずトッピングを聞く"
+      ],
+      questions: [
+        { q: "ささみのトッピングで選べるものは？", choices: ["わさび・柚子胡椒・梅しそ・納豆", "わさび・チーズ・大根おろし・ねぎ", "ごま油・柚子胡椒・生卵・明太子"], why: "Wasabi | Yuzu-Kosho | Ume-Shiso | Natto の4種類です。" },
+        { q: "ささみの注文を受けたら、何を聞く？", choices: ["4種類のトッピングのうち、どれにするか", "焼き加減（レア・ミディアム・ウェルダン）", "骨付きか骨なしか"], why: "ささみはトッピングを選ぶメニュー（Your Choice of Topping）。必ず聞きましょう。" },
+        { q: "ささみの特徴は？", choices: ["脂が少なく柔らかい", "脂がたっぷりでジューシー", "コリコリした歯ごたえ"], why: "むね肉の内側の部位で、脂が少なく柔らかいです。" }
+      ]
+    }
+  },
+  {
+    id: "tontoro",
+    section: "yakitori",
+    name: "TONTORO", kana: "豚とろ", price: "$6", star: false,
+    menuText: "Fatty Pork Neck",
+    ja: {
+      part: "豚の首まわりの肉（鶏肉ではない）",
+      talk: "「豚とろ」は豚の首まわりのお肉です。脂がのっていて甘みがあり、サクッとした歯ごたえが特徴です。焼き鳥のページにありますが、鶏肉ではなく豚肉です。",
+      points: [
+        "鶏ではなく「豚肉」（Fatty Pork Neck）",
+        "脂がのって甘みがあり、サクッとした歯ごたえ",
+        "豚肉を食べないお客様には必ず伝える"
+      ],
+      questions: [
+        { q: "「豚とろ（TONTORO）」は何の肉？", choices: ["豚の首まわりの肉", "鶏の首の肉", "牛の首の肉"], why: "Fatty Pork Neck。豚肉です。鶏の首の肉はせせりです。" },
+        { q: "「豚肉は食べられない」というお客様に、注意すべき串は？", choices: ["豚とろ", "せせり", "ぼんじり"], why: "豚とろは焼き鳥のページにありますが豚肉です。せせり・ぼんじりは鶏です。" },
+        { q: "豚とろ1本の値段は？", choices: ["$6", "$8", "$9"], why: "TONTORO は $6 です。" }
       ]
     }
   }
@@ -373,7 +698,7 @@ function renderHome(){
     <div class="item">
       <div class="tag">${esc(m.kana)}</div>
       <div class="name">${m.star?'<span class="star">★ </span>':''}${esc(m.name)}<small>${esc(m.menuText)}</small></div>
-      <div class="price">$${m.price}</div>
+      <div class="price">${esc(m.price)}</div>
       <div class="actions row">
         <button type="button" class="btn" data-study="${i}">${t("study")}</button>
         <button type="button" class="btn" data-test="${i}">${t("test")}（${m[lang].questions.length}${t("q")}）</button>
@@ -389,6 +714,18 @@ $("itemList").addEventListener("click", e => {
 $("studyAll").onclick = () => openStudy(0);
 $("testAll").onclick = () => startTest(MENU);
 
+/* 3品ずつのグループテスト */
+const GROUP = 3;
+$("groupList").innerHTML = Array.from({length: Math.ceil(MENU.length/GROUP)}, (_, g) => {
+  const part = MENU.slice(g*GROUP, g*GROUP+GROUP);
+  return `<button type="button" class="btn" data-group="${g}" style="flex:1 1 200px;font-size:13px;flex-direction:column;align-items:flex-start;text-align:left">
+    <span>${part.length > 1 ? `${g*GROUP+1}〜${g*GROUP+part.length}` : g*GROUP+1}品目</span><span class="muted" style="font-weight:400">${part.map(m=>esc(m.kana)).join("・")}</span></button>`;
+}).join("");
+$("groupList").addEventListener("click", e => {
+  const b = e.target.closest("[data-group]");
+  if(b){ const g = +b.dataset.group; startTest(MENU.slice(g*GROUP, g*GROUP+GROUP)); }
+});
+
 /* ---------- 学習 ---------- */
 let sIdx = 0;
 function openStudy(i){ sIdx = i; renderStudy(); show("study"); }
@@ -398,7 +735,7 @@ function renderStudy(){
   $("studyBar").style.width = `${(sIdx+1)/MENU.length*100}%`;
   $("studyCard").innerHTML = `
     <div class="eyebrow">焼き鳥 YAKITORI${m.star?` ・ ${t("star")}`:""}</div>
-    <div class="study-name"><h2>${esc(m.kana)}</h2><span class="muted">${esc(m.name)}</span><span class="price">$${m.price}</span></div>
+    <div class="study-name"><h2>${esc(m.kana)}</h2><span class="muted">${esc(m.name)}</span><span class="price">${esc(m.price)}</span></div>
     <div class="menu-line">${t("menu")}：${esc(m.menuText)}</div>
     <dl class="facts"><dt>${t("part")}</dt><dd>${esc(d.part)}</dd></dl>
     <div class="talk"><div class="eyebrow">${t("talk")}</div><p>${esc(d.talk)}</p></div>
