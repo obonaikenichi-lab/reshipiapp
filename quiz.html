@@ -135,6 +135,12 @@ table.res tr.ok td.mk{color:var(--good)}
 table.res td.your{color:var(--bad)}
 .print-note{font-size:13px;color:var(--muted);background:var(--sunk);border-radius:10px;padding:10px 12px}
 
+.jump{display:flex;gap:6px;flex-wrap:wrap}
+.jump a{border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink);text-decoration:none}
+.jump a:hover{background:var(--sunk)}
+.sec-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;scroll-margin-top:12px}
+.sec-head h2{margin-right:auto}
+.sec-head .btn{padding:6px 12px;font-size:13px}
 .hist{display:flex;flex-direction:column;gap:6px}
 .hist .h{display:flex;gap:10px;align-items:center;font-size:14px;border-bottom:1px dashed var(--line);padding:6px 0}
 .hist .h .who{font-weight:700;margin-right:auto;min-width:0}
@@ -183,10 +189,7 @@ table.res td.your{color:var(--bad)}
       <p class="muted small" style="margin:0">まず「説明を読む」で覚えてから、テストに挑戦してください。答えの選択肢は毎回シャッフルされます。</p>
     </div>
 
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="eyebrow">焼き鳥 YAKITORI</div>
-      <div class="items" id="itemList"></div>
-    </div>
+    <nav class="jump" id="jump" aria-label="コーナー"></nav>
 
     <div class="row">
       <button type="button" class="btn" id="studyAll">説明をまとめて読む</button>
@@ -195,8 +198,10 @@ table.res td.your{color:var(--bad)}
 
     <div class="panel">
       <h3>3品ずつテスト</h3>
-      <div class="row" id="groupList"></div>
+      <div id="groupList" style="display:flex;flex-direction:column;gap:14px"></div>
     </div>
+
+    <div id="itemList" style="display:flex;flex-direction:column;gap:24px"></div>
 
     <div class="panel" id="histPanel" hidden>
       <div style="display:flex;align-items:center;gap:10px">
@@ -269,7 +274,35 @@ table.res td.your{color:var(--bad)}
    ・ja = 日本語版、en = 英語版（あとで追加）
    ・answer は常に choices の 1 番目に書く（画面では毎回シャッフル）
    ========================================================= */
+const SECTIONS = [
+  { id: "otoshi",     ja: "お通し",       en: "OTOSHI" },
+  { id: "yakitori",   ja: "焼き鳥",       en: "YAKITORI" },
+  { id: "premium",    ja: "プレミアム",   en: "PREMIUM MEAT" },
+  { id: "vegetables", ja: "野菜焼き",     en: "VEGETABLES" },
+  { id: "maki",       ja: "巻き物",       en: "MAKI SKEWERS" }
+];
+
 const MENU = [
+  {
+    id: "otoshi",
+    section: "otoshi",
+    name: "OTOSHI", kana: "お通し", price: "$5 / 1人", star: false,
+    menuText: "Unlimited Japanese Cabbage With Homemade Dressing — $5 per person",
+    ja: {
+      part: "キャベツ（自家製ドレッシング）・おかわり自由",
+      talk: "当店では日本の居酒屋スタイルとして、お通しにキャベツと自家製ドレッシングをお出ししています。お一人様$5で、おかわり自由です。おかわりのときは「more otoshi」と声をかけてください。いらない場合は、ご注文のときにお知らせください。",
+      points: [
+        "お通し＝キャベツ＋自家製ドレッシング。お一人様 $5 でおかわり自由",
+        "おかわりは「more otoshi」と言ってもらう",
+        "いらないお客様は、注文のときに言ってもらえば出さない"
+      ],
+      questions: [
+        { q: "当店のお通しの料金とルールは？", choices: ["お一人様$5で、おかわり自由", "無料で、おかわりは1回まで", "1皿$5で、おかわりは別料金"], why: "Unlimited Japanese Cabbage … $5 per person。お一人様$5でおかわり自由です。" },
+        { q: "お通しのおかわりがほしいとき、お客様には何と言ってもらう？", choices: ["more otoshi", "one more cabbage", "refill please と手を挙げる"], why: "メニューに “just say ‘more otoshi’ for a refill” とあります。" },
+        { q: "「お通しはいらない」というお客様には？", choices: ["注文のときに言ってもらえば、お出ししない", "必ず出すので断れないと伝える", "料金だけいただいてお出ししない"], why: "“If you prefer not to have it, please let us know when ordering.” 注文時に言ってもらえば外せます。" }
+      ]
+    }
+  },
   {
     id: "omakase",
     section: "yakitori",
@@ -649,6 +682,406 @@ const MENU = [
         { q: "豚とろ1本の値段は？", choices: ["$6", "$8", "$9"], why: "TONTORO は $6 です。" }
       ]
     }
+  },
+  {
+    id: "wagyu",
+    section: "premium",
+    name: "A5 WAGYU", kana: "和牛串", price: "$30", star: true,
+    menuText: "A5 Wagyu Beef Imported From Japan — Premium Sea Urchin Topping +$15",
+    ja: {
+      part: "日本から輸入したA5ランクの和牛",
+      talk: "「和牛串」は、日本から輸入したA5ランクの和牛の串です。A5は日本の牛肉の格付けで一番上のランクです。プラス$15で、高級なウニをのせることもできます。当店のおすすめ（★）です。",
+      points: [
+        "日本から輸入した「A5和牛」。A5＝日本の格付けで最高ランク",
+        "ウニのトッピング +$15",
+        "$30。★おすすめ"
+      ],
+      questions: [
+        { q: "和牛串に使っているお肉は？", choices: ["日本から輸入したA5ランクの和牛", "アメリカ産のアンガス牛", "オーストラリア産の和牛"], why: "A5 Wagyu Beef Imported From Japan。日本から輸入したA5和牛です。" },
+        { q: "お客様に「A5って何？」と聞かれたら？", choices: ["日本の牛肉の格付けで、一番上のランクです", "牛の年齢が5歳という意味です", "5番目に良いランクという意味です"], why: "A5は日本の牛肉の格付けで最高ランクです。" },
+        { q: "和牛串に追加できるトッピングと値段は？", choices: ["ウニ +$15", "イクラ +$5", "トリュフ +$15"], why: "Premium Sea Urchin Topping +$15。ウニ（Sea Urchin）です。" }
+      ]
+    }
+  },
+  {
+    id: "kamo",
+    section: "premium",
+    name: "KAMO", kana: "鴨", price: "$15", star: false,
+    menuText: "Roasted Duck Breast w/ Whole-Grain Mustard",
+    ja: {
+      part: "鴨の胸肉",
+      talk: "「鴨」は、鴨の胸肉をロースト（焼き上げ）して、粒マスタードを添えた一本です。",
+      points: [
+        "鴨の胸肉（Duck Breast）",
+        "粒マスタード（Whole-Grain Mustard）を添える",
+        "$15"
+      ],
+      questions: [
+        { q: "「KAMO（鴨）」に使う部位は？", choices: ["鴨の胸肉", "鴨のもも肉", "鶏の胸肉"], why: "Roasted Duck Breast。鴨の胸肉です。" },
+        { q: "鴨に添えてあるものは？", choices: ["粒マスタード", "わさび", "大根おろし"], why: "w/ Whole-Grain Mustard。粒マスタードです。" },
+        { q: "鴨1本の値段は？", choices: ["$15", "$18", "$30"], why: "KAMO は $15 です。" }
+      ]
+    }
+  },
+  {
+    id: "unagi",
+    section: "premium",
+    name: "UNAGI", kana: "鰻", price: "$18", star: false,
+    menuText: "Grilled Freshwater Eel From Toyosu Market",
+    ja: {
+      part: "うなぎ（淡水の魚）",
+      talk: "「鰻」は、東京の豊洲市場から仕入れたうなぎを焼いた一本です。",
+      points: [
+        "うなぎ＝淡水の魚（Freshwater Eel）。あなご（海の魚）とは別",
+        "東京の豊洲市場から仕入れている",
+        "$18"
+      ],
+      questions: [
+        { q: "「UNAGI（鰻）」とは？", choices: ["淡水にすむうなぎ", "海にすむあなご", "鶏の皮"], why: "Freshwater Eel。うなぎは淡水の魚です。" },
+        { q: "鰻はどこから仕入れている？", choices: ["東京の豊洲市場", "大阪の黒門市場", "アメリカの養殖場"], why: "From Toyosu Market。東京の豊洲市場からです。" },
+        { q: "鰻1本の値段は？", choices: ["$18", "$15", "$29"], why: "UNAGI は $18 です。" }
+      ]
+    }
+  },
+  {
+    id: "maguro",
+    section: "premium",
+    name: "MAGURO NEGIMA", kana: "マグロねぎ間", price: "$29", star: false,
+    menuText: "Grilled Bluefin Tuna w/ Tokyo Negi",
+    ja: {
+      part: "本マグロ（クロマグロ）と東京ねぎ",
+      talk: "「マグロねぎ間」は、本マグロと東京ねぎを串に刺して焼いた一本です。鶏の「ねぎ間」のマグロ版で、プレミアムの串です。",
+      points: [
+        "本マグロ（Bluefin Tuna）と東京ねぎ",
+        "鶏のねぎ間（$7）とは別物",
+        "$29"
+      ],
+      questions: [
+        { q: "マグロねぎ間に使うマグロは？", choices: ["本マグロ（Bluefin Tuna）", "ツナ缶のマグロ", "カツオ"], why: "Grilled Bluefin Tuna。Bluefin Tuna＝本マグロ（クロマグロ）です。" },
+        { q: "お客様が「NEGIMA」を注文したとき、気をつけることは？", choices: ["鶏のねぎ間（$7）か、マグロねぎ間（$29）かを確認する", "どちらも同じなので確認はいらない", "マグロねぎ間を出せばよい"], why: "名前が似ているので、どちらか確認しましょう。" },
+        { q: "マグロねぎ間1本の値段は？", choices: ["$29", "$30", "$18"], why: "MAGURO NEGIMA は $29 です。" }
+      ]
+    }
+  },
+  {
+    id: "shiitake",
+    section: "vegetables",
+    name: "SHIITAKE", kana: "しいたけ", price: "$6", star: false,
+    menuText: "Japanese Shiitake Mushrooms",
+    ja: {
+      part: "日本産のしいたけ（きのこ）",
+      talk: "「しいたけ」は、日本のしいたけを焼いた一本です。かむと香りとうまみがじゅわっと広がります。",
+      points: [
+        "日本のしいたけ（Japanese Shiitake Mushrooms）",
+        "香りとうまみが強いきのこ",
+        "$6"
+      ],
+      questions: [
+        { q: "「SHIITAKE」とは？", choices: ["日本のしいたけ（きのこ）", "日本のねぎ", "日本のピーマン"], why: "Japanese Shiitake Mushrooms。きのこです。" },
+        { q: "しいたけの説明として正しいのは？", choices: ["かむと香りとうまみが広がる", "とても辛い", "コリコリした軟骨のような食感"], why: "焼いたしいたけは香りとうまみが魅力です。" },
+        { q: "しいたけ1本の値段は？", choices: ["$6", "$5", "$8"], why: "SHIITAKE は $6 です。" }
+      ]
+    }
+  },
+  {
+    id: "nasu",
+    section: "vegetables",
+    name: "NASU", kana: "なす", price: "$6", star: false,
+    menuText: "Eggplant w/ Bonito Flakes",
+    ja: {
+      part: "なす（かつお節がけ）",
+      talk: "「なす」は、焼いたなすにかつお節をかけた一本です。とろっとした食感です。かつお節は魚なので、ベジタリアンの方にはお伝えください。",
+      points: [
+        "なす（Eggplant）にかつお節（Bonito Flakes）",
+        "かつお節＝魚。ベジタリアンの方には伝える",
+        "$6"
+      ],
+      questions: [
+        { q: "なすにかかっているものは？", choices: ["かつお節", "ごま", "チーズ"], why: "Eggplant w/ Bonito Flakes。かつお節です。" },
+        { q: "ベジタリアンのお客様に、なすをすすめるときに伝えることは？", choices: ["かつお節（魚）がかかっていること", "豚肉が巻いてあること", "卵が入っていること"], why: "かつお節は魚からできています。" },
+        { q: "お客様に「Bonito Flakes って何？」と聞かれたら？", choices: ["かつおという魚を干して、薄く削ったもの", "海藻を乾かしたもの", "大豆から作ったもの"], why: "かつお節はかつお（魚）を干して削ったものです。" }
+      ]
+    }
+  },
+  {
+    id: "uzura",
+    section: "vegetables",
+    name: "UZURA", kana: "半熟うずら", price: "$8", star: false,
+    menuText: "Soft-Boiled Quail Eggs",
+    ja: {
+      part: "うずらの卵（半熟）",
+      talk: "「半熟うずら」は、うずらの卵を半熟にして串に刺し、焼いた一本です。小さな卵の中がとろっとしています。",
+      points: [
+        "うずら（Quail）の卵",
+        "半熟（Soft-Boiled）",
+        "$8"
+      ],
+      questions: [
+        { q: "「UZURA」とは？", choices: ["うずらの卵", "鶏の卵", "うなぎ"], why: "Quail Eggs。うずらの卵です。" },
+        { q: "半熟うずらの卵の状態は？", choices: ["半熟（中がとろっとしている）", "生", "固ゆで"], why: "Soft-Boiled。半熟です。" },
+        { q: "半熟うずら1本の値段は？", choices: ["$8", "$6", "$5"], why: "UZURA は $8 です。" }
+      ]
+    }
+  },
+  {
+    id: "ginnan",
+    section: "vegetables",
+    name: "GINNAN", kana: "ぎんなん", price: "$8", star: true,
+    menuText: "Ginkgo Nuts From Japan",
+    ja: {
+      part: "日本産のぎんなん（イチョウの実）",
+      talk: "「ぎんなん」は、日本産のイチョウの実を焼いた一本です。もちっとした食感と、ほんのりした苦みがあります。日本では秋の味覚として人気です。当店のおすすめ（★）です。",
+      points: [
+        "イチョウの実（Ginkgo Nuts）。日本産",
+        "もちっとした食感、ほんのり苦み",
+        "★おすすめ・$8"
+      ],
+      questions: [
+        { q: "「GINNAN（ぎんなん）」とは？", choices: ["イチョウの木の実", "栗", "落花生"], why: "Ginkgo Nuts。イチョウの実です。" },
+        { q: "ぎんなんはどこのもの？", choices: ["日本産", "中国産", "アメリカ産"], why: "Ginkgo Nuts From Japan。日本産です。" },
+        { q: "ぎんなん1本の値段は？", choices: ["$8", "$6", "$5"], why: "GINNAN は $8。★おすすめです。" }
+      ]
+    }
+  },
+  {
+    id: "shishito",
+    section: "vegetables",
+    name: "SHISHITO", kana: "ししとう", price: "$5", star: false,
+    menuText: "Shishito Peppers",
+    ja: {
+      part: "ししとう（唐辛子の仲間）",
+      talk: "「ししとう」は、唐辛子の仲間の小さな緑の野菜です。ほとんど辛くありませんが、まれに辛いものが入っていることがあります。",
+      points: [
+        "唐辛子の仲間（Shishito Peppers）",
+        "ほとんど辛くないが、まれに辛いものがある",
+        "$5"
+      ],
+      questions: [
+        { q: "お客様に「ししとうは辛い？」と聞かれたら？", choices: ["ほとんど辛くないが、まれに辛いものがある", "とても辛い", "まったく辛くない（絶対に辛くない）"], why: "ししとうはほとんど辛くありませんが、まれに辛いものがあります。" },
+        { q: "ししとうは何の仲間？", choices: ["唐辛子", "ねぎ", "きのこ"], why: "Shishito Peppers。唐辛子の仲間です。" },
+        { q: "ししとう1本の値段は？", choices: ["$5", "$6", "$8"], why: "SHISHITO は $5 です。" }
+      ]
+    }
+  },
+  {
+    id: "jagabutter",
+    section: "vegetables",
+    name: "JAGA BUTTER", kana: "じゃがバター", price: "$10", star: false,
+    menuText: "Signature Baked Potato With Salt & Butter",
+    ja: {
+      part: "じゃがいも（バター）",
+      talk: "「じゃがバター」は、当店自慢のベイクドポテトに、バターをのせた一品です。ほくほくのじゃがいもに、バターがとろけます。",
+      points: [
+        "じゃがいもとバター",
+        "当店自慢（Signature）の一品",
+        "$10"
+      ],
+      questions: [
+        { q: "「JAGA BUTTER」とは？", choices: ["じゃがいもにバターをのせたもの", "さつまいもに蜂蜜をかけたもの", "かぼちゃにチーズをのせたもの"], why: "Baked Potato With Salt & Butter。じゃがいも＋バターです。" },
+        { q: "メニューで「Signature」と書いてあるのは、どういう意味？", choices: ["お店の自慢の一品", "季節限定", "辛い料理"], why: "Signature＝お店の看板・自慢のメニューです。" },
+        { q: "じゃがバターの値段は？", choices: ["$10", "$8", "$6"], why: "JAGA BUTTER は $10 です。" }
+      ]
+    }
+  },
+  {
+    id: "zucchini",
+    section: "vegetables",
+    name: "ZUCCHINI", kana: "ズッキーニ", price: "$5", star: false,
+    menuText: "Zucchini Lightly Brushed w/ Soy Sauce",
+    ja: {
+      part: "ズッキーニ（醤油を軽く塗る）",
+      talk: "「ズッキーニ」は、ズッキーニに醤油を軽く塗って焼いた一本です。",
+      points: [
+        "ズッキーニに醤油を軽く塗る（メニュー表記どおり）",
+        "野菜の串",
+        "$5"
+      ],
+      questions: [
+        { q: "ズッキーニに塗ってあるものは？（メニュー表記）", choices: ["醤油（Soy Sauce）", "マヨネーズ", "バター"], why: "Lightly Brushed w/ Soy Sauce。醤油を軽く塗ります。" },
+        { q: "ズッキーニ1本の値段は？", choices: ["$5", "$6", "$9"], why: "ZUCCHINI は $5 です。" },
+        { q: "「醤油が入っていないものがいい」というお客様に、ズッキーニについて伝えることは？", choices: ["醤油を軽く塗っています", "醤油は使っていません", "醤油は後からかけます"], why: "メニューに “Lightly Brushed w/ Soy Sauce” とあります。" }
+      ]
+    }
+  },
+  {
+    id: "nagaimo",
+    section: "vegetables",
+    name: "NAGAIMO", kana: "長芋", price: "$6", star: false,
+    menuText: "Japanese Mountain Yam w/ Bonito Flakes",
+    ja: {
+      part: "長芋（日本の山芋の一種）・かつお節がけ",
+      talk: "「長芋」は、日本の山芋の一種を焼いて、かつお節をかけた一本です。外はほくっと、中はシャキッとした食感です。かつお節は魚なので、ベジタリアンの方にはお伝えください。",
+      points: [
+        "長芋＝日本の山芋の一種（Japanese Mountain Yam）",
+        "かつお節がかかっている（魚）",
+        "$6"
+      ],
+      questions: [
+        { q: "「NAGAIMO（長芋）」とは？", choices: ["日本の山芋の一種", "日本のさつまいも", "日本の大根"], why: "Japanese Mountain Yam。山芋の一種です。" },
+        { q: "長芋にかかっているものは？", choices: ["かつお節", "ごま油と東京ねぎ", "大根おろし"], why: "w/ Bonito Flakes。かつお節です。" },
+        { q: "ベジタリアンのお客様に注意が必要な野菜焼きは？", choices: ["長芋（かつお節がかかっている）", "ししとう", "しいたけ"], why: "長芋となすにはかつお節（魚）がかかっています。" }
+      ]
+    }
+  },
+  {
+    id: "tamanegi",
+    section: "vegetables",
+    name: "TAMANEGI", kana: "玉葱丸ごと炭火焼き", price: "$9", star: false,
+    menuText: "Whole Onion Grilled In Charcoal",
+    ja: {
+      part: "玉ねぎ丸ごと1個",
+      talk: "「玉葱丸ごと炭火焼き」は、玉ねぎを丸ごと1個、炭火でじっくり焼いた一品です。火が通って甘みが出ます。",
+      points: [
+        "玉ねぎを丸ごと（Whole Onion）",
+        "炭火で焼く（Grilled In Charcoal）",
+        "$9"
+      ],
+      questions: [
+        { q: "「TAMANEGI」はどんな料理？", choices: ["玉ねぎを丸ごと炭火で焼いたもの", "玉ねぎのフライ", "玉ねぎのスープ"], why: "Whole Onion Grilled In Charcoal。丸ごと炭火焼きです。" },
+        { q: "玉ねぎは何個分？", choices: ["丸ごと1個", "半分", "スライス3枚"], why: "Whole Onion＝丸ごとです。" },
+        { q: "玉葱丸ごと炭火焼きの値段は？", choices: ["$9", "$6", "$5"], why: "TAMANEGI は $9 です。" }
+      ]
+    }
+  },
+  {
+    id: "tomatobacon",
+    section: "maki",
+    name: "TOMATO BACON", kana: "トマト巻き", price: "$7", star: false,
+    menuText: "Tomato Wrapped In Bacon",
+    ja: {
+      part: "トマトをベーコンで巻いたもの",
+      talk: "「トマト巻き」は、トマトをベーコンで巻いて焼いた一本です。焼いたトマトの甘酸っぱさと、ベーコンのうまみが合います。",
+      points: [
+        "トマトをベーコンで巻く",
+        "ベーコン＝豚肉",
+        "$7"
+      ],
+      questions: [
+        { q: "トマト巻きは何を何で巻いている？", choices: ["トマトをベーコンで", "トマトを豚バラで", "トマトを大葉で"], why: "Tomato Wrapped In Bacon。ベーコンで巻きます。" },
+        { q: "豚肉を食べないお客様に、トマト巻きについて伝えることは？", choices: ["ベーコン（豚肉）で巻いている", "鶏肉で巻いている", "肉は使っていない"], why: "ベーコンは豚肉です。巻き物はほとんどが豚肉を使っています。" },
+        { q: "トマト巻き1本の値段は？", choices: ["$7", "$9", "$5"], why: "TOMATO BACON は $7 です。" }
+      ]
+    }
+  },
+  {
+    id: "cheesebacon",
+    section: "maki",
+    name: "CHEESE BACON", kana: "チーズベーコン", price: "$9", star: false,
+    menuText: "Cheese Wrapped In Bacon",
+    ja: {
+      part: "チーズをベーコンで巻いたもの",
+      talk: "「チーズベーコン」は、チーズをベーコンで巻いて焼いた一本です。とろけたチーズとベーコンの組み合わせです。",
+      points: [
+        "チーズをベーコンで巻く",
+        "ベーコン＝豚肉",
+        "$9"
+      ],
+      questions: [
+        { q: "チーズベーコンは何を何で巻いている？", choices: ["チーズをベーコンで", "チーズを豚バラで", "もちをベーコンで"], why: "Cheese Wrapped In Bacon。" },
+        { q: "チーズベーコン1本の値段は？", choices: ["$9", "$7", "$5"], why: "CHEESE BACON は $9 です。" },
+        { q: "乳製品が食べられないお客様に注意する巻き物は？", choices: ["チーズベーコン", "トマト巻き", "アスパラ巻き"], why: "チーズは乳製品です。" }
+      ]
+    }
+  },
+  {
+    id: "mochibacon",
+    section: "maki",
+    name: "MOCHI BACON", kana: "もちベーコン", price: "$9", star: false,
+    menuText: "Mochi Wrapped In Bacon",
+    ja: {
+      part: "おもちをベーコンで巻いたもの",
+      talk: "「もちベーコン」は、日本のおもち（お米から作る）をベーコンで巻いて焼いた一本です。焼くともちがのびて、もちっとした食感になります。",
+      points: [
+        "おもち（お米から作る）をベーコンで巻く",
+        "もちっと、のびる食感",
+        "$9"
+      ],
+      questions: [
+        { q: "お客様に「MOCHI って何？」と聞かれたら？", choices: ["お米から作る、もちっとした日本の食べ物", "日本のチーズ", "日本のパン"], why: "もちはお米（もち米）から作ります。" },
+        { q: "もちベーコンは何で巻いている？", choices: ["ベーコン", "豚バラ", "大葉"], why: "Mochi Wrapped In Bacon。" },
+        { q: "もちベーコン1本の値段は？", choices: ["$9", "$7", "$6"], why: "MOCHI BACON は $9 です。" }
+      ]
+    }
+  },
+  {
+    id: "aspara",
+    section: "maki",
+    name: "ASPARA MAKI", kana: "アスパラ巻き", price: "$9", star: false,
+    menuText: "Asparagus Wrapped In Pork Belly",
+    ja: {
+      part: "アスパラガスを豚バラで巻いたもの",
+      talk: "「アスパラ巻き」は、アスパラガスを豚バラ肉で巻いて焼いた一本です。シャキッとしたアスパラと、豚バラの脂のうまみが合います。",
+      points: [
+        "アスパラガスを「豚バラ」で巻く（ベーコンではない）",
+        "豚肉",
+        "$9"
+      ],
+      questions: [
+        { q: "アスパラ巻きは何で巻いている？", choices: ["豚バラ肉", "ベーコン", "鶏皮"], why: "Asparagus Wrapped In Pork Belly。ベーコンではなく豚バラです。" },
+        { q: "「Pork Belly」は日本語で？", choices: ["豚バラ肉", "豚ロース", "豚とろ"], why: "Pork Belly＝豚バラ肉です。" },
+        { q: "アスパラ巻き1本の値段は？", choices: ["$9", "$7", "$5"], why: "ASPARA MAKI は $9 です。" }
+      ]
+    }
+  },
+  {
+    id: "shisomaki",
+    section: "maki",
+    name: "SHISO MAKI", kana: "豚バラ紫蘇巻き", price: "$9", star: false,
+    menuText: "Pork-Belly Wrapped In Shiso Leaf",
+    ja: {
+      part: "豚バラ肉と紫蘇（大葉）",
+      talk: "「豚バラ紫蘇巻き」は、豚バラ肉と紫蘇（大葉）を巻いて焼いた一本です。紫蘇のさわやかな香りで、豚バラをさっぱり食べられます。",
+      points: [
+        "豚バラ肉と紫蘇（大葉）",
+        "紫蘇はさわやかな香りの日本のハーブ",
+        "$9"
+      ],
+      questions: [
+        { q: "お客様に「SHISO って何？」と聞かれたら？", choices: ["さわやかな香りの日本のハーブ（大葉）", "日本の海藻", "日本のからし"], why: "紫蘇（大葉）はミントの仲間の、香りのよい日本のハーブです。" },
+        { q: "豚バラ紫蘇巻きに使う肉は？", choices: ["豚バラ肉", "鶏もも肉", "ベーコン"], why: "Pork-Belly。豚バラ肉です。" },
+        { q: "豚バラ紫蘇巻き1本の値段は？", choices: ["$9", "$7", "$6"], why: "SHISO MAKI は $9 です。" }
+      ]
+    }
+  },
+  {
+    id: "baconegg",
+    section: "maki",
+    name: "BACON EGG", kana: "ベーコンエッグ", price: "$7", star: true,
+    menuText: "Soft-Boiled Egg Wrapped In Bacon",
+    ja: {
+      part: "半熟卵をベーコンで巻いたもの",
+      talk: "「ベーコンエッグ」は、半熟卵をベーコンで巻いて焼いた一本です。当店のおすすめ（★）です。",
+      points: [
+        "半熟卵をベーコンで巻く",
+        "★おすすめ",
+        "$7"
+      ],
+      questions: [
+        { q: "ベーコンエッグの中身は？", choices: ["半熟卵", "うずらの卵（固ゆで）", "生卵"], why: "Soft-Boiled Egg Wrapped In Bacon。半熟卵です。" },
+        { q: "巻き物の中で★おすすめなのは？", choices: ["ベーコンエッグ", "トマト巻き", "チーズベーコン"], why: "BACON EGG に★がついています。" },
+        { q: "ベーコンエッグ1本の値段は？", choices: ["$7", "$9", "$8"], why: "BACON EGG は $7 です。" }
+      ]
+    }
+  },
+  {
+    id: "kurobuta",
+    section: "maki",
+    name: "KUROBUTA SAUSAGE", kana: "黒豚ソーセージ", price: "$7", star: false,
+    menuText: "Premium Black-Pig Sausage w/ Mustard",
+    ja: {
+      part: "黒豚のソーセージ",
+      talk: "「黒豚ソーセージ」は、高級な黒豚で作ったソーセージを焼いて、マスタードを添えた一本です。",
+      points: [
+        "黒豚（Black-Pig）のソーセージ",
+        "マスタードを添える",
+        "$7"
+      ],
+      questions: [
+        { q: "「KUROBUTA」とは？", choices: ["黒豚", "黒毛和牛", "黒い鶏"], why: "Premium Black-Pig。黒豚です。" },
+        { q: "黒豚ソーセージに添えてあるものは？", choices: ["マスタード", "わさび", "柚子胡椒"], why: "w/ Mustard。マスタードです。" },
+        { q: "黒豚ソーセージ1本の値段は？", choices: ["$7", "$9", "$5"], why: "KUROBUTA SAUSAGE は $7 です。" }
+      ]
+    }
   }
 ];
 
@@ -693,37 +1126,52 @@ function show(id){
 $("staffName").value = store.get("gq_name","");
 $("staffName").addEventListener("input", e => store.set("gq_name", e.target.value));
 
+const secItems = id => MENU.map((m,i)=>[m,i]).filter(([m])=>m.section===id);
+
 function renderHome(){
-  $("itemList").innerHTML = MENU.map((m,i) => `
-    <div class="item">
-      <div class="tag">${esc(m.kana)}</div>
-      <div class="name">${m.star?'<span class="star">★ </span>':''}${esc(m.name)}<small>${esc(m.menuText)}</small></div>
-      <div class="price">${esc(m.price)}</div>
-      <div class="actions row">
-        <button type="button" class="btn" data-study="${i}">${t("study")}</button>
-        <button type="button" class="btn" data-test="${i}">${t("test")}（${m[lang].questions.length}${t("q")}）</button>
-      </div>
-    </div>`).join("");
+  $("jump").innerHTML = SECTIONS.map(sec => `<a href="#sec-${sec.id}">${esc(sec.ja)}</a>`).join("");
+  $("itemList").innerHTML = SECTIONS.map(sec => {
+    const list = secItems(sec.id);
+    const nq = list.reduce((n,[m]) => n + m[lang].questions.length, 0);
+    return `<div style="display:flex;flex-direction:column;gap:10px">
+      <div class="sec-head" id="sec-${sec.id}"><h2>${esc(sec.ja)}</h2><span class="eyebrow">${esc(sec.en)}</span>
+        <button type="button" class="btn" data-sec="${sec.id}">このコーナーのテスト（${nq}${t("q")}）</button></div>
+      <div class="items">${list.map(([m,i]) => `
+        <div class="item">
+          <div class="tag">${esc(m.kana)}</div>
+          <div class="name">${m.star?'<span class="star">★ </span>':''}${esc(m.name)}<small>${esc(m.menuText)}</small></div>
+          <div class="price">${esc(m.price)}</div>
+          <div class="actions row">
+            <button type="button" class="btn" data-study="${i}">${t("study")}</button>
+            <button type="button" class="btn" data-test="${i}">${t("test")}（${m[lang].questions.length}${t("q")}）</button>
+          </div>
+        </div>`).join("")}</div></div>`;
+  }).join("");
   renderHist();
 }
 $("itemList").addEventListener("click", e => {
-  const s = e.target.closest("[data-study]"), q = e.target.closest("[data-test]");
+  const s = e.target.closest("[data-study]"), q = e.target.closest("[data-test]"), c = e.target.closest("[data-sec]");
   if(s) openStudy(+s.dataset.study);
   if(q) startTest([MENU[+q.dataset.test]]);
+  if(c) startTest(secItems(c.dataset.sec).map(([m])=>m));
 });
 $("studyAll").onclick = () => openStudy(0);
 $("testAll").onclick = () => startTest(MENU);
 
-/* 3品ずつのグループテスト */
+/* 3品ずつのグループテスト（コーナーごと） */
 const GROUP = 3;
-$("groupList").innerHTML = Array.from({length: Math.ceil(MENU.length/GROUP)}, (_, g) => {
-  const part = MENU.slice(g*GROUP, g*GROUP+GROUP);
-  return `<button type="button" class="btn" data-group="${g}" style="flex:1 1 200px;font-size:13px;flex-direction:column;align-items:flex-start;text-align:left">
-    <span>${part.length > 1 ? `${g*GROUP+1}〜${g*GROUP+part.length}` : g*GROUP+1}品目</span><span class="muted" style="font-weight:400">${part.map(m=>esc(m.kana)).join("・")}</span></button>`;
-}).join("");
+const GROUPS = SECTIONS.map(sec => {
+  const list = secItems(sec.id).map(([m])=>m), out = [];
+  for(let k=0; k<list.length; k+=GROUP) out.push({ sec, from:k+1, items:list.slice(k,k+GROUP) });
+  return out;
+});
+$("groupList").innerHTML = GROUPS.map((gs,si) => `
+  <div style="display:flex;flex-direction:column;gap:6px"><div class="eyebrow">${esc(SECTIONS[si].ja)}</div>
+  <div class="row">${gs.map((g,gi) => `<button type="button" class="btn" data-group="${si}-${gi}" style="flex:1 1 200px;font-size:13px;flex-direction:column;align-items:flex-start;text-align:left">
+    <span>${g.items.length > 1 ? `${g.from}〜${g.from+g.items.length-1}` : g.from}品目</span><span class="muted" style="font-weight:400">${g.items.map(m=>esc(m.kana)).join("・")}</span></button>`).join("")}</div></div>`).join("");
 $("groupList").addEventListener("click", e => {
   const b = e.target.closest("[data-group]");
-  if(b){ const g = +b.dataset.group; startTest(MENU.slice(g*GROUP, g*GROUP+GROUP)); }
+  if(b){ const [si,gi] = b.dataset.group.split("-").map(Number); startTest(GROUPS[si][gi].items); }
 });
 
 /* ---------- 学習 ---------- */
@@ -734,7 +1182,7 @@ function renderStudy(){
   $("studyCount").textContent = `${sIdx+1} / ${MENU.length}`;
   $("studyBar").style.width = `${(sIdx+1)/MENU.length*100}%`;
   $("studyCard").innerHTML = `
-    <div class="eyebrow">焼き鳥 YAKITORI${m.star?` ・ ${t("star")}`:""}</div>
+    <div class="eyebrow">${esc(SECTIONS.find(x=>x.id===m.section).ja)}${m.star?` ・ ${t("star")}`:""}</div>
     <div class="study-name"><h2>${esc(m.kana)}</h2><span class="muted">${esc(m.name)}</span><span class="price">${esc(m.price)}</span></div>
     <div class="menu-line">${t("menu")}：${esc(m.menuText)}</div>
     <dl class="facts"><dt>${t("part")}</dt><dd>${esc(d.part)}</dd></dl>
