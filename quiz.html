@@ -1126,16 +1126,18 @@ const MENU = [
     name: "SHIRASU TOFU", kana: "しらす冷奴", price: "$12", star: false,
     menuText: "Chilled Tofu w/ Fresh Whitebait & Ikura",
     ja: {
-      part: "冷たい豆腐（冷奴）・しらすとイクラのせ",
-      talk: "「しらす冷奴」は、冷たい豆腐の上に、しらす（小さな魚の稚魚）とイクラをのせた一品です。しらすとイクラは魚なので、ベジタリアンの方にはお伝えください。",
+      part: "冷たい豆腐（冷奴）・アンチョビしらすとイクラ少しのせ",
+      talk: "「しらす冷奴」は、冷たい豆腐の上に、自家製の「アンチョビしらす」をのせて、イクラを少しのせた一品です。アンチョビしらすは、日本の釜揚げしらす（小さな魚の稚魚をゆでたもの）を、アンチョビとにんにくと一緒にオイルであえたものです。しらす・アンチョビ・イクラは魚なので、ベジタリアンの方にはお伝えください。",
       points: [
         "冷奴＝冷たい豆腐",
-        "しらす（小魚の稚魚）とイクラをのせる",
-        "しらす・イクラは魚。ベジタリアンの方には伝える",
+        "アンチョビしらす＝日本の釜揚げしらすを、アンチョビとにんにくとオイルであえたもの",
+        "アンチョビしらすをのせて、イクラを少しのせる",
+        "しらす・アンチョビ・イクラは魚。ベジタリアンの方には伝える",
         "$12"
       ],
       questions: [
-        { q: "しらす冷奴にのっているものは？", choices: ["しらすとイクラ", "ウニとイクラ", "かつお節とねぎ"], why: "Fresh Whitebait & Ikura。しらすとイクラです。" },
+        { q: "しらす冷奴にのっているものは？", choices: ["アンチョビしらすと、イクラ少し", "生しらすとウニ", "かつお節とねぎ"], why: "アンチョビしらすをのせて、イクラを少しのせます。" },
+        { q: "お客様に「アンチョビしらすって何？」と聞かれたら？", choices: ["日本の釜揚げしらすを、アンチョビとにんにくと一緒にオイルであえたものです", "しらすをしょうゆとわさびであえたものです", "アンチョビだけをオイルに漬けたものです"], why: "日本の釜揚げしらすを、アンチョビとにんにくとオイルであえています。" },
         { q: "お客様に「SHIRASU って何？」と聞かれたら？", choices: ["小さな魚の稚魚です", "日本の海藻です", "大豆から作った食べ物です"], why: "しらす（Whitebait）は小さな魚の稚魚です。" },
         { q: "しらす冷奴の豆腐は？", choices: ["冷たい", "温かい", "揚げてある"], why: "Chilled Tofu。冷たい豆腐（冷奴）です。" }
       ]
@@ -2069,16 +2071,18 @@ const EN = {
     ]
   },
   shirasutofu: {
-    part: "Chilled tofu topped with whitebait and ikura",
-    talk: "Shirasu Tofu is chilled tofu topped with shirasu (whitebait, tiny young fish) and ikura. Shirasu and ikura are fish, so please tell vegetarian guests.",
+    part: "Chilled tofu topped with anchovy shirasu and a little ikura",
+    talk: "Shirasu Tofu is chilled tofu topped with our anchovy shirasu and a little ikura. Anchovy shirasu is Japanese kamaage shirasu (boiled whitebait, tiny young fish) tossed in oil with anchovy and garlic. Shirasu, anchovy and ikura are fish, so please tell vegetarian guests.",
     points: [
       "Hiyayakko = chilled tofu",
-      "Topped with shirasu (whitebait) and ikura",
-      "Shirasu and ikura are FISH. Tell vegetarian guests",
+      "Anchovy shirasu = Japanese kamaage shirasu (boiled whitebait) tossed in oil with anchovy and garlic",
+      "Topped with anchovy shirasu and a little ikura",
+      "Shirasu, anchovy and ikura are FISH. Tell vegetarian guests",
       "$12"
     ],
     questions: [
-      ["What is on top of SHIRASU TOFU?", ["Whitebait (shirasu) and ikura", "Sea urchin and ikura", "Bonito flakes and negi"], "Fresh Whitebait & Ikura."],
+      ["What is on top of SHIRASU TOFU?", ["Anchovy shirasu and a little ikura", "Raw whitebait and sea urchin", "Bonito flakes and negi"], "Anchovy shirasu, with a little ikura on top."],
+      ["A guest asks, “What is anchovy shirasu?”", ["Japanese boiled whitebait tossed in oil with anchovy and garlic", "Whitebait mixed with soy sauce and wasabi", "Just anchovies in oil"], "Japanese kamaage shirasu tossed in oil with anchovy and garlic."],
       ["A guest asks, “What is shirasu?”", ["Tiny young fish (whitebait)", "Japanese seaweed", "Something made from soybeans"], "Shirasu is whitebait: tiny young fish."],
       ["How is the tofu in SHIRASU TOFU served?", ["Chilled", "Hot", "Deep-fried"], "Chilled Tofu."]
     ]
