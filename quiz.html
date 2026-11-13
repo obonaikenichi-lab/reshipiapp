@@ -1271,7 +1271,7 @@ function renderResult(r){
     r.rows.map(x => `<tr class="${x.ok?"ok":"ng"}"><td class="mk">${x.ok?"○":"×"}</td><td><span class="muted small">${esc(x.item)}</span><br>${esc(x.q)}</td><td class="${x.ok?"":"your"}">${esc(x.pick)}</td><td>${esc(x.answer)}</td></tr>`).join("");
   $("retryWrong").disabled = r.rows.every(x=>x.ok);
   $("printResult").hidden = !canPrint;
-  $("printNote").hidden = canPrint;
+  $("printNote").hidden = true;
 }
 $("retryWrong").onclick = () => startTest(null, answers.filter(a=>!a.ok).map(({pick,ok,...x})=>x));
 $("resultHome").onclick = () => { renderHome(); show("home"); };
