@@ -1,0 +1,58 @@
+<title>フラッシュペイ LP案</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap">
+<style>
+/* layout: 上部に案の切替バー、その下にLPを枠で表示 */
+:root{--bg:#eef1f4;--panel:#ffffff;--fg:#1c2533;--mute:#5d6878;--line:#d9dee5;--accent:#e0632a;--font:"Noto Sans JP",system-ui,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14171c;--panel:#1e232a;--fg:#e8ebef;--mute:#9aa4b2;--line:#2f3640;--accent:#ff8a55;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14171c;--panel:#1e232a;--fg:#e8ebef;--mute:#9aa4b2;--line:#2f3640;--accent:#ff8a55;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);display:flex;flex-direction:column}
+.bar{background:var(--panel);border-bottom:1px solid var(--line);padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.bar h1{font-size:15px;font-weight:900;margin:0}
+.grp{display:flex;gap:6px;flex-wrap:wrap}
+button{font:inherit;font-size:13px;font-weight:700;border:1px solid var(--line);background:var(--bg);color:var(--fg);padding:7px 14px;border-radius:999px;cursor:pointer}
+button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.desc{font-size:12px;color:var(--mute);flex-basis:100%;margin:0}
+.stage{flex:1;min-height:0;display:flex;justify-content:center;padding:16px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px))}
+iframe{border:1px solid var(--line);background:#fff;width:100%;height:100%;border-radius:8px;transition:max-width .25s}
+.sp iframe{max-width:390px;border-radius:28px;border:8px solid var(--fg)}
+@media (max-width:600px){.devgrp{display:none}}
+@media (prefers-reduced-motion:reduce){iframe{transition:none}}
+</style>
+
+<div class="bar">
+  <h1>フラッシュペイ LPデザイン案</h1>
+  <div class="grp" id="designs">
+    <button data-k="a" aria-pressed="true">A 信頼ネイビー</button>
+    <button data-k="b" aria-pressed="false">B スピード</button>
+    <button data-k="c" aria-pressed="false">C やさしいミント</button>
+  </div>
+  <div class="grp devgrp" id="devs">
+    <button data-d="pc" aria-pressed="true">パソコン表示</button>
+    <button data-d="sp" aria-pressed="false">スマホ表示</button>
+  </div>
+  <p class="desc" id="desc"></p>
+</div>
+<div class="stage" id="stage"><iframe id="f" title="LPプレビュー"></iframe></div>
+
+<script>
+const D={
+  a:{src:"design-a-trust.html",d:"紺×金・明朝体。法人向けの信頼感。最初の画面に申込フォーム、銀行融資との比較表つき。"},
+  b:{src:"design-b-speed.html",d:"黒×黄・稲妻ロゴ。「60分で現金」のスピード訴求。他社との入金時間比較グラフつき。"},
+  c:{src:"design-c-friendly.html",d:"白×ミント・丸ゴシック。フリーランス向けのやさしい雰囲気。受取額シミュレーターつき。"}
+};
+const f=document.getElementById('f'),desc=document.getElementById('desc'),stage=document.getElementById('stage');
+function show(k){
+  if(!D[k])k='a';
+  f.src=D[k].src;desc.textContent=D[k].d+"（※文言・数値は仮）";
+  document.querySelectorAll('#designs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
+}
+document.getElementById('designs').addEventListener('click',e=>{const k=e.target.dataset.k;if(k){location.hash=k;show(k)}});
+document.getElementById('devs').addEventListener('click',e=>{const d=e.target.dataset.d;if(!d)return;
+  stage.classList.toggle('sp',d==='sp');
+  document.querySelectorAll('#devs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.d===d));});
+addEventListener('hashchange',()=>show(location.hash.slice(1)));
+show(location.hash.slice(1));
+</script>
