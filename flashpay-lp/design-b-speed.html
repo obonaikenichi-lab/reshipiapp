@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>フラッシュペイ｜デザイン案B スピード</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--y:#ffe100;--y2:#ffb800;--k:#0b0b0d;--k2:#1a1a1f;--w:#fff;--g:#9a9aa6;--red:#ff3b30}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--k);color:var(--w);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.en{font-family:"Oswald",sans-serif;letter-spacing:.02em}
+.note{background:var(--y);color:var(--k);font-size:12px;text-align:center;padding:6px 16px;font-weight:700}
+header{position:sticky;top:0;z-index:20;background:rgba(11,11,13,.92);backdrop-filter:blur(8px);border-bottom:1px solid #2a2a30}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-family:"Oswald";font-weight:700;font-size:26px;display:flex;align-items:center;gap:6px}
+.logo .bolt{width:28px;height:28px;background:var(--y);clip-path:polygon(55% 0,10% 58%,45% 58%,35% 100%,90% 40%,55% 40%,70% 0);}
+.hbtn{background:var(--y);color:var(--k);font-weight:900;padding:10px 20px;border-radius:999px;font-size:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:900;padding:18px 34px;border-radius:999px;font-size:18px;transition:.2s}
+.btn-y{background:var(--y);color:var(--k);box-shadow:0 0 0 0 rgba(255,225,0,.6);animation:pulse 2s infinite}
+.btn-y:hover{background:#fff}
+.btn-o{border:2px solid #fff}
+@keyframes pulse{70%{box-shadow:0 0 0 16px rgba(255,225,0,0)}100%{box-shadow:0 0 0 0 rgba(255,225,0,0)}}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:80px 0 0}
+.hero .slash{position:absolute;inset:0;background:linear-gradient(115deg,transparent 52%,var(--y) 52%,var(--y) 54%,transparent 54%,transparent 58%,rgba(255,225,0,.18) 58%,rgba(255,225,0,.18) 60%,transparent 60%)}
+.hero .wrap{position:relative}
+.tag{display:inline-block;background:var(--red);color:#fff;font-weight:900;font-size:14px;padding:4px 14px;transform:skew(-10deg);margin-bottom:18px}
+.hero h1{font-size:clamp(40px,7.4vw,96px);font-weight:900;line-height:1.08;letter-spacing:-.02em}
+.hero h1 .y{color:var(--y)}
+.hero h1 .big{font-family:"Oswald";font-size:1.6em;color:var(--y);font-style:italic;line-height:1}
+.hero .lead{font-size:18px;color:#cfcfd8;margin:24px 0 34px;max-width:560px}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+.ticker{margin-top:72px;background:var(--y);color:var(--k);overflow:hidden;white-space:nowrap;transform:rotate(-2deg);margin-left:-20px;margin-right:-20px}
+.ticker div{display:inline-block;padding:14px 0;font-family:"Oswald";font-weight:700;font-size:22px;animation:tick 22s linear infinite}
+.ticker span{margin:0 28px}
+@keyframes tick{to{transform:translateX(-50%)}}
+section{padding:110px 0}
+.h2{font-size:clamp(28px,4.4vw,52px);font-weight:900;line-height:1.2;margin-bottom:48px}
+.h2 small{display:block;font-family:"Oswald";color:var(--y);font-size:16px;letter-spacing:.3em;margin-bottom:8px}
+.h2 .y{color:var(--y)}
+/* speed meter */
+.speed{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.meter{background:var(--k2);border-radius:24px;padding:36px;border:1px solid #2a2a30}
+.bar{margin:18px 0}
+.bar .lb{display:flex;justify-content:space-between;font-size:14px;color:var(--g);margin-bottom:6px}
+.bar .lb b{color:#fff}
+.bar .tr{height:16px;background:#2a2a30;border-radius:99px;overflow:hidden}
+.bar .tr i{display:block;height:100%;border-radius:99px;background:#55555f}
+.bar.us .lb b{color:var(--y);font-size:20px}
+.bar.us .tr i{background:linear-gradient(90deg,var(--y2),var(--y))}
+/* features */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--k2);border:1px solid #2a2a30;border-radius:24px;padding:36px 28px;position:relative;overflow:hidden;transition:.25s}
+.card:hover{border-color:var(--y);transform:translateY(-4px)}
+.card .n{font-family:"Oswald";font-size:88px;color:transparent;-webkit-text-stroke:1px #3b3b44;position:absolute;right:16px;top:-8px;line-height:1}
+.card .ic{width:56px;height:56px;border-radius:16px;background:var(--y);color:var(--k);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px}
+.card h3{font-size:22px;margin-bottom:10px}
+.card p{color:var(--g);font-size:14px}
+/* stats */
+.stats{background:var(--y);color:var(--k);padding:70px 0}
+.stats .grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stats b{display:block;font-family:"Oswald";font-size:clamp(40px,5.4vw,72px);line-height:1}
+.stats small{font-weight:700}
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.flow:before{content:"";position:absolute;left:8%;right:8%;top:36px;height:3px;background:linear-gradient(90deg,var(--y),var(--y2))}
+.st{text-align:center;padding:0 12px;position:relative}
+.st .c{width:72px;height:72px;border-radius:50%;background:var(--k);border:3px solid var(--y);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:"Oswald";font-size:26px;color:var(--y)}
+.st h4{font-size:18px}
+.st p{font-size:13px;color:var(--g)}
+.st .t{display:inline-block;margin-top:8px;font-size:12px;background:#2a2a30;padding:2px 10px;border-radius:99px;color:var(--y)}
+/* voice */
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.v{background:#fff;color:var(--k);border-radius:24px;padding:28px;position:relative}
+.v:after{content:"";position:absolute;left:36px;bottom:-14px;border:14px solid transparent;border-top-color:#fff;border-bottom:0}
+.v .q{font-size:40px;color:var(--y2);font-family:"Oswald";line-height:.6}
+.v p{font-weight:700;margin:8px 0}
+.v small{color:#666}
+/* faq */
+.faq details{border-bottom:1px solid #2a2a30;padding:22px 0}
+.faq summary{font-weight:900;font-size:18px;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+.faq summary:after{content:"+";color:var(--y);font-family:"Oswald";font-size:26px;line-height:1}
+.faq details[open] summary:after{content:"−"}
+.faq details p{color:var(--g);margin-top:10px}
+.final{text-align:center;background:radial-gradient(circle at 50% 120%,rgba(255,225,0,.35),transparent 60%)}
+.final h2{font-size:clamp(32px,5.6vw,72px);font-weight:900;line-height:1.15}
+.final h2 .y{color:var(--y)}
+.final p{color:var(--g);margin:18px 0 36px}
+footer{border-top:1px solid #2a2a30;color:var(--g);font-size:13px;text-align:center;padding:36px 0}
+.sp-bar{display:none}
+@media(max-width:860px){
+  .speed,.cards,.voices{grid-template-columns:1fr}
+  .stats .grid{grid-template-columns:1fr 1fr;row-gap:28px}
+  .flow{grid-template-columns:1fr 1fr;row-gap:36px}.flow:before{display:none}
+  section{padding:72px 0}
+  .hero .slash{opacity:.5}
+  .sp-bar{display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:30}
+  .sp-bar a{display:block;text-align:center;background:var(--y);color:var(--k);font-weight:900;padding:16px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+  body{padding-bottom:80px}
+}
+</style>
+</head>
+<body>
+<div class="note">【デザイン案B｜スピード訴求 ブラック×イエロー】※文言・数値はすべて仮のダミーです</div>
+<header><div class="wrap">
+  <div class="logo"><span class="bolt"></span>FLASH PAY</div>
+  <a class="hbtn" href="#">今すぐ申込む</a>
+</div></header>
+
+<section class="hero" style="padding-bottom:40px">
+  <div class="slash"></div>
+  <div class="wrap">
+    <span class="tag">24時間 365日 受付中</span>
+    <h1>請求書が、<br><span class="big">60</span><span class="y">分</span>で<br><span class="y">現金</span>になる。</h1>
+    <p class="lead">スマホで撮って送るだけ。来店不要・面談不要。<br>フリーランスも法人も、待たずに資金化。</p>
+    <div class="ctas">
+      <a class="btn btn-y" href="#">⚡ 30秒で無料査定</a>
+      <a class="btn btn-o" href="#">LINEで相談</a>
+    </div>
+  </div>
+  <div class="ticker"><div class="en">
+    <span>⚡ 最短60分入金</span><span>手数料 2%〜</span><span>来店不要</span><span>土日祝も対応</span><span>担保・保証人なし</span>
+    <span>⚡ 最短60分入金</span><span>手数料 2%〜</span><span>来店不要</span><span>土日祝も対応</span><span>担保・保証人なし</span>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap speed">
+    <div>
+      <h2 class="h2"><small>SPEED</small>他社の<span class="y">何倍</span>も<br>速いから、<br>間に合う。</h2>
+      <p style="color:var(--g)">独自のAI審査で、書類提出から入金までを大幅に短縮。急な支払いにも「今日中」に対応します。</p>
+    </div>
+    <div class="meter">
+      <div class="bar us"><div class="lb"><span>FLASH PAY</span><b class="en">60 MIN</b></div><div class="tr"><i style="width:8%"></i></div></div>
+      <div class="bar"><div class="lb"><span>一般的なファクタリング</span><b>2〜3日</b></div><div class="tr"><i style="width:45%"></i></div></div>
+      <div class="bar"><div class="lb"><span>銀行融資</span><b>1〜2ヶ月</b></div><div class="tr"><i style="width:100%"></i></div></div>
+      <p style="font-size:12px;color:var(--g);margin-top:12px">※バーが短いほど速い（イメージ）</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="h2"><small>FEATURES</small>フラッシュペイの<span class="y">3つの強み</span></h2>
+    <div class="cards">
+      <div class="card"><span class="n">01</span><div class="ic">⚡</div><h3>最短60分入金</h3><p>AI審査×専任スタッフで、申込みから入金まで最速クラス。</p></div>
+      <div class="card"><span class="n">02</span><div class="ic">📱</div><h3>スマホで完結</h3><p>請求書を撮影して送るだけ。面談・来店・郵送は一切不要。</p></div>
+      <div class="card"><span class="n">03</span><div class="ic">🔒</div><h3>取引先にバレない</h3><p>2社間契約で売掛先への通知なし。秘密厳守で対応します。</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats"><div class="wrap grid">
+  <div><b>00,000+</b><small>累計申込件数</small></div>
+  <div><b>60<span style="font-size:.5em">分</span></b><small>最短入金</small></div>
+  <div><b>2%〜</b><small>手数料</small></div>
+  <div><b>00%</b><small>審査通過率</small></div>
+</div></div>
+
+<section>
+  <div class="wrap">
+    <h2 class="h2" style="text-align:center"><small>FLOW</small>たった<span class="y">4ステップ</span></h2>
+    <div class="flow">
+      <div class="st"><div class="c">1</div><h4>Web申込</h4><p>フォームに入力</p><span class="t">約30秒</span></div>
+      <div class="st"><div class="c">2</div><h4>書類を撮影</h4><p>請求書・通帳を送信</p><span class="t">約5分</span></div>
+      <div class="st"><div class="c">3</div><h4>審査・電子契約</h4><p>スマホで署名</p><span class="t">約30分</span></div>
+      <div class="st"><div class="c">4</div><h4>入金完了</h4><p>指定口座へ振込</p><span class="t">⚡ 最短60分</span></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="h2"><small>VOICE</small>利用者の<span class="y">リアルな声</span></h2>
+    <div class="voices">
+      <div><div class="v"><div class="q">“</div><p>朝申し込んで、昼にはもう入金。本当に速かった。</p></div><small style="display:block;margin:24px 0 0 20px;color:var(--g)">フリーランス・デザイナー / 30代</small></div>
+      <div><div class="v"><div class="q">“</div><p>土曜日でも対応してもらえて給料日に間に合いました。</p></div><small style="display:block;margin:24px 0 0 20px;color:var(--g)">飲食店経営 / 40代</small></div>
+      <div><div class="v"><div class="q">“</div><p>スマホだけで完結するので本業の手が止まらない。</p></div><small style="display:block;margin:24px 0 0 20px;color:var(--g)">建設業 一人親方 / 50代</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" style="padding-top:0">
+  <div class="wrap" style="max-width:860px">
+    <h2 class="h2"><small>FAQ</small>よくある質問</h2>
+    <details open><summary>本当に60分で入金されますか？</summary><p>書類に不備がなく、平日15時までに契約完了した場合の最短時間です。</p></details>
+    <details><summary>土日祝日も利用できますか？</summary><p>はい。申込み・審査は365日対応しています。</p></details>
+    <details><summary>いくらから利用できますか？</summary><p>1万円から上限なしでご相談いただけます。</p></details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>待たない。<br><span class="y">今日、資金化。</span></h2>
+    <p>査定は無料・申込み後のキャンセルもOK</p>
+    <a class="btn btn-y" href="#">⚡ 30秒で無料査定する</a>
+  </div>
+</section>
+<footer>運営：株式会社〇〇〇〇 ｜ 会社概要 ｜ プライバシーポリシー<br><span class="en">© FLASH PAY</span></footer>
+<div class="sp-bar"><a href="#">⚡ 30秒で無料査定</a></div>
+</body>
+</html>

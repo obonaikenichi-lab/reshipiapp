@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>フラッシュペイ｜デザイン案A 信頼ネイビー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0d2240; --navy2:#16325c; --gold:#c9a24b; --gold2:#e6c97a;
+  --bg:#f6f4ef; --card:#fff; --ink:#1c2533; --mute:#5d6878; --line:#e3ded2;
+  --cta:#e0632a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.note{background:#222;color:#ddd;font-size:12px;text-align:center;padding:6px 16px}
+/* header */
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;border-bottom:2px solid var(--gold)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:"Noto Serif JP",serif;font-weight:900;font-size:22px;letter-spacing:.08em}
+.logo span{color:var(--gold2)}
+.logo small{display:block;font-family:"Noto Sans JP";font-size:10px;letter-spacing:.2em;color:#9fb0c8;font-weight:500;line-height:1}
+.hnav{display:flex;gap:24px;font-size:14px;align-items:center}
+.hnav a.tel{font-weight:700;font-size:18px;color:var(--gold2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;border-radius:6px;padding:14px 28px;transition:.2s}
+.btn-cta{background:var(--cta);color:#fff;box-shadow:0 4px 0 #a8441a}
+.btn-cta:hover{transform:translateY(2px);box-shadow:0 2px 0 #a8441a}
+.btn-line{background:#06c755;color:#fff;box-shadow:0 4px 0 #04913e}
+/* hero */
+.hero{background:linear-gradient(120deg,var(--navy) 0%,var(--navy2) 60%,#244a80 100%);color:#fff;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border:1px solid rgba(201,162,75,.35);border-radius:50%}
+.hero:after{content:"";position:absolute;right:-40px;top:-40px;width:360px;height:360px;border:1px solid rgba(201,162,75,.25);border-radius:50%}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;padding-top:72px;padding-bottom:80px;position:relative;z-index:1}
+.eyebrow{display:inline-block;border:1px solid var(--gold);color:var(--gold2);font-size:13px;padding:4px 14px;letter-spacing:.12em;margin-bottom:20px}
+.hero h1{font-family:"Noto Serif JP",serif;font-size:clamp(32px,4.6vw,54px);line-height:1.35;font-weight:900}
+.hero h1 em{font-style:normal;color:var(--gold2)}
+.hero p.lead{margin-top:20px;color:#cfd8e6;font-size:16px}
+.badges{display:flex;gap:12px;margin:28px 0 32px;flex-wrap:wrap}
+.badge{width:118px;height:118px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#f2dc9c,var(--gold) 70%);color:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:12px;line-height:1.3;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.badge b{font-family:"Noto Serif JP";font-size:28px;line-height:1.1}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+.form{background:#fff;color:var(--ink);border-radius:10px;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.35);border-top:5px solid var(--gold)}
+.form h3{text-align:center;font-size:18px;margin-bottom:4px}
+.form .sub{text-align:center;font-size:12px;color:var(--mute);margin-bottom:18px}
+.form label{display:block;font-size:13px;font-weight:700;margin:12px 0 6px}
+.form label i{font-style:normal;background:var(--cta);color:#fff;font-size:10px;padding:1px 6px;border-radius:3px;margin-left:6px}
+.form input,.form select{width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font:inherit;background:#fbfaf7}
+.form .btn{width:100%;margin-top:20px;font-size:17px}
+/* sections */
+section{padding:88px 0}
+.sec-h{text-align:center;margin-bottom:48px}
+.sec-h small{display:block;color:var(--gold);letter-spacing:.3em;font-size:12px;font-weight:700}
+.sec-h h2{font-family:"Noto Serif JP",serif;font-size:clamp(24px,3.2vw,34px);color:var(--navy);margin-top:6px}
+.sec-h h2:after{content:"";display:block;width:48px;height:2px;background:var(--gold);margin:16px auto 0}
+.worry{background:#fff}
+.worry ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:820px;margin:0 auto}
+.worry li{background:var(--bg);border-left:4px solid var(--navy);padding:16px 20px;font-weight:500}
+.worry li:before{content:"✓ ";color:var(--gold);font-weight:900}
+.answer{text-align:center;margin-top:40px;font-family:"Noto Serif JP";font-size:clamp(20px,2.6vw,28px);color:var(--navy);font-weight:900}
+.answer span{background:linear-gradient(transparent 60%,var(--gold2) 60%)}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat{background:#fff;border:1px solid var(--line);padding:36px 28px;position:relative}
+.feat .no{font-family:"Noto Serif JP";font-size:44px;color:var(--gold);line-height:1;font-weight:900}
+.feat h3{font-size:20px;color:var(--navy);margin:12px 0 10px}
+.feat p{color:var(--mute);font-size:14px}
+.nums{background:var(--navy);color:#fff}
+.nums .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.num{text-align:center;padding:12px;border-right:1px solid rgba(255,255,255,.15)}
+.num:last-child{border:0}
+.num small{color:#9fb0c8;font-size:13px}
+.num b{display:block;font-family:"Noto Serif JP";font-size:44px;color:var(--gold2);line-height:1.3}
+.num b span{font-size:18px}
+.flow ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.flow li{background:#fff;border:1px solid var(--line);padding:28px 20px;text-align:center;position:relative}
+.flow li:before{counter-increment:s;content:"STEP " counter(s);display:block;color:var(--gold);font-weight:900;letter-spacing:.15em;font-size:13px}
+.flow li b{display:block;color:var(--navy);font-size:18px;margin:8px 0}
+.flow li p{font-size:13px;color:var(--mute)}
+.flow li:not(:last-child):after{content:"";position:absolute;right:-13px;top:50%;border:8px solid transparent;border-left-color:var(--gold);transform:translateY(-50%)}
+.cmp{background:#fff}
+table{width:100%;border-collapse:collapse;font-size:15px;background:#fff}
+th,td{border:1px solid var(--line);padding:16px;text-align:center}
+thead th{background:#eef0f4;color:var(--navy)}
+thead th.us{background:var(--navy);color:var(--gold2);font-size:17px}
+td.us{background:#fbf6e8;font-weight:700;color:var(--navy)}
+tbody th{background:#f7f7f7;width:22%}
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.voice{background:#fff;padding:28px;border-top:3px solid var(--navy)}
+.voice .who{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.voice .av{width:52px;height:52px;border-radius:50%;background:#dfe5ee;display:flex;align-items:center;justify-content:center;color:var(--navy);font-weight:900}
+.voice .who b{display:block;color:var(--navy)}
+.voice .who small{color:var(--mute);font-size:12px}
+.voice p{font-size:14px}
+.stars{color:var(--gold);letter-spacing:2px}
+.faq{background:#fff}
+details{max-width:820px;margin:0 auto 12px;border:1px solid var(--line);background:var(--bg)}
+summary{padding:18px 20px;font-weight:700;cursor:pointer;color:var(--navy);list-style:none}
+summary:before{content:"Q.";color:var(--gold);font-family:"Noto Serif JP";margin-right:10px;font-size:18px}
+details p{padding:0 20px 18px 50px;color:var(--mute);font-size:14px}
+.final{background:linear-gradient(120deg,var(--navy),#244a80);color:#fff;text-align:center}
+.final h2{font-family:"Noto Serif JP";font-size:clamp(24px,3.4vw,38px)}
+.final p{color:#cfd8e6;margin:12px 0 32px}
+.final .ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.final .btn{font-size:18px;padding:18px 40px}
+footer{background:#08162b;color:#8a9ab3;font-size:13px;padding:40px 0;text-align:center}
+.sp-bar{display:none}
+@media(max-width:860px){
+  .hnav a:not(.tel){display:none}
+  .hero .wrap{grid-template-columns:1fr;padding-top:48px}
+  .badge{width:96px;height:96px}.badge b{font-size:22px}
+  .worry ul,.feats,.voices{grid-template-columns:1fr}
+  .nums .grid{grid-template-columns:repeat(2,1fr);row-gap:20px}
+  .num:nth-child(2){border:0}
+  .flow ol{grid-template-columns:1fr 1fr}
+  .flow li:after{display:none}
+  section{padding:60px 0}
+  table{font-size:13px} th,td{padding:10px 6px}
+  .sp-bar{display:grid;grid-template-columns:1fr 1fr;position:fixed;bottom:0;left:0;right:0;z-index:30}
+  .sp-bar a{padding:14px;text-align:center;font-weight:700;color:#fff}
+  body{padding-bottom:52px}
+}
+</style>
+</head>
+<body>
+<div class="note">【デザイン案A｜信頼ネイビー×ゴールド】※文言・数値はすべて仮のダミーです</div>
+<header><div class="wrap">
+  <div class="logo">FLASH<span>PAY</span><small>FACTORING SERVICE</small></div>
+  <nav class="hnav"><a href="#feat">選ばれる理由</a><a href="#flow">ご利用の流れ</a><a href="#faq">よくある質問</a><a class="tel" href="#">☎ 0120-000-000</a></nav>
+</div></header>
+
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">法人・個人事業主さま向け 請求書買取</span>
+      <h1>売掛金を、<br><em>最短即日</em>で<br>確かな資金に。</h1>
+      <p class="lead">審査は請求書と通帳だけ。担保・保証人は不要です。<br>創業間もない方、赤字決算の方もお気軽にご相談ください。</p>
+      <div class="badges">
+        <div class="badge">最短<b>60分</b>入金</div>
+        <div class="badge">手数料<b>2%〜</b></div>
+        <div class="badge">オンライン<b>完結</b></div>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-cta" href="#">無料で買取額を診断する ▶</a>
+        <a class="btn btn-line" href="#">LINEで相談</a>
+      </div>
+    </div>
+    <form class="form" onsubmit="return false">
+      <h3>かんたん30秒 無料査定</h3>
+      <p class="sub">入力後、担当者よりご連絡いたします</p>
+      <label>お名前<i>必須</i></label><input placeholder="山田 太郎">
+      <label>電話番号<i>必須</i></label><input placeholder="090-0000-0000">
+      <label>ご希望金額</label>
+      <select><option>〜100万円</option><option>100〜500万円</option><option>500万円〜</option></select>
+      <button class="btn btn-cta">今すぐ無料査定 ▶</button>
+    </form>
+  </div>
+</section>
+
+<section class="worry">
+  <div class="wrap">
+    <div class="sec-h"><small>WORRY</small><h2>こんなお悩みはありませんか？</h2></div>
+    <ul>
+      <li>来月の支払いまでに資金が足りない</li>
+      <li>銀行融資の審査に時間がかかる</li>
+      <li>取引先の入金サイトが長すぎる</li>
+      <li>赤字決算・税金滞納があり融資が難しい</li>
+    </ul>
+    <p class="answer">そのお悩み、<span>フラッシュペイ</span>が解決します。</p>
+  </div>
+</section>
+
+<section id="feat">
+  <div class="wrap">
+    <div class="sec-h"><small>REASON</small><h2>フラッシュペイが選ばれる3つの理由</h2></div>
+    <div class="feats">
+      <div class="feat"><div class="no">01</div><h3>最短60分のスピード入金</h3><p>オンラインで書類提出から契約まで完結。急ぎの資金ニーズにも即日対応します。</p></div>
+      <div class="feat"><div class="no">02</div><h3>業界最安水準の手数料</h3><p>2社間ファクタリングでも手数料は明朗会計。見積後の追加費用は一切ありません。</p></div>
+      <div class="feat"><div class="no">03</div><h3>取引先に知られない</h3><p>2社間契約なら売掛先への通知は不要。これまで通りの取引関係を守ります。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="nums" style="padding:56px 0">
+  <div class="wrap grid">
+    <div class="num"><small>累計買取実績</small><b>00,000<span>件</span></b></div>
+    <div class="num"><small>審査通過率</small><b>00<span>%</span></b></div>
+    <div class="num"><small>最短入金</small><b>60<span>分</span></b></div>
+    <div class="num"><small>リピート率</small><b>00<span>%</span></b></div>
+  </div>
+</section>
+
+<section class="flow" id="flow">
+  <div class="wrap">
+    <div class="sec-h"><small>FLOW</small><h2>ご利用の流れ</h2></div>
+    <ol>
+      <li><b>お申込み</b><p>フォーム・電話・LINEから24時間受付</p></li>
+      <li><b>書類提出</b><p>請求書と通帳の写しをアップロード</p></li>
+      <li><b>審査・ご契約</b><p>オンラインで電子契約</p></li>
+      <li><b>お振込み</b><p>最短60分でご指定口座へ</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="cmp">
+  <div class="wrap">
+    <div class="sec-h"><small>COMPARISON</small><h2>他の資金調達との比較</h2></div>
+    <table>
+      <thead><tr><th></th><th class="us">フラッシュペイ</th><th>銀行融資</th><th>ビジネスローン</th></tr></thead>
+      <tbody>
+        <tr><th>入金スピード</th><td class="us">最短60分</td><td>1〜2ヶ月</td><td>数日〜1週間</td></tr>
+        <tr><th>担保・保証人</th><td class="us">不要</td><td>必要な場合あり</td><td>必要な場合あり</td></tr>
+        <tr><th>赤字決算</th><td class="us">◎ 相談可</td><td>×</td><td>△</td></tr>
+        <tr><th>信用情報</th><td class="us">影響なし</td><td>記録される</td><td>記録される</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h"><small>VOICE</small><h2>ご利用者さまの声</h2></div>
+    <div class="voices">
+      <div class="voice"><div class="who"><div class="av">建</div><div><b>建設業 A様</b><small>東京都・法人</small></div></div><div class="stars">★★★★★</div><p>外注費の支払いが重なった時に即日で対応いただき、本当に助かりました。</p></div>
+      <div class="voice"><div class="who"><div class="av">IT</div><div><b>IT・Web制作 B様</b><small>大阪府・個人事業主</small></div></div><div class="stars">★★★★★</div><p>オンラインだけで完結。担当者の説明も丁寧で安心できました。</p></div>
+      <div class="voice"><div class="who"><div class="av">運</div><div><b>運送業 C様</b><small>愛知県・法人</small></div></div><div class="stars">★★★★☆</div><p>燃料費の高騰で苦しい時期に、取引先に知られず資金化できました。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-h"><small>FAQ</small><h2>よくあるご質問</h2></div>
+    <details open><summary>個人事業主でも利用できますか？</summary><p>はい、ご利用いただけます。開業間もない方もお気軽にご相談ください。</p></details>
+    <details><summary>必要な書類は何ですか？</summary><p>請求書・通帳の写し（直近3ヶ月）・本人確認書類の3点が基本です。</p></details>
+    <details><summary>取引先に知られることはありますか？</summary><p>2社間ファクタリングの場合、売掛先への通知は行いません。</p></details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>まずは無料診断から。</h2>
+    <p>査定・ご相談は無料です。お気軽にお問い合わせください。</p>
+    <div class="ctas"><a class="btn btn-cta" href="#">無料で買取額を診断 ▶</a><a class="btn btn-line" href="#">LINEで相談する</a></div>
+  </div>
+</section>
+
+<footer>運営会社：株式会社〇〇〇〇　｜　会社概要　｜　プライバシーポリシー<br>© FLASH PAY</footer>
+<div class="sp-bar"><a href="#" style="background:var(--cta)">無料診断</a><a href="#" style="background:#06c755">LINE相談</a></div>
+</body>
+</html>
