@@ -1336,26 +1336,6 @@ const MENU = [
     }
   },
   {
-    id: "seasonalrice",
-    section: "rice",
-    name: "SEASONAL CLAYPOT RICE", kana: "炊き込みご飯", price: "$MP", star: false,
-    menuText: "Ask For Today’s Seasonal Ingredients [Please allow 30 minutes]",
-    ja: {
-      part: "季節の食材の炊き込みご飯・時価・30分かかる",
-      talk: "「炊き込みご飯」は、その日の季節の食材を入れて土鍋で炊くご飯です。値段は時価（$MP）なので、その日の食材と値段を確認してお伝えください。土鍋で炊くので30分かかります。",
-      points: [
-        "その日の季節の食材で炊く",
-        "$MP＝時価（Market Price）。その日の食材と値段を確認して伝える",
-        "30分かかる"
-      ],
-      questions: [
-        { q: "メニューの「$MP」の意味は？", choices: ["時価（その日によって値段が変わる）", "最小の値段", "一番人気"], why: "MP = Market Price。時価です。" },
-        { q: "炊き込みご飯の注文を受ける前にすることは？", choices: ["その日の食材と値段を確認して伝える", "メニューの写真を見せる", "何もしなくてよい"], why: "Ask For Today’s Seasonal Ingredients。今日の食材と値段をお伝えします。" },
-        { q: "炊き込みご飯は、炊き上がるまでどのくらいかかる？", choices: ["30分", "10分", "1時間"], why: "土鍋ご飯は30分かかります。" }
-      ]
-    }
-  },
-  {
     id: "yakionigiri",
     section: "rice",
     name: "YAKI ONIGIRI", kana: "焼きおにぎり", price: "$8", star: false,
@@ -2230,20 +2210,6 @@ const EN = {
       ["What is on top of SOBORO GOHAN?", ["Ground chicken and a quail egg", "Whitebait and ikura", "Mentaiko and negi"], "Ground Chicken w/ Quail Egg On Top."],
       ["What is the “soboro” in SOBORO GOHAN?", ["Ground chicken", "Ground pork", "Only scrambled egg"], "Ground Chicken."],
       ["How much is SOBORO GOHAN?", ["$15", "$10", "$12"], "SOBORO GOHAN is $15."]
-    ]
-  },
-  seasonalrice: {
-    part: "Claypot rice with today’s seasonal ingredients — market price, takes 30 minutes",
-    talk: "Seasonal Claypot Rice is rice cooked in a claypot with today’s seasonal ingredients. The price is market price ($MP), so check today’s ingredients and price and tell the guest. It takes 30 minutes.",
-    points: [
-      "Cooked with today’s seasonal ingredients",
-      "$MP = Market Price. Check today’s ingredients and price and tell guests",
-      "Takes 30 minutes"
-    ],
-    questions: [
-      ["What does “$MP” on the menu mean?", ["Market price (changes day to day)", "Minimum price", "Most popular"], "MP = Market Price."],
-      ["What do you do before taking an order for SEASONAL CLAYPOT RICE?", ["Check today’s ingredients and price and tell the guest", "Show a photo of the menu", "Nothing"], "Ask For Today’s Seasonal Ingredients."],
-      ["How long does SEASONAL CLAYPOT RICE take?", ["30 minutes", "10 minutes", "1 hour"], "Claypot rice takes 30 minutes."]
     ]
   },
   yakionigiri: {
