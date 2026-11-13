@@ -1167,16 +1167,18 @@ const MENU = [
     name: "CHASHU AJITAMA", kana: "焼豚味玉", price: "$10", star: false,
     menuText: "Chicken Belly w/ Soft-Boiled Egg",
     ja: {
-      part: "チャーシューと味玉（メニュー英語表記：Chicken Belly）",
-      talk: "「焼豚味玉」は、チャーシューと、味をつけた半熟卵（味玉）の一品です。メニューの英語表記は “Chicken Belly w/ Soft-Boiled Egg” です。",
+      part: "鶏もも肉のチャーシューと味玉",
+      talk: "「焼豚味玉」は、鶏もも肉で作ったチャーシューと、味をつけた半熟卵（味玉）の一品です。名前は「焼豚」ですが、豚肉ではなく鶏もも肉を使っています。",
       points: [
-        "チャーシュー＋味玉（味をつけた半熟卵）",
-        "メニュー英語表記：Chicken Belly w/ Soft-Boiled Egg",
+        "チャーシューは「鶏もも肉」。名前は焼豚だが豚肉ではない",
+        "味玉（味をつけた半熟卵）つき",
+        "豚肉を食べないお客様には「鶏肉なので大丈夫です」と伝えられる",
         "$10"
       ],
       questions: [
         { q: "焼豚味玉に一緒にのっている卵は？", choices: ["味玉（味をつけた半熟卵）", "生卵", "うずらの卵"], why: "Soft-Boiled Egg。味玉です。" },
-        { q: "焼豚味玉はメニューの英語で何と書いてある？", choices: ["Chicken Belly w/ Soft-Boiled Egg", "Pork Belly w/ Raw Egg", "Chicken Thigh w/ Quail Egg"], why: "英語表記は Chicken Belly w/ Soft-Boiled Egg です。" },
+        { q: "焼豚味玉のチャーシューに使っているお肉は？", choices: ["鶏もも肉", "豚バラ肉", "牛肉"], why: "名前は焼豚ですが、鶏もも肉を使っています。" },
+        { q: "「豚肉は食べられない」というお客様に、焼豚味玉について伝えることは？", choices: ["名前は焼豚ですが、鶏もも肉なので大丈夫です", "豚肉なので食べられません", "豚肉を抜いて作ります"], why: "焼豚味玉のチャーシューは鶏もも肉です。" },
         { q: "焼豚味玉の値段は？", choices: ["$10", "$7", "$12"], why: "CHASHU AJITAMA は $10 です。" }
       ]
     }
@@ -1350,16 +1352,18 @@ const MENU = [
     name: "YAKI ONIGIRI", kana: "焼きおにぎり", price: "$8", star: false,
     menuText: "Grilled Rice Ball",
     ja: {
-      part: "焼いたおにぎり",
-      talk: "「焼きおにぎり」は、おにぎりを焼いて、外側を香ばしく仕上げた一品です。",
+      part: "焼き場で焼くおにぎり・30分かかる",
+      talk: "「焼きおにぎり」は、おにぎりを焼き場で焼いて、外側を香ばしく仕上げた一品です。焼き場で焼くので、30分ほどお時間をいただきます。",
       points: [
-        "おにぎりを焼いたもの（Grilled Rice Ball）",
+        "おにぎりを焼き場で焼いたもの（Grilled Rice Ball）",
         "外側が香ばしい",
+        "【必ず伝える】焼き場で焼くので30分かかる",
         "$8"
       ],
       questions: [
         { q: "お客様に「YAKI ONIGIRI って何？」と聞かれたら？", choices: ["焼いたおにぎりです", "土鍋で炊いた白いご飯です", "お米のお菓子です"], why: "Grilled Rice Ball。焼いたおにぎりです。" },
         { q: "焼きおにぎりの特徴は？", choices: ["外側が香ばしい", "中が生のお米", "甘いデザート"], why: "焼いて外側を香ばしく仕上げます。" },
+        { q: "焼きおにぎりの注文を受けたら、必ず伝えることは？", choices: ["焼き場で焼くので30分かかること", "すぐに出てくること", "冷たいまま出すこと"], why: "焼き場で焼くので、30分ほどかかります。" },
         { q: "焼きおにぎりの値段は？", choices: ["$8", "$10", "$6"], why: "YAKI ONIGIRI は $8 です。" }
       ]
     }
@@ -1451,15 +1455,17 @@ const MENU = [
     menuText: "Retro Icecream Float",
     ja: {
       part: "メロンソーダにアイスをのせた、昔ながらのクリームソーダ",
-      talk: "「メロンクリームソーダ」は、緑色のメロンソーダにアイスクリームをのせた、日本の昔ながらのクリームソーダです。当店のおすすめ（★）です。",
+      talk: "「メロンクリームソーダ」は、緑色のメロンソーダにアイスクリームをのせた、日本の昔ながらのクリームソーダです。アイスなしは$6、アイスクリームをのせると$10です。当店のおすすめ（★）です。",
       points: [
         "メロンソーダ＋アイスクリーム（Icecream Float）",
         "日本の昔ながらの（レトロな）飲み物",
-        "★おすすめ・$6／$10"
+        "アイスなし $6／アイスクリームのせ $10",
+        "★おすすめ"
       ],
       questions: [
         { q: "メロンクリームソーダとは？", choices: ["メロンソーダにアイスクリームをのせたもの", "メロン味のかき氷", "メロンのスムージー"], why: "Retro Icecream Float。" },
         { q: "メロンクリームソーダはどんな雰囲気の飲み物？", choices: ["日本の昔ながらのレトロな飲み物", "最新の健康ドリンク", "お酒のカクテル"], why: "Retro。日本の昔ながらの飲み物です。" },
+        { q: "メロンクリームソーダの $6 と $10 の違いは？", choices: ["アイスクリームがのっているかどうか（なし $6／あり $10）", "グラスの大きさ", "メロンの産地"], why: "アイスなしが $6、アイスクリームをのせると $10 です。" },
         { q: "デザートの中で★おすすめなのは？", choices: ["メロンクリームソーダ", "東京プリン", "季節のデザート"], why: "JAPANESE MELON CREAM SODA に★がついています。" }
       ]
     }
@@ -2092,16 +2098,18 @@ const EN = {
     ]
   },
   chashu: {
-    part: "Chashu and ajitama (menu: Chicken Belly)",
-    talk: "Chashu Ajitama is chashu with ajitama, a seasoned soft-boiled egg. On the menu it says “Chicken Belly w/ Soft-Boiled Egg.”",
+    part: "Chicken thigh chashu and ajitama",
+    talk: "Chashu Ajitama is chashu made from chicken thigh, with ajitama, a seasoned soft-boiled egg. The Japanese name says “pork” (yakibuta), but we use chicken thigh, not pork.",
     points: [
-      "Chashu + ajitama (seasoned soft-boiled egg)",
-      "Menu: Chicken Belly w/ Soft-Boiled Egg",
+      "The chashu is CHICKEN THIGH, not pork (even though the Japanese name says pork)",
+      "Comes with ajitama (seasoned soft-boiled egg)",
+      "Guests who don’t eat pork: “It’s chicken, so it’s fine”",
       "$10"
     ],
     questions: [
       ["What egg comes with CHASHU AJITAMA?", ["Ajitama (seasoned soft-boiled egg)", "Raw egg", "Quail egg"], "Soft-Boiled Egg = ajitama."],
-      ["How is CHASHU AJITAMA written on the menu?", ["Chicken Belly w/ Soft-Boiled Egg", "Pork Belly w/ Raw Egg", "Chicken Thigh w/ Quail Egg"], "Chicken Belly w/ Soft-Boiled Egg."],
+      ["What meat is the chashu in CHASHU AJITAMA?", ["Chicken thigh", "Pork belly", "Beef"], "We use chicken thigh, not pork."],
+      ["A guest says, “I can’t eat pork.” What do you tell them about CHASHU AJITAMA?", ["It’s chicken thigh, so it’s fine", "It’s pork, so you can’t eat it", "We can make it without the pork"], "The chashu is chicken thigh."],
       ["How much is CHASHU AJITAMA?", ["$10", "$7", "$12"], "CHASHU AJITAMA is $10."]
     ]
   },
@@ -2221,16 +2229,18 @@ const EN = {
     ]
   },
   yakionigiri: {
-    part: "Grilled rice ball",
-    talk: "Yaki Onigiri is a rice ball grilled until the outside is toasty and fragrant.",
+    part: "Rice ball grilled at the yakiba — takes 30 minutes",
+    talk: "Yaki Onigiri is a rice ball grilled at the yakiba (grill) until the outside is toasty and fragrant. It’s grilled at the yakiba, so please allow about 30 minutes.",
     points: [
-      "Grilled rice ball",
+      "Rice ball grilled at the yakiba",
       "Toasty, fragrant outside",
+      "[ALWAYS TELL GUESTS] It takes 30 minutes (grilled at the yakiba)",
       "$8"
     ],
     questions: [
       ["A guest asks, “What is yaki onigiri?”", ["A grilled rice ball", "White rice cooked in a claypot", "A rice cracker snack"], "Grilled Rice Ball."],
       ["What is YAKI ONIGIRI like?", ["Toasty and fragrant outside", "Raw rice inside", "A sweet dessert"], "It’s grilled so the outside is toasty."],
+      ["When a guest orders YAKI ONIGIRI, what must you always tell them?", ["It takes 30 minutes because it’s grilled at the yakiba", "It comes right away", "It’s served cold"], "It’s grilled at the yakiba, so it takes about 30 minutes."],
       ["How much is YAKI ONIGIRI?", ["$8", "$10", "$6"], "YAKI ONIGIRI is $8."]
     ]
   },
@@ -2292,15 +2302,17 @@ const EN = {
   },
   melonsoda: {
     part: "Melon soda topped with ice cream, a retro Japanese float",
-    talk: "Japanese Melon Cream Soda is bright green melon soda topped with ice cream, a retro Japanese float. ★ recommended.",
+    talk: "Japanese Melon Cream Soda is bright green melon soda topped with ice cream, a retro Japanese float. Without ice cream it’s $6; with ice cream on top it’s $10. ★ recommended.",
     points: [
       "Melon soda + ice cream (float)",
       "A retro, old-school Japanese drink",
-      "★ recommended, $6 / $10"
+      "No ice cream $6 / with ice cream $10",
+      "★ recommended"
     ],
     questions: [
       ["What is JAPANESE MELON CREAM SODA?", ["Melon soda topped with ice cream", "Melon shaved ice", "A melon smoothie"], "Retro Icecream Float."],
       ["What kind of drink is MELON CREAM SODA?", ["A retro, old-school Japanese drink", "A new health drink", "A cocktail"], "Retro."],
+      ["What is the difference between $6 and $10 for MELON CREAM SODA?", ["With or without ice cream (without $6 / with $10)", "The size of the glass", "Where the melon is from"], "Without ice cream $6, with ice cream on top $10."],
       ["Which dessert is ★ recommended?", ["Japanese Melon Cream Soda", "Tokyo Pudding", "Seasonal Dessert"], "JAPANESE MELON CREAM SODA has the ★."]
     ]
   }
