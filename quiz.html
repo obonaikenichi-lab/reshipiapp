@@ -1341,17 +1341,20 @@ const MENU = [
     name: "YAKI ONIGIRI", kana: "焼きおにぎり", price: "$8", star: false,
     menuText: "Grilled Rice Ball",
     ja: {
-      part: "焼き場で焼くおにぎり・30分かかる",
-      talk: "「焼きおにぎり」は、おにぎりを焼き場で焼いて、外側を香ばしく仕上げた一品です。焼き場で焼くので、30分ほどお時間をいただきます。",
+      part: "焼き場で備長炭で焼くおにぎり・しょうゆ味・30分かかる",
+      talk: "「焼きおにぎり」は、おにぎりを焼き場で備長炭を使って焼き、しょうゆで味つけした一品です。外側が香ばしく仕上がります。焼き場で焼くので、30分ほどお時間をいただきます。",
       points: [
-        "おにぎりを焼き場で焼いたもの（Grilled Rice Ball）",
+        "焼き場で「備長炭」で焼いたおにぎり（Grilled Rice Ball）",
+        "味つけは「しょうゆ」",
         "外側が香ばしい",
         "【必ず伝える】焼き場で焼くので30分かかる",
         "$8"
       ],
       questions: [
         { q: "お客様に「YAKI ONIGIRI って何？」と聞かれたら？", choices: ["焼いたおにぎりです", "土鍋で炊いた白いご飯です", "お米のお菓子です"], why: "Grilled Rice Ball。焼いたおにぎりです。" },
-        { q: "焼きおにぎりの特徴は？", choices: ["外側が香ばしい", "中が生のお米", "甘いデザート"], why: "焼いて外側を香ばしく仕上げます。" },
+        { q: "焼きおにぎりは何で焼いている？", choices: ["焼き場の備長炭", "フライパン", "電子レンジ"], why: "焼き場で備長炭を使って焼いています。" },
+        { q: "焼きおにぎりの味つけは？", choices: ["しょうゆ", "味噌", "塩だけ"], why: "焼きおにぎりの味つけはしょうゆです。" },
+        { q: "焼きおにぎりの特徴は？", choices: ["外側が香ばしい", "中が生のお米", "甘いデザート"], why: "備長炭で焼いて、外側を香ばしく仕上げます。" },
         { q: "焼きおにぎりの注文を受けたら、必ず伝えることは？", choices: ["焼き場で焼くので30分かかること", "すぐに出てくること", "冷たいまま出すこと"], why: "焼き場で焼くので、30分ほどかかります。" },
         { q: "焼きおにぎりの値段は？", choices: ["$8", "$10", "$6"], why: "YAKI ONIGIRI は $8 です。" }
       ]
@@ -2213,17 +2216,20 @@ const EN = {
     ]
   },
   yakionigiri: {
-    part: "Rice ball grilled at the yakiba — takes 30 minutes",
-    talk: "Yaki Onigiri is a rice ball grilled at the yakiba (grill) until the outside is toasty and fragrant. It’s grilled at the yakiba, so please allow about 30 minutes.",
+    part: "Rice ball grilled over binchotan charcoal at the yakiba, soy sauce flavor — takes 30 minutes",
+    talk: "Yaki Onigiri is a rice ball grilled over binchotan charcoal at the yakiba (grill) and seasoned with soy sauce. The outside gets toasty and fragrant. It’s grilled at the yakiba, so please allow about 30 minutes.",
     points: [
-      "Rice ball grilled at the yakiba",
+      "Rice ball grilled over BINCHOTAN charcoal at the yakiba",
+      "Seasoned with SOY SAUCE",
       "Toasty, fragrant outside",
       "[ALWAYS TELL GUESTS] It takes 30 minutes (grilled at the yakiba)",
       "$8"
     ],
     questions: [
       ["A guest asks, “What is yaki onigiri?”", ["A grilled rice ball", "White rice cooked in a claypot", "A rice cracker snack"], "Grilled Rice Ball."],
-      ["What is YAKI ONIGIRI like?", ["Toasty and fragrant outside", "Raw rice inside", "A sweet dessert"], "It’s grilled so the outside is toasty."],
+      ["What is YAKI ONIGIRI grilled over?", ["Binchotan charcoal at the yakiba", "A frying pan", "A microwave"], "It’s grilled over binchotan charcoal at the yakiba."],
+      ["What is YAKI ONIGIRI seasoned with?", ["Soy sauce", "Miso", "Only salt"], "Yaki onigiri is seasoned with soy sauce."],
+      ["What is YAKI ONIGIRI like?", ["Toasty and fragrant outside", "Raw rice inside", "A sweet dessert"], "Grilled over binchotan, so the outside is toasty."],
       ["When a guest orders YAKI ONIGIRI, what must you always tell them?", ["It takes 30 minutes because it’s grilled at the yakiba", "It comes right away", "It’s served cold"], "It’s grilled at the yakiba, so it takes about 30 minutes."],
       ["How much is YAKI ONIGIRI?", ["$8", "$10", "$6"], "YAKI ONIGIRI is $8."]
     ]
