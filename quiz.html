@@ -173,31 +173,31 @@ table.res td.your{color:var(--bad)}
 <div class="wrap">
 
   <header class="top">
-    <div class="brand"><b>ゴキゲン メニューテスト</b><span>Staff Menu Training</span></div>
+    <div class="brand"><b data-i18n="brand">ゴキゲン メニューテスト</b><span>Staff Menu Training</span></div>
     <div class="lang" role="group" aria-label="言語">
       <button type="button" id="langJa" class="on">日本語</button>
-      <button type="button" id="langEn" disabled title="英語版は準備中です">English（準備中）</button>
+      <button type="button" id="langEn">English</button>
     </div>
   </header>
 
   <!-- ホーム -->
   <section id="home" class="wrap-sec" style="display:flex;flex-direction:column;gap:20px">
     <div class="panel">
-      <label class="field" for="staffName">スタッフ名
+      <label class="field" for="staffName"><span data-i18n="staffName">スタッフ名</span>
         <input type="text" id="staffName" placeholder="例：山田 花子" autocomplete="off">
       </label>
-      <p class="muted small" style="margin:0">まず「説明を読む」で覚えてから、テストに挑戦してください。答えの選択肢は毎回シャッフルされます。</p>
+      <p class="muted small" style="margin:0" data-i18n="hint">まず「説明を読む」で覚えてから、テストに挑戦してください。答えの選択肢は毎回シャッフルされます。</p>
     </div>
 
     <nav class="jump" id="jump" aria-label="コーナー"></nav>
 
     <div class="row">
-      <button type="button" class="btn" id="studyAll">説明をまとめて読む</button>
-      <button type="button" class="btn primary" id="testAll">全部のテストを始める</button>
+      <button type="button" class="btn" id="studyAll" data-i18n="studyAll">説明をまとめて読む</button>
+      <button type="button" class="btn primary" id="testAll" data-i18n="testAll">全部のテストを始める</button>
     </div>
 
     <div class="panel">
-      <h3>3品ずつテスト</h3>
+      <h3 data-i18n="groupTitle">3品ずつテスト</h3>
       <div id="groupList" style="display:flex;flex-direction:column;gap:14px"></div>
     </div>
 
@@ -205,15 +205,15 @@ table.res td.your{color:var(--bad)}
 
     <div class="panel" id="histPanel" hidden>
       <div style="display:flex;align-items:center;gap:10px">
-        <h3 style="margin-right:auto">これまでのテスト結果</h3>
+        <h3 style="margin-right:auto" data-i18n="histTitle">これまでのテスト結果</h3>
         <button type="button" class="btn" id="printHist" style="padding:6px 12px;font-size:13px">すべて印刷</button>
       </div>
       <div class="hist" id="histList"></div>
-      <button type="button" class="linkbtn" id="clearHist" style="align-self:flex-start">履歴を消す</button>
+      <button type="button" class="linkbtn" id="clearHist" style="align-self:flex-start" data-i18n="clearHist">履歴を消す</button>
       <div id="clearConfirm" class="row" hidden>
-        <span class="small" style="flex:1 1 100%">この端末の結果をすべて消します。よろしいですか？</span>
-        <button type="button" class="btn" id="clearNo">やめる</button>
-        <button type="button" class="btn primary" id="clearYes">消す</button>
+        <span class="small" style="flex:1 1 100%" data-i18n="clearAsk">この端末の結果をすべて消します。よろしいですか？</span>
+        <button type="button" class="btn" id="clearNo" data-i18n="cancel">やめる</button>
+        <button type="button" class="btn primary" id="clearYes" data-i18n="del">消す</button>
       </div>
     </div>
   </section>
@@ -223,12 +223,12 @@ table.res td.your{color:var(--bad)}
     <div class="progress"><span class="count" id="studyCount"></span><div class="bar"><i id="studyBar"></i></div></div>
     <article class="panel" id="studyCard"></article>
     <div class="row">
-      <button type="button" class="btn" id="studyPrev">← 前へ</button>
-      <button type="button" class="btn" id="studyNext">次へ →</button>
+      <button type="button" class="btn" id="studyPrev" data-i18n="prev">← 前へ</button>
+      <button type="button" class="btn" id="studyNext" data-i18n="next">次へ →</button>
     </div>
     <div class="row">
-      <button type="button" class="btn" id="studyHome">メニュー一覧に戻る</button>
-      <button type="button" class="btn primary" id="studyTest">この串のテストへ</button>
+      <button type="button" class="btn" id="studyHome" data-i18n="backHome">メニュー一覧に戻る</button>
+      <button type="button" class="btn primary" id="studyTest" data-i18n="testThis">この串のテストへ</button>
     </div>
   </section>
 
@@ -242,7 +242,7 @@ table.res td.your{color:var(--bad)}
       <div class="feedback" id="feedback" hidden></div>
       <button type="button" class="btn primary block" id="nextQ" hidden>次の問題へ</button>
     </div>
-    <button type="button" class="linkbtn" id="quitTest" style="align-self:center">テストをやめてメニュー一覧に戻る</button>
+    <button type="button" class="linkbtn" id="quitTest" style="align-self:center" data-i18n="quit">テストをやめてメニュー一覧に戻る</button>
   </section>
 
   <!-- 結果 -->
@@ -253,15 +253,15 @@ table.res td.your{color:var(--bad)}
       <div class="verdict" id="rVerdict"></div>
     </div>
     <div class="panel">
-      <h3>問題ごとの結果</h3>
+      <h3 data-i18n="byQ">問題ごとの結果</h3>
       <div class="tbl-wrap"><table class="res" id="rTable"></table></div>
     </div>
     <div class="row">
-      <button type="button" class="btn" id="retryWrong">間違えた問題だけやり直す</button>
+      <button type="button" class="btn" id="retryWrong" data-i18n="retry">間違えた問題だけやり直す</button>
       <button type="button" class="btn primary" id="printResult">結果を印刷する</button>
     </div>
     <p class="print-note" id="printNote" hidden>このプレビュー画面からは印刷できません。印刷はGitHub Pages版（quiz.html）を開いて行ってください。</p>
-    <button type="button" class="btn" id="resultHome">メニュー一覧に戻る</button>
+    <button type="button" class="btn" id="resultHome" data-i18n="backHome">メニュー一覧に戻る</button>
   </section>
 
 </div>
@@ -271,7 +271,7 @@ table.res td.your{color:var(--bad)}
 <script>
 /* =========================================================
    メニューデータ
-   ・ja = 日本語版、en = 英語版（あとで追加）
+   ・ja = 日本語版、en = 英語版（下の EN にまとめて書いてある）
    ・answer は常に choices の 1 番目に書く（画面では毎回シャッフル）
    ========================================================= */
 const SECTIONS = [
@@ -286,7 +286,7 @@ const MENU = [
   {
     id: "otoshi",
     section: "otoshi",
-    name: "OTOSHI", kana: "お通し", price: "$5 / 1人", star: false,
+    name: "OTOSHI", kana: "お通し", price: "$5 / 1人", priceEn: "$5 / person", star: false,
     menuText: "Unlimited Japanese Cabbage With Homemade Dressing — $5 per person",
     ja: {
       part: "キャベツ＋自家製のオリジナルドレッシング・おかわり自由",
@@ -1097,7 +1097,595 @@ const MENU = [
 ];
 
 /* =========================================================
-   画面の文言（英語版はあとで en を追加）
+   English version (same order as the Japanese questions;
+   the first choice is always the correct answer)
+   ========================================================= */
+const EN = {
+  otoshi: {
+    part: "Cabbage + our original homemade dressing, unlimited refills",
+    talk: "Otoshi is part of Japanese izakaya culture: a small dish to nibble on while you wait for your food. Here we serve cabbage, which is said to help your body with alcohol, with our original homemade dressing. It is $5 per person, and cabbage refills are unlimited. Just say “more otoshi” for a refill. Would you like it?",
+    points: [
+      "[WHEN TO ASK] As soon as guests sit down, before they order: always explain it FIRST and ask if they want it",
+      "[WHEN TO SERVE] Serve it at the same time as the drinks",
+      "Otoshi = Japanese izakaya culture. Something to nibble on while waiting for the food",
+      "Ours is cabbage (said to help your body with alcohol) + original homemade dressing",
+      "$5 per person, unlimited cabbage refills. For a refill: “more otoshi”",
+      "Never serve it without explaining (if they don’t want it, remove it when you first ask)"
+    ],
+    questions: [
+      ["When do you explain otoshi and ask if guests want it?", ["As soon as they sit down, first, before they order", "When you bring the food", "When they pay the check"], "Always explain otoshi FIRST and ask whether they want it."],
+      ["When do you serve otoshi?", ["At the same time as the drinks", "With the first food order", "At the end of the meal"], "Serve otoshi with the drinks, so guests can nibble while waiting for the food."],
+      ["A guest asks, “What is otoshi?” What do you say?", ["It’s part of Japanese izakaya culture: something to nibble on while you wait for your food", "It’s a free gift from the restaurant", "It’s a dessert served at the end"], "Otoshi is Japanese izakaya culture: a small dish to enjoy while waiting for the food."],
+      ["What is our otoshi?", ["Cabbage with our original homemade dressing", "Edamame with salt", "Assorted pickles"], "Japanese Cabbage With Homemade Dressing: cabbage with our original homemade dressing."],
+      ["Why do we serve cabbage as otoshi? What do you tell guests?", ["Cabbage is said to help your body with alcohol", "Because it’s the cheapest vegetable", "Because otoshi in Japan is always cabbage"], "Cabbage is said to help your body with alcohol, so it goes well with drinks."],
+      ["What is the price and rule for our otoshi?", ["$5 per person, unlimited cabbage refills", "Free, one refill only", "$5 per plate, refills cost extra"], "Unlimited Japanese Cabbage … $5 per person."],
+      ["A guest says, “I don’t want otoshi.” What do you do?", ["Remove it when you first ask, and don’t serve it", "Tell them it can’t be declined", "Charge them but don’t serve it"], "When you explain it first, remove otoshi for guests who don’t want it."],
+      ["What must you NEVER do with otoshi?", ["Serve it without explaining or asking", "Serve it with the drinks", "Tell guests how to get a refill"], "Serving it without explaining causes trouble at the check. Always explain first and ask."]
+    ]
+  },
+  omakase: {
+    part: "Today’s recommended skewers, chosen by the chef",
+    talk: "The Yakitori Omakase Course is the chef’s selection of today’s best skewers. There are two sizes: 5 skewers for $35 and 8 skewers for $55. It’s perfect if you’re not sure what to order, or if it’s your first visit. (After taking the order) Do you have any allergies, or anything you can’t eat, such as certain chicken parts or pork? Also, will you be sharing, or eating individually?",
+    points: [
+      "“Omakase” = the chef chooses today’s best. Guests don’t pick the skewers",
+      "5 skewers $35 / 8 skewers $55",
+      "Recommend to first-time guests and guests who can’t decide",
+      "[ALWAYS ASK ①] Allergies, chicken parts they can’t eat, pork, or anything else they can’t eat",
+      "[ALWAYS ASK ②] Sharing together, or eating individually?",
+      "From ②, the server decides if the skewers need to be served on separate plates",
+      "Always pass ① and ② to the grill (yakiba) staff"
+    ],
+    questions: [
+      ["What is the Yakitori Omakase Course?", ["The chef chooses today’s recommended skewers", "Guests choose any skewers from the menu", "The same fixed skewers every day"], "Omakase = Chef’s Selection of Today’s Yakitori Skewers."],
+      ["How many skewers and how much?", ["5 for $35 / 8 for $55", "5 for $30 / 8 for $50", "6 for $35 / 10 for $55"], "5 skewers $35, 8 skewers $55."],
+      ["Who is the best guest to recommend the Omakase Course to?", ["A first-time guest who isn’t sure what to order", "A guest who wants just one light skewer", "A guest who doesn’t like chicken"], "Guests enjoy a variety chosen by the chef, so it’s perfect for first-timers and undecided guests."],
+      ["When a guest orders the Omakase Course, what must you ask first?", ["Allergies, or chicken parts / pork they can’t eat", "How they like it cooked", "Whether to split the check"], "The chef chooses, so always check first that everything is OK for them."],
+      ["Besides what they can’t eat, what else must you always ask?", ["Are you sharing, or eating individually?", "Would you like a drink refill?", "How many extra skewers?"], "Sharing or individual decides whether the skewers go on separate plates."],
+      ["Why do you ask “sharing or individual?”", ["So the server can decide if separate plates are needed and tell the grill staff", "Because the course price changes", "To decide how many otoshi to serve"], "The server decides and tells the grill (yakiba) staff."],
+      ["Who do you tell what you heard (what they can’t eat, sharing or individual)?", ["The grill (yakiba) staff", "No one (just remember it yourself)", "The cashier at checkout"], "The grill staff choose the skewers and split the plates based on it, so always tell them."]
+    ]
+  },
+  hatsu: {
+    part: "Chicken heart",
+    talk: "Hatsu is chicken heart. The heart is a muscle, so it has very little gamey taste, and it has a plump, bouncy texture. It’s an easy one to recommend to guests trying organ meat for the first time.",
+    points: [
+      "Part: HEART. Don’t confuse with liver (reba) or gizzard (sunagimo)",
+      "Texture: plump and bouncy",
+      "Little gamey taste, so it’s easy to recommend to first-timers"
+    ],
+    questions: [
+      ["Which part of the chicken is HATSU?", ["Heart", "Liver (reba)", "Gizzard (sunagimo)"], "Hatsu = heart. Reba is liver, sunagimo is gizzard."],
+      ["A guest asks, “What’s the texture of hatsu?”", ["Plump and bouncy", "Soft and melts in your mouth", "Crunchy"], "The heart is a muscle, so it’s plump and bouncy. Melt-in-your-mouth is liver; crunchy is gizzard or cartilage."],
+      ["How much is one HATSU?", ["$6", "$8", "$9"], "HATSU is $6."]
+    ]
+  },
+  momotare: {
+    part: "Chicken thigh",
+    talk: "Momo Tare is chicken thigh grilled with our original homemade tare sauce, a yakitori classic. Our tare is not spicy; it’s on the sweet side. Thigh meat is juicy, and this is the easiest skewer to recommend to first-timers.",
+    points: [
+      "Part: THIGH (momo)",
+      "Sauce: TARE. The “tare” in the name is the sauce",
+      "A juicy, easy classic. Recommend it to guests who can’t decide"
+    ],
+    questions: [
+      ["Which part of the chicken is MOMO TARE?", ["Thigh", "Breast", "Tenderloin (sasami)"], "Momo = thigh. Breast is MUNE NIKU, tenderloin is SASAMI."],
+      ["What sauce is on MOMO TARE?", ["Our original homemade tare sauce", "Salt", "Yuzu-kosho"], "As the name says, it’s grilled with our original homemade tare (not spicy, a little sweet)."],
+      ["A guest says, “It’s my first time, I want a classic.” How do you recommend MOMO TARE?", ["Juicy chicken thigh grilled with our original homemade tare, a yakitori classic", "Light chicken breast topped with yuzu-kosho", "Rare chicken neck topped with negi"], "Momo Tare = thigh + tare. Breast with yuzu-kosho is MUNE NIKU; neck with negi is SESERI."]
+    ]
+  },
+  gokigen: {
+    part: "Chicken oyster: the round, skin-on piece of meat that sits in the hollow of the hip bone (back side)",
+    talk: "Gokigen Kushi is our signature skewer, named after the restaurant, and it’s our most popular skewer. We use the chicken oyster: the round, skin-on piece of meat that sits in the hollow of the hip bone on the back. There are only two per chicken, and it’s said to be the juiciest part of the chicken.",
+    points: [
+      "Our MOST POPULAR skewer. Named after the restaurant (★ = recommended)",
+      "Part: CHICKEN OYSTER = round, skin-on meat in the hollow of the hip bone (back side)",
+      "Rare: only two per chicken",
+      "Describe it as “the juiciest part of the chicken” (menu: Juiciest Part Of Chicken)"
+    ],
+    questions: [
+      ["Which part is used for GOKIGEN KUSHI?", ["Chicken oyster", "Neck (seseri)", "Tail (bonjiri)"], "Gokigen Kushi = chicken oyster. Neck is SESERI, tail is BONJIRI."],
+      ["A guest asks, “Where is the chicken oyster?”", ["It’s the round, skin-on meat that sits in the hollow of the hip bone on the back", "It’s the neck meat, a part the chicken moves a lot", "It’s the lean meat on the inside of the breast"], "The chicken oyster sits in the hollow of the hip bone (back side). The neck is seseri; the inner breast is sasami."],
+      ["A guest asks, “What do you recommend?” How do you recommend GOKIGEN KUSHI?", ["It’s our most popular skewer!", "It’s our cheapest skewer!", "It’s our spiciest skewer!"], "Gokigen Kushi is our most popular skewer, our signature named after the restaurant."],
+      ["How much is one GOKIGEN KUSHI?", ["$8", "$6", "$9"], "GOKIGEN KUSHI is $8. ★ recommended."]
+    ]
+  },
+  seseri: {
+    part: "Chicken neck",
+    talk: "Seseri is chicken neck. It’s a part the chicken moves a lot, so the meat is firm and springy, with plenty of fat and rich flavor. We top it with our homemade sumiso (miso-vinegar sauce), then chopped Tokyo negi. It’s our house specialty (★). (When serving) “This is chicken neck, topped with our homemade sumiso and then chopped Tokyo negi. It’s our house specialty.”",
+    points: [
+      "Part: NECK",
+      "Homemade sumiso (miso-vinegar sauce) first, then chopped Tokyo negi on top",
+      "Our house specialty yakitori",
+      "[WHEN SERVING] “This is chicken neck, topped with our homemade sumiso and then chopped Tokyo negi. It’s our house specialty.”",
+      "Springy bite, rich flavor. ★ recommended, $9"
+    ],
+    questions: [
+      ["Which part of the chicken is SESERI?", ["Neck", "Tail", "Wing"], "Seseri = neck. Tail is bonjiri, wing is tebasaki."],
+      ["What is on top of SESERI?", ["Our homemade sumiso and chopped Tokyo negi", "Grated daikon", "Yuzu-kosho"], "Homemade sumiso first, then chopped Tokyo negi. Grated daikon is OROSHI NIKU, yuzu-kosho is MUNE NIKU."],
+      ["What do you say when you serve SESERI?", ["This is chicken neck, topped with our homemade sumiso and then chopped Tokyo negi. It’s our house specialty", "This is chicken tail, topped with grated daikon. It’s light and refreshing", "This is chicken neck with our homemade tare and onion on top"], "Chicken neck, topped with homemade sumiso and then chopped Tokyo negi: our house specialty."]
+    ]
+  },
+  reba: {
+    part: "Chicken liver",
+    talk: "Reba is chicken liver. It’s soft and creamy with a rich flavor, and it’s full of nutrients like iron.",
+    points: [
+      "Part: LIVER",
+      "Soft, creamy and rich",
+      "Don’t confuse with hatsu (heart) or sunagimo (gizzard)"
+    ],
+    questions: [
+      ["Which part of the chicken is REBA?", ["Liver", "Heart", "Gizzard"], "Reba = liver. Heart is hatsu, gizzard is sunagimo."],
+      ["What’s the texture of REBA?", ["Soft, creamy and rich", "Crunchy", "Crispy"], "Liver is soft and creamy. Crunchy is gizzard or cartilage, crispy is skin."],
+      ["How much is one REBA?", ["$6", "$8", "$5"], "REBA is $6. NEGI-SHIO REBA is $8."]
+    ]
+  },
+  negishio: {
+    part: "Chicken liver",
+    talk: "Negi-Shio Reba is liver topped with Tokyo negi and sesame oil. The negi and sesame oil add aroma and make the rich liver taste lighter.",
+    points: [
+      "Part: liver",
+      "Topped with Tokyo negi and sesame oil",
+      "Difference from regular REBA ($6) is the topping. NEGI-SHIO REBA is $8"
+    ],
+    questions: [
+      ["What is on top of NEGI-SHIO REBA?", ["Tokyo negi and sesame oil", "Grated daikon", "Raw egg"], "Liver Topped w/ Tokyo Negi & Sesame Oil."],
+      ["What’s the difference between NEGI-SHIO REBA and regular REBA?", ["Negi and sesame oil on top make it aromatic and lighter", "It’s heart instead of liver", "It comes on the bone"], "Same liver. The negi and sesame oil add aroma and make it lighter."],
+      ["How much is one NEGI-SHIO REBA?", ["$8", "$6", "$9"], "NEGI-SHIO REBA is $8. Regular REBA is $6."]
+    ]
+  },
+  kokoro: {
+    part: "The part connecting the heart and the liver",
+    talk: "Kokoro-Nokori is the meat that connects the heart and the liver. There’s only a little in each chicken, so it’s a rare delicacy that yakitori lovers enjoy.",
+    points: [
+      "Part: the connection between HEART and LIVER",
+      "Only a little per chicken: a delicacy",
+      "Recommend to yakitori lovers and guests who want to try rare parts"
+    ],
+    questions: [
+      ["Which part is KOKORO-NOKORI?", ["The part connecting the heart and the liver", "Neck meat", "Tail meat"], "Heart-&-Liver Connective Parts."],
+      ["Why recommend it to a guest who wants to try something rare?", ["There’s only a little per chicken, so it’s a delicacy", "Every restaurant has it", "It’s the leanest part"], "Kokoro-Nokori is a delicacy: there’s only a little in each chicken."],
+      ["How much is one KOKORO-NOKORI?", ["$7", "$6", "$9"], "KOKORO-NOKORI is $7."]
+    ]
+  },
+  mune: {
+    part: "Chicken breast",
+    talk: "Mune Niku is chicken breast topped with yuzu-kosho. Breast meat is lean and light. Yuzu-kosho is a condiment made from yuzu peel and green chili, with a fresh citrus aroma and a little heat.",
+    points: [
+      "Part: BREAST. Lean and light",
+      "Topped with yuzu-kosho",
+      "Yuzu-kosho = yuzu peel + green chili condiment. A little spicy"
+    ],
+    questions: [
+      ["What is on top of MUNE NIKU?", ["Yuzu-kosho", "Wasabi", "Grated daikon"], "Chicken Breast Meat w/ Yuzu-Kosho."],
+      ["A guest asks, “What is yuzu-kosho?”", ["A condiment made from yuzu peel and green chili, fresh and a little spicy", "A sauce made from yuzu juice and soy sauce", "Black pepper with yuzu flavor"], "Yuzu-kosho is yuzu peel + green chili. Let guests who don’t like spice know."],
+      ["What is MUNE NIKU like?", ["Lean and light", "Very fatty and juicy", "Crunchy"], "Breast meat is lean and light. Fatty parts are things like bonjiri."]
+    ]
+  },
+  bonjiri: {
+    part: "Base of the chicken tail",
+    talk: "Bonjiri is the base of the chicken’s tail. It’s a hard-working muscle with lots of fat, so it’s very juicy with a plump texture. There’s only a little per chicken.",
+    points: [
+      "Part: TAIL",
+      "Fatty and juicy, plump texture",
+      "Affordable at $5"
+    ],
+    questions: [
+      ["Which part of the chicken is BONJIRI?", ["Base of the tail", "Neck", "Gizzard"], "Bonjiri = tail. Neck is seseri, gizzard is sunagimo."],
+      ["What is BONJIRI like?", ["Fatty and juicy", "Lean and light", "Crunchy cartilage"], "Juicy Chicken Tail: fatty and juicy."],
+      ["How much is one BONJIRI?", ["$5", "$6", "$7"], "BONJIRI is $5."]
+    ]
+  },
+  sunagimo: {
+    part: "Chicken gizzard",
+    talk: "Sunagimo is chicken gizzard, a muscle in the stomach. Chickens have no teeth, so they use it to grind their food. It’s crunchy, lean and light.",
+    points: [
+      "Part: GIZZARD (stomach)",
+      "Crunchy, lean and light",
+      "Don’t confuse with reba (liver) or hatsu (heart)"
+    ],
+    questions: [
+      ["Which part of the chicken is SUNAGIMO?", ["Gizzard (stomach)", "Liver", "Heart"], "Sunagimo = gizzard. Liver is reba, heart is hatsu."],
+      ["What’s the texture of SUNAGIMO?", ["Crunchy", "Soft and creamy", "Fluffy"], "It’s a stomach muscle, so it’s crunchy."],
+      ["How much is one SUNAGIMO?", ["$5", "$6", "$8"], "SUNAGIMO is $5."]
+    ]
+  },
+  negima: {
+    part: "Chicken thigh and Tokyo negi",
+    talk: "Negima is chicken thigh and Tokyo negi on the same skewer, a yakitori classic. You get juicy thigh meat with negi that turns sweet when grilled.",
+    points: [
+      "Chicken thigh and Tokyo negi, alternating on the skewer",
+      "The grilled negi gets sweet"
+    ],
+    questions: [
+      ["What is on a NEGIMA skewer?", ["Chicken thigh and Tokyo negi", "Chicken breast and onion", "Meatball and shishito"], "Chicken Thigh w/ Tokyo Negi, alternating on the skewer."],
+      ["What happens to the negi in NEGIMA?", ["It gets sweet when grilled", "It gets spicier when grilled", "It stays raw on top"], "Negi turns sweet when grilled, and goes with the juicy thigh."],
+      ["How much is one NEGIMA?", ["$7", "$6", "$9"], "NEGIMA is $7."]
+    ]
+  },
+  oroshi: {
+    part: "Chicken thigh",
+    talk: "Oroshi Niku is chicken thigh topped with our homemade sumiso, then grated daikon on top, finished with organic soy sauce and a little shichimi pepper. Juicy thigh meat that still tastes light.",
+    points: [
+      "Part: THIGH",
+      "Order: ① homemade sumiso → ② grated daikon → ③ organic soy sauce → ④ a little shichimi",
+      "Juicy but light"
+    ],
+    questions: [
+      ["What is on top of OROSHI NIKU?", ["Homemade sumiso, grated daikon, organic soy sauce, a little shichimi", "Only grated daikon and ponzu", "Tokyo negi and sesame oil"], "Homemade sumiso, then grated daikon, then organic soy sauce and a little shichimi."],
+      ["What is the correct order of the toppings on OROSHI NIKU?", ["Sumiso → grated daikon → organic soy sauce → shichimi", "Grated daikon → sumiso → shichimi → organic soy sauce", "Organic soy sauce → grated daikon → sumiso → shichimi"], "① homemade sumiso → ② grated daikon → ③ organic soy sauce → ④ a little shichimi."],
+      ["Which part is used for OROSHI NIKU?", ["Thigh", "Breast", "Tenderloin"], "Chicken thigh."],
+      ["How much is one OROSHI NIKU?", ["$8", "$6", "$7"], "OROSHI NIKU is $8."]
+    ]
+  },
+  tsukune: {
+    part: "Ground chicken meatball",
+    talk: "Tsukune is a meatball skewer made from ground chicken. For $2 more, you can add a raw egg for dipping.",
+    points: [
+      "Ground chicken meatballs",
+      "Raw dipping egg +$2",
+      "When taking the order, ask: “Would you like a raw egg for dipping?”"
+    ],
+    questions: [
+      ["What is TSUKUNE?", ["A meatball made from ground chicken", "Rolled chicken skin", "Pork sausage"], "Chicken Meatballs."],
+      ["What option can be added to TSUKUNE?", ["Raw egg for dipping (+$2)", "Cheese (+$2)", "Grated daikon (+$1)"], "Raw Dipping Egg +$2. Suggest it when you take the order."],
+      ["How much is one TSUKUNE (without egg)?", ["$9", "$7", "$11"], "TSUKUNE is $9. Raw egg is +$2."]
+    ]
+  },
+  tebasaki: {
+    part: "Chicken wing",
+    talk: "Tebasaki is the tip part of the chicken wing. We grill it so the skin is crispy and the inside is juicy. It has bones, so please let guests know when you serve it.",
+    points: [
+      "Part: WING",
+      "Crispy skin, juicy inside",
+      "Has bones. Tell guests when serving"
+    ],
+    questions: [
+      ["Which part of the chicken is TEBASAKI?", ["Wing", "Neck", "Tail"], "Tebasaki = wing."],
+      ["What do you tell guests when you serve TEBASAKI?", ["It has bones, so please be careful", "It’s raw, so eat it quickly", "Please pour the sauce on first"], "Tebasaki has bones. It’s kind to mention it."],
+      ["How much is one TEBASAKI?", ["$7", "$5", "$9"], "TEBASAKI is $7."]
+    ]
+  },
+  nankotsu: {
+    part: "Yagen cartilage from the breast + rare chicken harami",
+    talk: "Nankotsu is yagen cartilage, the cartilage attached to the chicken breast. We also put chicken harami, a rare cut attached to the yagen cartilage, on the skewer. It’s fun and crunchy, and great with drinks.",
+    points: [
+      "Part: YAGEN cartilage = cartilage attached to the breast",
+      "Also includes chicken HARAMI, a rare cut attached to the yagen cartilage",
+      "Crunchy texture",
+      "Great with drinks"
+    ],
+    questions: [
+      ["What do we use for NANKOTSU?", ["Yagen cartilage attached to the breast", "Knee cartilage", "Gizzard (sunagimo)"], "Our nankotsu is yagen cartilage, attached to the chicken breast."],
+      ["What else is on the NANKOTSU skewer?", ["Chicken harami, a rare cut attached to the yagen cartilage", "Tokyo negi", "Chicken skin"], "We also put chicken harami, a rare cut, on the skewer."],
+      ["What’s the texture of NANKOTSU?", ["Crunchy", "Soft and creamy", "Fluffy"], "It’s cartilage, so it’s crunchy."],
+      ["How much is one NANKOTSU?", ["$6", "$5", "$8"], "NANKOTSU is $6."]
+    ]
+  },
+  kawa: {
+    part: "Chicken skin",
+    talk: "Kawa is chicken skin grilled until crispy and fragrant. Crispy outside, and flavorful fat comes out when you bite.",
+    points: [
+      "Part: SKIN",
+      "Grilled crispy",
+      "Menu: Crispy Chicken Skin"
+    ],
+    questions: [
+      ["What’s the texture of KAWA?", ["Crispy", "Soft and creamy", "Crunchy cartilage"], "Crispy Chicken Skin."],
+      ["How is KAWA written on the menu?", ["Crispy Chicken Skin", "Chicken Cartilage", "Juicy Chicken Tail"], "KAWA = Crispy Chicken Skin. Cartilage is nankotsu, tail is bonjiri."],
+      ["How much is one KAWA?", ["$6", "$5", "$7"], "KAWA is $6."]
+    ]
+  },
+  sasami: {
+    part: "Chicken tenderloin (inside the breast)",
+    talk: "Sasami is the tenderloin, inside the breast. It’s lean and tender. Guests choose one topping from four: wasabi, yuzu-kosho, ume-shiso, or natto.",
+    points: [
+      "Lean, tender and healthy",
+      "Choose one of 4 toppings: wasabi / yuzu-kosho / ume-shiso / natto",
+      "Always ask for the topping when taking the order"
+    ],
+    questions: [
+      ["Which toppings can guests choose for SASAMI?", ["Wasabi, yuzu-kosho, ume-shiso, natto", "Wasabi, cheese, grated daikon, negi", "Sesame oil, yuzu-kosho, raw egg, mentaiko"], "Wasabi | Yuzu-Kosho | Ume-Shiso | Natto."],
+      ["When a guest orders SASAMI, what do you ask?", ["Which of the 4 toppings they want", "How they want it cooked (rare, medium, well done)", "Bone-in or boneless"], "Sasami comes with Your Choice of Topping. Always ask."],
+      ["What is SASAMI like?", ["Lean and tender", "Fatty and juicy", "Crunchy"], "It’s the inner breast: lean and tender."]
+    ]
+  },
+  tontoro: {
+    part: "Pork neck (NOT chicken)",
+    talk: "Tontoro is pork neck. It’s fatty and sweet with a nice crisp bite. It’s on the yakitori page, but it’s pork, not chicken.",
+    points: [
+      "PORK, not chicken (Fatty Pork Neck)",
+      "Fatty and sweet, with a crisp bite",
+      "Always tell guests who don’t eat pork"
+    ],
+    questions: [
+      ["What meat is TONTORO?", ["Pork neck", "Chicken neck", "Beef neck"], "Fatty Pork Neck. Chicken neck is seseri."],
+      ["A guest says, “I can’t eat pork.” Which skewer must you warn them about?", ["Tontoro", "Seseri", "Bonjiri"], "Tontoro is on the yakitori page but it’s pork. Seseri and bonjiri are chicken."],
+      ["How much is one TONTORO?", ["$6", "$8", "$9"], "TONTORO is $6."]
+    ]
+  },
+  wagyu: {
+    part: "A5 Kuroge Wagyu from Miyazaki, fillet (mainly Chateaubriand)",
+    talk: "Our Wagyu skewer uses A5 Kuroge Wagyu from Miyazaki, imported from Japan. The cut is the fillet, and we mainly use the Chateaubriand, the most tender, top-quality part of the fillet. A5 is the highest grade for beef in Japan. For $15 more, you can add premium sea urchin on top. ★ recommended.",
+    points: [
+      "A5 Kuroge Wagyu from Miyazaki, imported from Japan (A5 = Japan’s highest grade)",
+      "Cut: FILLET. The skewer is mainly CHATEAUBRIAND",
+      "Chateaubriand = the most tender, top-quality part of the fillet",
+      "Sea urchin topping +$15",
+      "$30. ★ recommended"
+    ],
+    questions: [
+      ["What beef do we use for the A5 WAGYU skewer?", ["A5 Kuroge Wagyu from Miyazaki", "American Angus beef", "Australian Wagyu"], "A5 Kuroge Wagyu from Miyazaki, imported from Japan."],
+      ["Which cut do we use?", ["Fillet", "Sirloin", "Belly"], "The cut is the fillet."],
+      ["Which part of the fillet do we mainly use?", ["Chateaubriand", "Zabuton (chuck flap)", "Misuji (top blade)"], "We mainly use the Chateaubriand."],
+      ["A guest asks, “What is Chateaubriand?”", ["The most tender, top-quality part of the fillet", "A fatty part of the shoulder", "Beef from France"], "Chateaubriand is the most tender, top-quality part of the fillet."],
+      ["A guest asks, “What does A5 mean?”", ["It’s the highest grade for beef in Japan", "The cow was 5 years old", "It’s the 5th best grade"], "A5 is the highest grade for beef in Japan."],
+      ["What topping can be added, and how much?", ["Sea urchin +$15", "Ikura +$5", "Truffle +$15"], "Premium Sea Urchin Topping +$15."]
+    ]
+  },
+  kamo: {
+    part: "Duck breast",
+    talk: "Kamo is roasted duck breast served with whole-grain mustard.",
+    points: [
+      "Duck breast",
+      "Served with whole-grain mustard",
+      "$15"
+    ],
+    questions: [
+      ["Which part is used for KAMO?", ["Duck breast", "Duck leg", "Chicken breast"], "Roasted Duck Breast."],
+      ["What comes with KAMO?", ["Whole-grain mustard", "Wasabi", "Grated daikon"], "w/ Whole-Grain Mustard."],
+      ["How much is one KAMO?", ["$15", "$18", "$30"], "KAMO is $15."]
+    ]
+  },
+  unagi: {
+    part: "Freshwater eel",
+    talk: "Unagi is grilled freshwater eel from Toyosu Market in Tokyo.",
+    points: [
+      "Unagi = freshwater eel. Different from anago (sea eel)",
+      "From Toyosu Market in Tokyo",
+      "$18"
+    ],
+    questions: [
+      ["What is UNAGI?", ["Freshwater eel", "Sea eel (anago)", "Chicken skin"], "Freshwater Eel."],
+      ["Where does our UNAGI come from?", ["Toyosu Market in Tokyo", "Kuromon Market in Osaka", "A farm in the US"], "From Toyosu Market in Tokyo."],
+      ["How much is one UNAGI?", ["$18", "$15", "$30"], "UNAGI is $18."]
+    ]
+  },
+  shiitake: {
+    part: "Shiitake mushroom",
+    talk: "Grilled shiitake mushroom. When you bite it, the aroma and savory flavor spread in your mouth.",
+    points: [
+      "Shiitake mushroom. NOT grown in Japan",
+      "Strong aroma and savory flavor",
+      "$6"
+    ],
+    questions: [
+      ["What is SHIITAKE?", ["A mushroom", "A green onion", "A bell pepper"], "Shiitake Mushrooms."],
+      ["How do you describe SHIITAKE?", ["The aroma and savory flavor spread when you bite it", "It’s very spicy", "It’s crunchy like cartilage"], "Grilled shiitake is all about aroma and savory flavor."],
+      ["How much is one SHIITAKE?", ["$6", "$5", "$8"], "SHIITAKE is $6."]
+    ]
+  },
+  nasu: {
+    part: "Eggplant with bonito flakes",
+    talk: "Nasu is grilled eggplant topped with bonito flakes. It’s soft and creamy. Bonito flakes are fish, so please tell vegetarian guests.",
+    points: [
+      "Eggplant with bonito flakes",
+      "Bonito flakes = FISH. Tell vegetarian guests",
+      "$6"
+    ],
+    questions: [
+      ["What is on top of NASU?", ["Bonito flakes", "Sesame", "Cheese"], "Eggplant w/ Bonito Flakes."],
+      ["What do you tell a vegetarian guest about NASU?", ["It has bonito flakes (fish) on top", "It’s wrapped in pork", "It contains egg"], "Bonito flakes are made from fish."],
+      ["A guest asks, “What are bonito flakes?”", ["Dried bonito fish, shaved thin", "Dried seaweed", "Something made from soybeans"], "Bonito flakes are dried bonito (fish), shaved thin."]
+    ]
+  },
+  uzura: {
+    part: "Quail eggs (soft-boiled)",
+    talk: "Uzura is soft-boiled quail eggs on a skewer, grilled. The inside of the little eggs is soft and creamy.",
+    points: [
+      "Quail eggs",
+      "Soft-boiled",
+      "$8"
+    ],
+    questions: [
+      ["What is UZURA?", ["Quail eggs", "Chicken eggs", "Eel"], "Quail Eggs."],
+      ["How are the UZURA eggs cooked?", ["Soft-boiled (creamy inside)", "Raw", "Hard-boiled"], "Soft-Boiled."],
+      ["How much is one UZURA?", ["$8", "$6", "$5"], "UZURA is $8."]
+    ]
+  },
+  ginnan: {
+    part: "Ginkgo nuts from Niigata, Japan",
+    talk: "Ginnan is grilled ginkgo nuts from Niigata, Japan. They’re chewy with a slight bitterness, and a popular taste of autumn in Japan. ★ recommended.",
+    points: [
+      "Ginkgo nuts. From NIIGATA, Japan",
+      "Ginnan is the only vegetable skewer from Japan",
+      "Chewy, slightly bitter",
+      "★ recommended, $8"
+    ],
+    questions: [
+      ["What is GINNAN?", ["Nuts from the ginkgo tree", "Chestnuts", "Peanuts"], "Ginkgo Nuts."],
+      ["Where are our GINNAN from?", ["Niigata, Japan", "Kyoto, Japan", "China"], "Ginkgo Nuts From Japan: we use ginnan from Niigata."],
+      ["Which vegetable skewer is from Japan?", ["Ginnan", "Shiitake", "Nagaimo"], "Only ginnan is from Japan. The other vegetables are not grown in Japan."],
+      ["How much is one GINNAN?", ["$8", "$6", "$5"], "GINNAN is $8. ★ recommended."]
+    ]
+  },
+  shishito: {
+    part: "Shishito pepper (a kind of chili pepper)",
+    talk: "Shishito is a small green pepper in the chili family. Most are not spicy, but once in a while you get a spicy one.",
+    points: [
+      "Chili family (Shishito Peppers)",
+      "Mostly not spicy, but occasionally a spicy one",
+      "$5"
+    ],
+    questions: [
+      ["A guest asks, “Is shishito spicy?”", ["Mostly not, but once in a while you get a spicy one", "Very spicy", "Never spicy at all"], "Most shishito are mild, but occasionally one is spicy."],
+      ["What family is shishito in?", ["Chili pepper", "Green onion", "Mushroom"], "Shishito Peppers: the chili family."],
+      ["How much is one SHISHITO?", ["$5", "$6", "$8"], "SHISHITO is $5."]
+    ]
+  },
+  jagabutter: {
+    part: "Organic potato (butter tucked inside)",
+    talk: "Jaga Butter is our signature: an organic potato grilled at the yakiba (grill), with butter tucked inside. Fluffy potato with melting butter.",
+    points: [
+      "The potato is ORGANIC",
+      "Grilled at the yakiba, with butter TUCKED INSIDE (not just on top)",
+      "Our Signature dish",
+      "$10"
+    ],
+    questions: [
+      ["What is JAGA BUTTER?", ["An organic potato grilled at the yakiba, with butter tucked inside", "A fried potato with butter poured on", "A sweet potato with butter on top"], "An organic potato grilled at the yakiba, with butter tucked inside."],
+      ["What kind of potato do we use for JAGA BUTTER?", ["Organic potato", "Danshaku potato from Hokkaido", "Frozen french fries"], "Our Jaga Butter potato is organic."],
+      ["What does “Signature” on the menu mean?", ["The restaurant’s proud specialty", "Seasonal only", "A spicy dish"], "Signature = our proud specialty."],
+      ["How much is JAGA BUTTER?", ["$10", "$8", "$6"], "JAGA BUTTER is $10."]
+    ]
+  },
+  zucchini: {
+    part: "Zucchini, lightly brushed with soy sauce",
+    talk: "Grilled zucchini, lightly brushed with soy sauce.",
+    points: [
+      "Zucchini lightly brushed with soy sauce (as on the menu)",
+      "Vegetable skewer",
+      "$5"
+    ],
+    questions: [
+      ["What is brushed on the ZUCCHINI? (menu)", ["Soy sauce", "Mayonnaise", "Butter"], "Lightly Brushed w/ Soy Sauce."],
+      ["How much is one ZUCCHINI?", ["$5", "$6", "$9"], "ZUCCHINI is $5."],
+      ["A guest wants something without soy sauce. What do you tell them about ZUCCHINI?", ["It’s lightly brushed with soy sauce", "It has no soy sauce", "Soy sauce is poured on afterwards"], "The menu says “Lightly Brushed w/ Soy Sauce.”"]
+    ]
+  },
+  nagaimo: {
+    part: "Nagaimo (a kind of mountain yam) with bonito flakes",
+    talk: "Nagaimo is a kind of mountain yam, grilled and topped with bonito flakes. Soft outside, crisp inside. Bonito flakes are fish, so please tell vegetarian guests.",
+    points: [
+      "Nagaimo = a kind of mountain yam",
+      "Topped with bonito flakes (fish)",
+      "$6"
+    ],
+    questions: [
+      ["What is NAGAIMO?", ["A kind of mountain yam", "Sweet potato", "Daikon radish"], "Mountain Yam."],
+      ["What is on top of NAGAIMO?", ["Bonito flakes", "Sesame oil and Tokyo negi", "Grated daikon"], "w/ Bonito Flakes."],
+      ["Which vegetable skewer must you be careful with for vegetarian guests?", ["Nagaimo (bonito flakes on top)", "Shishito", "Shiitake"], "Nagaimo and nasu have bonito flakes (fish) on top."]
+    ]
+  },
+  tamanegi: {
+    part: "One whole onion",
+    talk: "Tamanegi is a whole onion slowly grilled over charcoal. Cooking brings out its sweetness.",
+    points: [
+      "A WHOLE onion",
+      "Grilled over charcoal",
+      "$9"
+    ],
+    questions: [
+      ["What is TAMANEGI?", ["A whole onion grilled over charcoal", "Onion rings", "Onion soup"], "Whole Onion Grilled In Charcoal."],
+      ["How much onion is it?", ["One whole onion", "Half an onion", "Three slices"], "Whole Onion = the whole thing."],
+      ["How much is TAMANEGI?", ["$9", "$6", "$5"], "TAMANEGI is $9."]
+    ]
+  },
+  tomatobacon: {
+    part: "Tomato wrapped in bacon",
+    talk: "Tomato Bacon is tomato wrapped in bacon and grilled. The sweet-tart grilled tomato goes great with savory bacon.",
+    points: [
+      "Tomato wrapped in bacon",
+      "Bacon = PORK",
+      "$7"
+    ],
+    questions: [
+      ["What is wrapped in what for TOMATO BACON?", ["Tomato in bacon", "Tomato in pork belly", "Tomato in shiso leaf"], "Tomato Wrapped In Bacon."],
+      ["What do you tell a guest who doesn’t eat pork about TOMATO BACON?", ["It’s wrapped in bacon (pork)", "It’s wrapped in chicken", "There’s no meat"], "Bacon is pork. Most maki skewers use pork."],
+      ["How much is one TOMATO BACON?", ["$7", "$9", "$5"], "TOMATO BACON is $7."]
+    ]
+  },
+  cheesebacon: {
+    part: "Cheese wrapped in bacon",
+    talk: "Cheese Bacon is cheese wrapped in bacon and grilled: melty cheese with bacon.",
+    points: [
+      "Cheese wrapped in bacon",
+      "Bacon = PORK",
+      "$9"
+    ],
+    questions: [
+      ["What is wrapped in what for CHEESE BACON?", ["Cheese in bacon", "Cheese in pork belly", "Mochi in bacon"], "Cheese Wrapped In Bacon."],
+      ["How much is one CHEESE BACON?", ["$9", "$7", "$5"], "CHEESE BACON is $9."],
+      ["Which maki skewer must you warn a guest who can’t have dairy about?", ["Cheese Bacon", "Tomato Bacon", "Aspara Maki"], "Cheese is dairy."]
+    ]
+  },
+  mochibacon: {
+    part: "Mochi wrapped in bacon",
+    talk: "Mochi Bacon is Japanese mochi (made from rice) wrapped in bacon and grilled. The mochi gets stretchy and chewy when grilled.",
+    points: [
+      "Mochi (made from rice) wrapped in bacon",
+      "Chewy and stretchy",
+      "$9"
+    ],
+    questions: [
+      ["A guest asks, “What is mochi?”", ["A chewy Japanese food made from rice", "Japanese cheese", "Japanese bread"], "Mochi is made from rice (sticky rice)."],
+      ["What is MOCHI BACON wrapped in?", ["Bacon", "Pork belly", "Shiso leaf"], "Mochi Wrapped In Bacon."],
+      ["How much is one MOCHI BACON?", ["$9", "$7", "$6"], "MOCHI BACON is $9."]
+    ]
+  },
+  aspara: {
+    part: "Asparagus wrapped in pork belly",
+    talk: "Aspara Maki is asparagus wrapped in pork belly and grilled. Crisp asparagus with rich pork belly.",
+    points: [
+      "Asparagus wrapped in PORK BELLY (not bacon)",
+      "Pork",
+      "$9"
+    ],
+    questions: [
+      ["What is ASPARA MAKI wrapped in?", ["Pork belly", "Bacon", "Chicken skin"], "Asparagus Wrapped In Pork Belly, not bacon."],
+      ["What is “pork belly” in Japanese?", ["Buta-bara", "Buta-rosu (pork loin)", "Tontoro (pork neck)"], "Pork belly = buta-bara."],
+      ["How much is one ASPARA MAKI?", ["$9", "$7", "$5"], "ASPARA MAKI is $9."]
+    ]
+  },
+  shisomaki: {
+    part: "Pork belly and shiso leaf",
+    talk: "Shiso Maki is pork belly rolled with shiso leaf and grilled. The fresh aroma of shiso makes the pork belly taste lighter.",
+    points: [
+      "Pork belly and shiso leaf",
+      "Shiso = a fresh-smelling Japanese herb",
+      "$9"
+    ],
+    questions: [
+      ["A guest asks, “What is shiso?”", ["A fresh-smelling Japanese herb", "Japanese seaweed", "Japanese mustard"], "Shiso is an aromatic Japanese herb in the mint family."],
+      ["What meat is used for SHISO MAKI?", ["Pork belly", "Chicken thigh", "Bacon"], "Pork-Belly."],
+      ["How much is one SHISO MAKI?", ["$9", "$7", "$6"], "SHISO MAKI is $9."]
+    ]
+  },
+  baconegg: {
+    part: "Soft-boiled egg wrapped in bacon",
+    talk: "Bacon Egg is a soft-boiled egg wrapped in bacon and grilled. ★ recommended.",
+    points: [
+      "Soft-boiled egg wrapped in bacon",
+      "★ recommended",
+      "$7"
+    ],
+    questions: [
+      ["What is inside BACON EGG?", ["A soft-boiled egg", "A hard-boiled quail egg", "A raw egg"], "Soft-Boiled Egg Wrapped In Bacon."],
+      ["Which maki skewer is ★ recommended?", ["Bacon Egg", "Tomato Bacon", "Cheese Bacon"], "BACON EGG has the ★."],
+      ["How much is one BACON EGG?", ["$7", "$9", "$8"], "BACON EGG is $7."]
+    ]
+  },
+  kurobuta: {
+    part: "Black-pig (Kurobuta) sausage",
+    talk: "Kurobuta Sausage is a premium black-pig sausage, grilled and served with mustard.",
+    points: [
+      "Black-pig (Kurobuta) sausage",
+      "Served with mustard",
+      "$7"
+    ],
+    questions: [
+      ["What is KUROBUTA?", ["Black pig", "Black Wagyu beef", "Black chicken"], "Premium Black-Pig."],
+      ["What comes with KUROBUTA SAUSAGE?", ["Mustard", "Wasabi", "Yuzu-kosho"], "w/ Mustard."],
+      ["How much is one KUROBUTA SAUSAGE?", ["$7", "$9", "$5"], "KUROBUTA SAUSAGE is $7."]
+    ]
+  }
+};
+MENU.forEach(m => {
+  const e = EN[m.id];
+  if(e) m.en = { ...e, questions: e.questions.map(([q, choices, why]) => ({ q, choices, why })) };
+});
+
+/* =========================================================
+   画面の文言（ja = 日本語、en = 英語）
    ========================================================= */
 const T = {
   ja: {
@@ -1107,11 +1695,43 @@ const T = {
     noName: "名前なし", verdicts: [[100,"満点！お客様にしっかり説明できます。"],[80,"合格。間違えたところだけ見直しましょう。"],[0,"もう一度「説明を読む」で復習しましょう。"]],
     resultTitle: "メニューテスト結果", staff: "スタッフ", date: "日時", score: "得点",
     colItem: "メニュー", colQ: "問題", colYour: "あなたの答え", colAns: "正解",
-    lastQ: "結果を見る", nextQ: "次の問題へ"
+    lastQ: "結果を見る", nextQ: "次の問題へ",
+    brand: "ゴキゲン メニューテスト",
+    staffName: "スタッフ名", namePh: "例：山田 花子",
+    hint: "まず「説明を読む」で覚えてから、テストに挑戦してください。答えの選択肢は毎回シャッフルされます。",
+    studyAll: "説明をまとめて読む", testAll: "全部のテストを始める", groupTitle: "3品ずつテスト",
+    histTitle: "これまでのテスト結果", clearHist: "履歴を消す", clearAsk: "この端末の結果をすべて消します。よろしいですか？",
+    cancel: "やめる", del: "消す", prev: "← 前へ", next: "次へ →", backHome: "メニュー一覧に戻る", testThis: "この串のテストへ",
+    quit: "テストをやめてメニュー一覧に戻る", byQ: "問題ごとの結果", retry: "間違えた問題だけやり直す",
+    secTest: n => `このコーナーのテスト（${n}問）`, itemTest: n => `テスト（${n}問）`,
+    groupLabel: (a,b) => `${a===b ? a : `${a}〜${b}`}品目`, sep: "・", qOf: n => `問`,
+    outOf: (n,p) => `/ ${n}問（${p}%）`, quote: s => `「${s}」`, period: "。"
+  },
+  en: {
+    study: "Read", test: "Test", part: "Part", menu: "Menu",
+    talk: "How to explain to guests (example)", points: "Key points", star: "★ Recommended",
+    right: "Correct!", wrong: "Wrong", answerIs: "The answer is", q: "Q", of: "",
+    noName: "No name", verdicts: [[100,"Perfect! You can explain everything to guests."],[80,"Pass. Review only the ones you missed."],[0,"Go back to “Read” and review again."]],
+    resultTitle: "Menu Test Result", staff: "Staff", date: "Date", score: "Score",
+    colItem: "Menu", colQ: "Question", colYour: "Your answer", colAns: "Correct answer",
+    lastQ: "See results", nextQ: "Next question",
+    brand: "Gokigen Menu Test",
+    staffName: "Staff name", namePh: "e.g. Alex Smith",
+    hint: "First learn each item with “Read”, then take the test. The answer choices are shuffled every time.",
+    studyAll: "Read all", testAll: "Start the full test", groupTitle: "Test 3 items at a time",
+    histTitle: "Past test results", clearHist: "Clear history", clearAsk: "This deletes all results on this device. Are you sure?",
+    cancel: "Cancel", del: "Delete", prev: "← Back", next: "Next →", backHome: "Back to menu", testThis: "Test this item",
+    quit: "Quit the test and go back to the menu", byQ: "Results by question", retry: "Retry only the ones I missed",
+    secTest: n => `Test this section (${n} Q)`, itemTest: n => `Test (${n} Q)`,
+    groupLabel: (a,b) => a===b ? `Item ${a}` : `Items ${a}–${b}`, sep: " · ",
+    outOf: (n,p) => `/ ${n} (${p}%)`, quote: s => `“${s}”`, period: ". "
   }
 };
 let lang = "ja";
 const t = k => T[lang][k];
+const secName = sec => lang === "en" ? sec.en : sec.ja;
+const itemLabel = m => lang === "en" ? m.name : `${m.kana}（${m.name}）`;
+const priceText = m => lang === "en" && m.priceEn ? m.priceEn : m.price;
 
 /* ---------- 保存（この端末だけ） ---------- */
 const store = {
@@ -1135,26 +1755,39 @@ function show(id){
 
 /* ---------- ホーム ---------- */
 $("staffName").value = store.get("gq_name","");
+
+/* ---------- 言語 ---------- */
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  $("staffName").placeholder = t("namePh");
+  $("langJa").classList.toggle("on", lang === "ja");
+  $("langEn").classList.toggle("on", lang === "en");
+  renderGroups(); renderHome();
+}
+function setLang(l){ lang = l; store.set("gq_lang", l); applyLang(); show("home"); }
+$("langJa").onclick = () => setLang("ja");
+$("langEn").onclick = () => setLang("en");
 $("staffName").addEventListener("input", e => store.set("gq_name", e.target.value));
 
 const secItems = id => MENU.map((m,i)=>[m,i]).filter(([m])=>m.section===id);
 
 function renderHome(){
-  $("jump").innerHTML = SECTIONS.map(sec => `<a href="#sec-${sec.id}">${esc(sec.ja)}</a>`).join("");
+  $("jump").innerHTML = SECTIONS.map(sec => `<a href="#sec-${sec.id}">${esc(secName(sec))}</a>`).join("");
   $("itemList").innerHTML = SECTIONS.map(sec => {
     const list = secItems(sec.id);
     const nq = list.reduce((n,[m]) => n + m[lang].questions.length, 0);
     return `<div style="display:flex;flex-direction:column;gap:10px">
-      <div class="sec-head" id="sec-${sec.id}"><h2>${esc(sec.ja)}</h2><span class="eyebrow">${esc(sec.en)}</span>
-        <button type="button" class="btn" data-sec="${sec.id}">このコーナーのテスト（${nq}${t("q")}）</button></div>
+      <div class="sec-head" id="sec-${sec.id}"><h2>${esc(secName(sec))}</h2><span class="eyebrow">${esc(lang==="en"?sec.ja:sec.en)}</span>
+        <button type="button" class="btn" data-sec="${sec.id}">${T[lang].secTest(nq)}</button></div>
       <div class="items">${list.map(([m,i]) => `
         <div class="item">
           <div class="tag">${esc(m.kana)}</div>
           <div class="name">${m.star?'<span class="star">★ </span>':''}${esc(m.name)}<small>${esc(m.menuText)}</small></div>
-          <div class="price">${esc(m.price)}</div>
+          <div class="price">${esc(priceText(m))}</div>
           <div class="actions row">
             <button type="button" class="btn" data-study="${i}">${t("study")}</button>
-            <button type="button" class="btn" data-test="${i}">${t("test")}（${m[lang].questions.length}${t("q")}）</button>
+            <button type="button" class="btn" data-test="${i}">${T[lang].itemTest(m[lang].questions.length)}</button>
           </div>
         </div>`).join("")}</div></div>`;
   }).join("");
@@ -1176,10 +1809,12 @@ const GROUPS = SECTIONS.map(sec => {
   for(let k=0; k<list.length; k+=GROUP) out.push({ sec, from:k+1, items:list.slice(k,k+GROUP) });
   return out;
 });
+function renderGroups(){
 $("groupList").innerHTML = GROUPS.map((gs,si) => `
-  <div style="display:flex;flex-direction:column;gap:6px"><div class="eyebrow">${esc(SECTIONS[si].ja)}</div>
+  <div style="display:flex;flex-direction:column;gap:6px"><div class="eyebrow">${esc(secName(SECTIONS[si]))}</div>
   <div class="row">${gs.map((g,gi) => `<button type="button" class="btn" data-group="${si}-${gi}" style="flex:1 1 200px;font-size:13px;flex-direction:column;align-items:flex-start;text-align:left">
-    <span>${g.items.length > 1 ? `${g.from}〜${g.from+g.items.length-1}` : g.from}品目</span><span class="muted" style="font-weight:400">${g.items.map(m=>esc(m.kana)).join("・")}</span></button>`).join("")}</div></div>`).join("");
+    <span>${T[lang].groupLabel(g.from, g.from+g.items.length-1)}</span><span class="muted" style="font-weight:400">${g.items.map(m=>esc(lang==="en"?m.name:m.kana)).join(t("sep"))}</span></button>`).join("")}</div></div>`).join("");
+}
 $("groupList").addEventListener("click", e => {
   const b = e.target.closest("[data-group]");
   if(b){ const [si,gi] = b.dataset.group.split("-").map(Number); startTest(GROUPS[si][gi].items); }
@@ -1193,9 +1828,9 @@ function renderStudy(){
   $("studyCount").textContent = `${sIdx+1} / ${MENU.length}`;
   $("studyBar").style.width = `${(sIdx+1)/MENU.length*100}%`;
   $("studyCard").innerHTML = `
-    <div class="eyebrow">${esc(SECTIONS.find(x=>x.id===m.section).ja)}${m.star?` ・ ${t("star")}`:""}</div>
-    <div class="study-name"><h2>${esc(m.kana)}</h2><span class="muted">${esc(m.name)}</span><span class="price">${esc(m.price)}</span></div>
-    <div class="menu-line">${t("menu")}：${esc(m.menuText)}</div>
+    <div class="eyebrow">${esc(secName(SECTIONS.find(x=>x.id===m.section)))}${m.star?` ・ ${t("star")}`:""}</div>
+    <div class="study-name"><h2>${esc(m.kana)}</h2><span class="muted">${esc(m.name)}</span><span class="price">${esc(priceText(m))}</span></div>
+    <div class="menu-line">${t("menu")}${lang==="en"?": ":"："}${esc(m.menuText)}</div>
     <dl class="facts"><dt>${t("part")}</dt><dd>${esc(d.part)}</dd></dl>
     <div class="talk"><div class="eyebrow">${t("talk")}</div><p>${esc(d.talk)}</p></div>
     <div><div class="eyebrow" style="margin-bottom:6px">${t("points")}</div><ul class="points">${d.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>`;
@@ -1211,7 +1846,7 @@ $("studyTest").onclick = () => startTest([MENU[sIdx]]);
 let qs = [], qi = 0, answers = [];
 function startTest(items, list){
   qs = list || items.flatMap(m => m[lang].questions.map(x => ({
-    itemId:m.id, item:`${m.kana}（${m.name}）`, q:x.q, answer:x.choices[0], choices:shuffle(x.choices), why:x.why
+    itemId:m.id, item:itemLabel(m), q:x.q, answer:x.choices[0], choices:shuffle(x.choices), why:x.why
   })));
   qs = qs.map(x => ({...x, choices: shuffle(x.choices)}));
   qi = 0; answers = [];
@@ -1237,7 +1872,7 @@ $("choices").addEventListener("click", e => {
   });
   $("feedback").innerHTML = ok
     ? `<b class="ok">○ ${t("right")}</b>　${esc(x.why)}`
-    : `<b class="ng">× ${t("wrong")}</b>　${t("answerIs")}「${esc(x.answer)}」。${esc(x.why)}`;
+    : `<b class="ng">× ${t("wrong")}</b>　${t("answerIs")} ${esc(T[lang].quote(x.answer))}${t("period")}${esc(x.why)}`;
   $("feedback").hidden = false;
   $("nextQ").textContent = qi === qs.length-1 ? t("lastQ") : t("nextQ");
   $("nextQ").hidden = false;
@@ -1265,7 +1900,7 @@ function renderResult(r){
   const pct = Math.round(r.correct/r.total*100);
   $("rMeta").textContent = `${r.name} ・ ${r.date}`;
   $("rScore").textContent = r.correct;
-  $("rOf").textContent = `/ ${r.total}問（${pct}%）`;
+  $("rOf").textContent = T[lang].outOf(r.total, pct);
   $("rVerdict").textContent = t("verdicts").find(v => pct >= v[0])[1];
   $("rTable").innerHTML = `<tr><th></th><th>${t("colQ")}</th><th>${t("colYour")}</th><th>${t("colAns")}</th></tr>` +
     r.rows.map(x => `<tr class="${x.ok?"ok":"ng"}"><td class="mk">${x.ok?"○":"×"}</td><td><span class="muted small">${esc(x.item)}</span><br>${esc(x.q)}</td><td class="${x.ok?"":"your"}">${esc(x.pick)}</td><td>${esc(x.answer)}</td></tr>`).join("");
@@ -1309,7 +1944,8 @@ function printSheets(recs){
   window.print();
 }
 
-renderHome();
+lang = store.get("gq_lang", "ja") === "en" ? "en" : "ja";
+applyLang();
 </script>
 </body>
 </html>
