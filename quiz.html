@@ -1191,15 +1191,22 @@ const MENU = [
     name: "MENTAIKO", kana: "炙り明太子", price: "$9", star: false,
     menuText: "Lightly Chargrilled Rare Cod Roe",
     ja: {
-      part: "明太子（タラの卵）・表面を軽く炙って中はレア",
-      talk: "「炙り明太子」は、明太子（タラの卵を唐辛子などで漬けたもの）の表面を軽く炭火で炙った一品です。中はレア（生に近い状態）です。少しピリッとした辛さがあります。",
+      part: "かねふくの明太子（スケトウダラの卵）・表面を軽く炙って中はレア",
+      talk: "「炙り明太子」は、日本で一番有名な明太子ブランド「かねふく」の明太子を使っています。明太子は、スケトウダラ（タラの仲間）の卵を唐辛子などで漬けたもので、福岡・博多の名物です。表面を軽く炭火で炙って、中はレア（生に近い状態）でお出しします。少しピリッとした辛さがあります。",
       points: [
-        "明太子＝タラの卵を唐辛子などで漬けたもの。少しピリッと辛い",
+        "使っているのは「かねふく」の明太子＝日本で一番有名な明太子ブランド",
+        "明太子＝スケトウダラ（タラの仲間）の卵を唐辛子などで漬けたもの。少しピリッと辛い",
+        "明太子は福岡・博多の名物",
+        "たらこ＝辛くない／明太子＝唐辛子などで漬けてピリッと辛い（どちらもスケトウダラの卵）",
         "表面だけ軽く炙って、中はレア",
         "$9"
       ],
       questions: [
-        { q: "お客様に「MENTAIKO って何？」と聞かれたら？", choices: ["タラの卵を唐辛子などで漬けたものです", "イクラの一種です", "魚のすり身です"], why: "Cod Roe。タラの卵です。" },
+        { q: "炙り明太子に使っている明太子のブランドは？", choices: ["かねふく", "やまや", "ふくや"], why: "日本で一番有名な明太子ブランド「かねふく」の明太子を使っています。" },
+        { q: "お客様に「KANEFUKU って何？」と聞かれたら？", choices: ["日本で一番有名な明太子のブランドです", "日本の有名なお酒のブランドです", "明太子の種類の名前です"], why: "かねふくは日本で一番有名な明太子ブランドです。" },
+        { q: "お客様に「MENTAIKO って何？」と聞かれたら？", choices: ["スケトウダラ（タラの仲間）の卵を、唐辛子などで漬けたものです", "イクラの一種です", "魚のすり身です"], why: "明太子＝スケトウダラの卵を唐辛子などで漬けたもの。メニューの英語では Cod Roe です。" },
+        { q: "日本で明太子が有名な地域は？", choices: ["福岡（博多）", "北海道（札幌）", "大阪"], why: "明太子は福岡・博多の名物として有名です。" },
+        { q: "「たらこ」と「明太子」の違いは？", choices: ["明太子は唐辛子などで漬けてピリッと辛い。たらこは辛くない", "明太子は生、たらこは焼いたもの", "まったく別の魚の卵"], why: "どちらもスケトウダラの卵。唐辛子などで漬けてピリッと辛いのが明太子です。" },
         { q: "炙り明太子の焼き加減は？", choices: ["表面を軽く炙って、中はレア", "中までしっかり火を通す", "生のまま"], why: "Lightly Chargrilled Rare。表面だけ炙って中はレアです。" },
         { q: "炙り明太子の値段は？", choices: ["$9", "$7", "$12"], why: "MENTAIKO は $9 です。" }
       ]
@@ -2118,15 +2125,22 @@ const EN = {
     ]
   },
   mentaiko: {
-    part: "Mentaiko (cod roe), lightly chargrilled outside, rare inside",
-    talk: "Mentaiko is cod roe marinated with chili and seasonings. We lightly chargrill the outside and keep the inside rare. It’s a little spicy.",
+    part: "Kanefuku mentaiko (pollock roe), lightly chargrilled outside, rare inside",
+    talk: "We use mentaiko from Kanefuku, the most famous mentaiko brand in Japan. Mentaiko is Alaska pollock roe (cod family) marinated with chili, a famous specialty of Hakata, Fukuoka. We lightly chargrill the outside and keep the inside rare. It’s a little spicy.",
     points: [
-      "Mentaiko = cod roe marinated with chili. A little spicy",
+      "We use KANEFUKU mentaiko = the most famous mentaiko brand in Japan",
+      "Mentaiko = pollock roe (cod family) marinated with chili. A little spicy",
+      "A famous specialty of Hakata, Fukuoka",
+      "Tarako = not spicy / mentaiko = marinated with chili, a little spicy (both are pollock roe)",
       "Lightly chargrilled outside, rare inside",
       "$9"
     ],
     questions: [
-      ["A guest asks, “What is mentaiko?”", ["Cod roe marinated with chili", "A kind of ikura", "Fish cake"], "Cod Roe."],
+      ["Which brand of mentaiko do we use?", ["Kanefuku", "Yamaya", "Fukuya"], "We use Kanefuku, the most famous mentaiko brand in Japan."],
+      ["A guest asks, “What is Kanefuku?”", ["The most famous mentaiko brand in Japan", "A famous Japanese sake brand", "A type of mentaiko"], "Kanefuku is the most famous mentaiko brand in Japan."],
+      ["A guest asks, “What is mentaiko?”", ["Pollock roe (cod family) marinated with chili", "A kind of ikura", "Fish cake"], "Mentaiko is Alaska pollock roe (cod family) marinated with chili. The menu says Cod Roe."],
+      ["Which part of Japan is famous for mentaiko?", ["Fukuoka (Hakata)", "Hokkaido (Sapporo)", "Osaka"], "Mentaiko is a famous specialty of Hakata, Fukuoka."],
+      ["What is the difference between tarako and mentaiko?", ["Mentaiko is marinated with chili and a little spicy; tarako is not spicy", "Mentaiko is raw; tarako is grilled", "They are roe from completely different fish"], "Both are pollock roe. Mentaiko is the spicy one, marinated with chili."],
       ["How is the MENTAIKO cooked?", ["Lightly chargrilled outside, rare inside", "Fully cooked through", "Completely raw"], "Lightly Chargrilled Rare."],
       ["How much is MENTAIKO?", ["$9", "$7", "$12"], "MENTAIKO is $9."]
     ]
