@@ -279,7 +279,12 @@ const SECTIONS = [
   { id: "yakitori",   ja: "焼き鳥",       en: "YAKITORI" },
   { id: "premium",    ja: "プレミアム",   en: "PREMIUM MEAT" },
   { id: "vegetables", ja: "野菜焼き",     en: "VEGETABLES" },
-  { id: "maki",       ja: "巻き物",       en: "MAKI SKEWERS" }
+  { id: "maki",       ja: "巻き物",       en: "MAKI SKEWERS" },
+  { id: "appetizers", ja: "先付け", en: "APPETIZERS" },
+  { id: "moms", ja: "おふくろの味", en: "MOM’S TRADITIONAL DISHES" },
+  { id: "rice", ja: "土鍋ご飯", en: "RICE (CLAYPOT)" },
+  { id: "soup", ja: "汁物", en: "SOUP & NOODLE DISHES" },
+  { id: "dessert", ja: "デザート", en: "DESSERT" }
 ];
 
 const MENU = [
@@ -1093,6 +1098,371 @@ const MENU = [
         { q: "黒豚ソーセージ1本の値段は？", choices: ["$7", "$9", "$5"], why: "KUROBUTA SAUSAGE は $7 です。" }
       ]
     }
+  },
+  {
+    id: "uniajitama",
+    section: "appetizers",
+    name: "UNI ON THE AJITAMA", kana: "ウニ・オン・ザ味玉", price: "$15", star: true,
+    menuText: "Sea Urchin, Ikura & Soft Egg On The Spoon",
+    ja: {
+      part: "味玉（味つけ半熟卵）の上にウニとイクラ・スプーンにのせて出す",
+      talk: "「ウニ・オン・ザ味玉」は、味玉（味をつけた半熟卵）の上に、ウニとイクラをのせて、スプーンにのせてお出しする一品です。ひと口でウニ・イクラ・とろっとした卵を楽しめます。当店のおすすめ（★）です。",
+      points: [
+        "味玉＝味をつけた半熟卵",
+        "味玉の上にウニとイクラをのせる",
+        "スプーンにのせて出す（ひと口で食べる）",
+        "★おすすめ・$15"
+      ],
+      questions: [
+        { q: "ウニ・オン・ザ味玉にのっているものは？", choices: ["ウニとイクラ", "明太子としらす", "チーズとベーコン"], why: "Sea Urchin, Ikura & Soft Egg。味玉の上にウニとイクラです。" },
+        { q: "お客様に「AJITAMA って何？」と聞かれたら？", choices: ["味をつけた半熟卵です", "うずらの生卵です", "卵焼きです"], why: "味玉は味をつけた半熟卵です。" },
+        { q: "ウニ・オン・ザ味玉は、どうやってお出しする？", choices: ["スプーンにのせて、ひと口で", "大皿に盛って、取り分けて", "串に刺して"], why: "On The Spoon。スプーンにのせてお出しします。" }
+      ]
+    }
+  },
+  {
+    id: "shirasutofu",
+    section: "appetizers",
+    name: "SHIRASU TOFU", kana: "しらす冷奴", price: "$12", star: false,
+    menuText: "Chilled Tofu w/ Fresh Whitebait & Ikura",
+    ja: {
+      part: "冷たい豆腐（冷奴）・しらすとイクラのせ",
+      talk: "「しらす冷奴」は、冷たい豆腐の上に、しらす（小さな魚の稚魚）とイクラをのせた一品です。しらすとイクラは魚なので、ベジタリアンの方にはお伝えください。",
+      points: [
+        "冷奴＝冷たい豆腐",
+        "しらす（小魚の稚魚）とイクラをのせる",
+        "しらす・イクラは魚。ベジタリアンの方には伝える",
+        "$12"
+      ],
+      questions: [
+        { q: "しらす冷奴にのっているものは？", choices: ["しらすとイクラ", "ウニとイクラ", "かつお節とねぎ"], why: "Fresh Whitebait & Ikura。しらすとイクラです。" },
+        { q: "お客様に「SHIRASU って何？」と聞かれたら？", choices: ["小さな魚の稚魚です", "日本の海藻です", "大豆から作った食べ物です"], why: "しらす（Whitebait）は小さな魚の稚魚です。" },
+        { q: "しらす冷奴の豆腐は？", choices: ["冷たい", "温かい", "揚げてある"], why: "Chilled Tofu。冷たい豆腐（冷奴）です。" }
+      ]
+    }
+  },
+  {
+    id: "misoq",
+    section: "appetizers",
+    name: "MISO Q", kana: "味噌キュウ", price: "$7", star: false,
+    menuText: "Cucumber Sticks w/ Chicken Miso Dip",
+    ja: {
+      part: "きゅうりスティック・鶏味噌ディップ",
+      talk: "「味噌キュウ」は、きゅうりのスティックに、鶏肉入りの味噌（鶏味噌）をつけて食べる一品です。鶏肉が入っているので、ベジタリアンの方にはお伝えください。",
+      points: [
+        "きゅうりスティック＋鶏味噌のディップ",
+        "鶏味噌には鶏肉が入っている。ベジタリアンの方には伝える",
+        "$7"
+      ],
+      questions: [
+        { q: "味噌キュウは、きゅうりに何をつけて食べる？", choices: ["鶏肉入りの味噌（鶏味噌）", "マヨネーズ", "ごまドレッシング"], why: "Cucumber Sticks w/ Chicken Miso Dip。鶏味噌です。" },
+        { q: "ベジタリアンのお客様に、味噌キュウについて伝えることは？", choices: ["味噌に鶏肉が入っていること", "かつお節がかかっていること", "豚肉が巻いてあること"], why: "Chicken Miso Dip。鶏肉が入っています。" },
+        { q: "味噌キュウの値段は？", choices: ["$7", "$5", "$10"], why: "MISO Q は $7 です。" }
+      ]
+    }
+  },
+  {
+    id: "chashu",
+    section: "appetizers",
+    name: "CHASHU AJITAMA", kana: "焼豚味玉", price: "$10", star: false,
+    menuText: "Chicken Belly w/ Soft-Boiled Egg",
+    ja: {
+      part: "チャーシューと味玉（メニュー英語表記：Chicken Belly）",
+      talk: "「焼豚味玉」は、チャーシューと、味をつけた半熟卵（味玉）の一品です。メニューの英語表記は “Chicken Belly w/ Soft-Boiled Egg” です。",
+      points: [
+        "チャーシュー＋味玉（味をつけた半熟卵）",
+        "メニュー英語表記：Chicken Belly w/ Soft-Boiled Egg",
+        "$10"
+      ],
+      questions: [
+        { q: "焼豚味玉に一緒にのっている卵は？", choices: ["味玉（味をつけた半熟卵）", "生卵", "うずらの卵"], why: "Soft-Boiled Egg。味玉です。" },
+        { q: "焼豚味玉はメニューの英語で何と書いてある？", choices: ["Chicken Belly w/ Soft-Boiled Egg", "Pork Belly w/ Raw Egg", "Chicken Thigh w/ Quail Egg"], why: "英語表記は Chicken Belly w/ Soft-Boiled Egg です。" },
+        { q: "焼豚味玉の値段は？", choices: ["$10", "$7", "$12"], why: "CHASHU AJITAMA は $10 です。" }
+      ]
+    }
+  },
+  {
+    id: "mentaiko",
+    section: "appetizers",
+    name: "MENTAIKO", kana: "炙り明太子", price: "$9", star: false,
+    menuText: "Lightly Chargrilled Rare Cod Roe",
+    ja: {
+      part: "明太子（タラの卵）・表面を軽く炙って中はレア",
+      talk: "「炙り明太子」は、明太子（タラの卵を唐辛子などで漬けたもの）の表面を軽く炭火で炙った一品です。中はレア（生に近い状態）です。少しピリッとした辛さがあります。",
+      points: [
+        "明太子＝タラの卵を唐辛子などで漬けたもの。少しピリッと辛い",
+        "表面だけ軽く炙って、中はレア",
+        "$9"
+      ],
+      questions: [
+        { q: "お客様に「MENTAIKO って何？」と聞かれたら？", choices: ["タラの卵を唐辛子などで漬けたものです", "イクラの一種です", "魚のすり身です"], why: "Cod Roe。タラの卵です。" },
+        { q: "炙り明太子の焼き加減は？", choices: ["表面を軽く炙って、中はレア", "中までしっかり火を通す", "生のまま"], why: "Lightly Chargrilled Rare。表面だけ炙って中はレアです。" },
+        { q: "炙り明太子の値段は？", choices: ["$9", "$7", "$12"], why: "MENTAIKO は $9 です。" }
+      ]
+    }
+  },
+  {
+    id: "chawanmushi",
+    section: "appetizers",
+    name: "CHAWAN-MUSHI", kana: "茶碗蒸し", price: "$12", star: false,
+    menuText: "Steamed Egg Custard — Ikura +$5 | Uni +$9",
+    ja: {
+      part: "卵と出汁の蒸し料理・イクラ+$5／ウニ+$9",
+      talk: "「茶碗蒸し」は、卵と出汁を合わせて蒸した、なめらかな日本の料理です。プラス$5でイクラ、プラス$9でウニをのせることができます。",
+      points: [
+        "卵と出汁を蒸した、なめらかな料理（Steamed Egg Custard）",
+        "トッピング：イクラ +$5／ウニ +$9",
+        "$12"
+      ],
+      questions: [
+        { q: "お客様に「CHAWAN-MUSHI って何？」と聞かれたら？", choices: ["卵と出汁を蒸した、なめらかな料理です", "甘いプリンです", "卵焼きです"], why: "Steamed Egg Custard。デザートのプリンではありません。" },
+        { q: "茶碗蒸しに追加できるトッピングは？", choices: ["イクラ +$5／ウニ +$9", "イクラ +$9／ウニ +$5", "明太子 +$5／チーズ +$2"], why: "Ikura +$5 | Uni +$9。" },
+        { q: "茶碗蒸しの値段（トッピングなし）は？", choices: ["$12", "$10", "$15"], why: "CHAWAN-MUSHI は $12 です。" }
+      ]
+    }
+  },
+  {
+    id: "karaage",
+    section: "appetizers",
+    name: "KARA-AGE", kana: "唐揚げ", price: "$16", star: true,
+    menuText: "Japanese-Style Fried Chicken (5 Pieces)",
+    ja: {
+      part: "日本風の鶏の唐揚げ・5個",
+      talk: "「唐揚げ」は、日本風の鶏の唐揚げです。5個入りです。当店のおすすめ（★）です。",
+      points: [
+        "日本風のフライドチキン（Japanese-Style Fried Chicken）",
+        "5個入り",
+        "★おすすめ・$16"
+      ],
+      questions: [
+        { q: "唐揚げは何個入り？", choices: ["5個", "3個", "8個"], why: "5 Pieces。5個入りです。" },
+        { q: "唐揚げに使っているお肉は？", choices: ["鶏肉", "豚肉", "牛肉"], why: "Japanese-Style Fried Chicken。鶏肉です。" },
+        { q: "唐揚げの値段は？", choices: ["$16", "$12", "$10"], why: "KARA-AGE は $16。★おすすめです。" }
+      ]
+    }
+  },
+  {
+    id: "dashimaki",
+    section: "moms",
+    name: "DASHIMAKI TAMAGO", kana: "だし巻き卵", price: "$15", star: false,
+    menuText: "Classic Japanese Rolled Omelet — ★ Mentaiko +$5 / ★ Ikura +$9 / ★ Uni +$18",
+    ja: {
+      part: "出汁を入れて巻いた卵焼き・トッピングあり",
+      talk: "「だし巻き卵」は、卵に出汁を入れて、くるくる巻きながら焼いた日本の定番の卵焼きです。トッピングは、明太子 +$5、イクラ +$9、ウニ +$18 から選べます。",
+      points: [
+        "出汁を入れて巻いた卵焼き（Classic Japanese Rolled Omelet）",
+        "トッピング：明太子 +$5／イクラ +$9／ウニ +$18",
+        "注文のときにトッピングをすすめる",
+        "$15"
+      ],
+      questions: [
+        { q: "お客様に「DASHIMAKI TAMAGO って何？」と聞かれたら？", choices: ["出汁を入れて巻いて焼いた、日本の卵焼きです", "卵と出汁を蒸した料理です", "半熟の味つけ卵です"], why: "Classic Japanese Rolled Omelet。蒸すのは茶碗蒸し、半熟の味つけ卵は味玉です。" },
+        { q: "だし巻き卵のトッピングと値段で正しいのは？", choices: ["明太子 +$5／イクラ +$9／ウニ +$18", "明太子 +$9／イクラ +$5／ウニ +$15", "チーズ +$2／ねぎ +$1／ウニ +$9"], why: "Mentaiko +$5 / Ikura +$9 / Uni +$18。" },
+        { q: "だし巻き卵の値段（トッピングなし）は？", choices: ["$15", "$12", "$10"], why: "DASHIMAKI TAMAGO は $15 です。" }
+      ]
+    }
+  },
+  {
+    id: "croquette",
+    section: "moms",
+    name: "WAGYU CROQUETTE", kana: "手仕込みコロッケ", price: "$12", star: true,
+    menuText: "Handmade Potato & Wagyu Croquettes",
+    ja: {
+      part: "じゃがいもと和牛の手作りコロッケ",
+      talk: "「手仕込みコロッケ」は、じゃがいもと和牛で作った、お店の手作りのコロッケです。当店のおすすめ（★）です。",
+      points: [
+        "じゃがいも＋和牛",
+        "お店で手作り（Handmade）",
+        "★おすすめ・$12"
+      ],
+      questions: [
+        { q: "手仕込みコロッケの中身は？", choices: ["じゃがいもと和牛", "かぼちゃとチーズ", "カニとクリーム"], why: "Potato & Wagyu Croquettes。" },
+        { q: "「手仕込み」とはどういう意味？", choices: ["お店で手作りしている", "冷凍のものを使っている", "お客様が自分で作る"], why: "Handmade。お店で手作りしています。" },
+        { q: "手仕込みコロッケの値段は？", choices: ["$12", "$15", "$10"], why: "WAGYU CROQUETTE は $12。★おすすめです。" }
+      ]
+    }
+  },
+  {
+    id: "donabe",
+    section: "rice",
+    name: "DONABE GOHAN", kana: "土鍋ご飯", price: "$10", star: false,
+    menuText: "Claypot White Rice [Please allow 30 minutes]",
+    ja: {
+      part: "土鍋で炊く白いご飯・30分かかる",
+      talk: "「土鍋ご飯」は、土鍋で炊く白いご飯です。注文を受けてから炊くので、30分ほどお時間をいただきます。",
+      points: [
+        "土鍋で炊く白いご飯（Claypot White Rice）",
+        "【必ず伝える】土鍋ご飯は30分かかる",
+        "食べたい方には早めの注文をすすめる",
+        "$10"
+      ],
+      questions: [
+        { q: "土鍋ご飯の注文を受けたら、必ず伝えることは？", choices: ["炊き上がりまで30分かかること", "おかわりが自由なこと", "冷たいご飯で出すこと"], why: "Please allow 30 minutes。土鍋で炊くので30分かかります。" },
+        { q: "土鍋ご飯を食べたいお客様に、すすめることは？", choices: ["30分かかるので、早めに注文すること", "食事の最後に注文すること", "テイクアウトにすること"], why: "30分かかるので、早めの注文をおすすめしましょう。" },
+        { q: "土鍋ご飯（白いご飯）の値段は？", choices: ["$10", "$8", "$15"], why: "DONABE GOHAN は $10 です。" }
+      ]
+    }
+  },
+  {
+    id: "soboro",
+    section: "rice",
+    name: "SOBORO GOHAN", kana: "そぼろご飯", price: "$15", star: false,
+    menuText: "Ground Chicken w/ Quail Egg On Top [Please allow 30 minutes]",
+    ja: {
+      part: "土鍋ご飯・鶏そぼろとうずらの卵のせ・30分かかる",
+      talk: "「そぼろご飯」は、土鍋で炊いたご飯に、鶏のそぼろ（鶏のひき肉）とうずらの卵をのせたものです。土鍋で炊くので30分かかります。",
+      points: [
+        "土鍋ご飯＋鶏そぼろ（鶏ひき肉）",
+        "うずらの卵をのせる",
+        "30分かかる",
+        "$15"
+      ],
+      questions: [
+        { q: "そぼろご飯にのっているものは？", choices: ["鶏そぼろとうずらの卵", "しらすとイクラ", "明太子とねぎ"], why: "Ground Chicken w/ Quail Egg On Top。" },
+        { q: "そぼろご飯の「そぼろ」は何？", choices: ["鶏のひき肉", "豚のひき肉", "炒り卵だけ"], why: "Ground Chicken。鶏のひき肉です。" },
+        { q: "そぼろご飯の値段は？", choices: ["$15", "$10", "$12"], why: "SOBORO GOHAN は $15 です。" }
+      ]
+    }
+  },
+  {
+    id: "seasonalrice",
+    section: "rice",
+    name: "SEASONAL CLAYPOT RICE", kana: "炊き込みご飯", price: "$MP", star: false,
+    menuText: "Ask For Today’s Seasonal Ingredients [Please allow 30 minutes]",
+    ja: {
+      part: "季節の食材の炊き込みご飯・時価・30分かかる",
+      talk: "「炊き込みご飯」は、その日の季節の食材を入れて土鍋で炊くご飯です。値段は時価（$MP）なので、その日の食材と値段を確認してお伝えください。土鍋で炊くので30分かかります。",
+      points: [
+        "その日の季節の食材で炊く",
+        "$MP＝時価（Market Price）。その日の食材と値段を確認して伝える",
+        "30分かかる"
+      ],
+      questions: [
+        { q: "メニューの「$MP」の意味は？", choices: ["時価（その日によって値段が変わる）", "最小の値段", "一番人気"], why: "MP = Market Price。時価です。" },
+        { q: "炊き込みご飯の注文を受ける前にすることは？", choices: ["その日の食材と値段を確認して伝える", "メニューの写真を見せる", "何もしなくてよい"], why: "Ask For Today’s Seasonal Ingredients。今日の食材と値段をお伝えします。" },
+        { q: "炊き込みご飯は、炊き上がるまでどのくらいかかる？", choices: ["30分", "10分", "1時間"], why: "土鍋ご飯は30分かかります。" }
+      ]
+    }
+  },
+  {
+    id: "yakionigiri",
+    section: "rice",
+    name: "YAKI ONIGIRI", kana: "焼きおにぎり", price: "$8", star: false,
+    menuText: "Grilled Rice Ball",
+    ja: {
+      part: "焼いたおにぎり",
+      talk: "「焼きおにぎり」は、おにぎりを焼いて、外側を香ばしく仕上げた一品です。",
+      points: [
+        "おにぎりを焼いたもの（Grilled Rice Ball）",
+        "外側が香ばしい",
+        "$8"
+      ],
+      questions: [
+        { q: "お客様に「YAKI ONIGIRI って何？」と聞かれたら？", choices: ["焼いたおにぎりです", "土鍋で炊いた白いご飯です", "お米のお菓子です"], why: "Grilled Rice Ball。焼いたおにぎりです。" },
+        { q: "焼きおにぎりの特徴は？", choices: ["外側が香ばしい", "中が生のお米", "甘いデザート"], why: "焼いて外側を香ばしく仕上げます。" },
+        { q: "焼きおにぎりの値段は？", choices: ["$8", "$10", "$6"], why: "YAKI ONIGIRI は $8 です。" }
+      ]
+    }
+  },
+  {
+    id: "ramen",
+    section: "soup",
+    name: "MINI TORI-TORI RAMEN", kana: "ミニ手仕込みチキンラーメン", price: "$12", star: false,
+    menuText: "Chicken-Broth Ramen",
+    ja: {
+      part: "鶏のスープのミニラーメン・お店で手作り",
+      talk: "「ミニ手仕込みチキンラーメン」は、鶏でとったスープのラーメンです。量が少なめのミニサイズで、お店で手作りしています。食事のしめにもぴったりです。",
+      points: [
+        "鶏のスープ（Chicken-Broth）のラーメン",
+        "ミニサイズ（少なめ）",
+        "お店で手作り（手仕込み）",
+        "$12"
+      ],
+      questions: [
+        { q: "ミニ手仕込みチキンラーメンのスープは？", choices: ["鶏でとったスープ", "豚骨スープ", "味噌スープ"], why: "Chicken-Broth Ramen。" },
+        { q: "ラーメンの量は？", choices: ["ミニサイズ（少なめ）", "大盛り", "2人前"], why: "MINI。少なめのサイズです。" },
+        { q: "ミニ手仕込みチキンラーメンの値段は？", choices: ["$12", "$7", "$15"], why: "MINI TORI-TORI RAMEN は $12 です。" }
+      ]
+    }
+  },
+  {
+    id: "torigara",
+    section: "soup",
+    name: "TORIGARA SOUP", kana: "鶏ガラスープ", price: "$7", star: false,
+    menuText: "Rich Chicken Soup",
+    ja: {
+      part: "鶏ガラ（鶏の骨）でとった濃いスープ",
+      talk: "「鶏ガラスープ」は、鶏ガラ（鶏の骨）でじっくりとった、濃厚な鶏のスープです。",
+      points: [
+        "鶏ガラ＝鶏の骨",
+        "濃厚な鶏のスープ（Rich Chicken Soup）",
+        "$7"
+      ],
+      questions: [
+        { q: "お客様に「TORIGARA って何？」と聞かれたら？", choices: ["鶏の骨のことで、そこからスープをとります", "鶏の皮のことです", "鶏の卵のことです"], why: "鶏ガラ＝鶏の骨です。" },
+        { q: "鶏ガラスープはどんなスープ？", choices: ["濃厚な鶏のスープ", "あっさりした野菜スープ", "辛いスープ"], why: "Rich Chicken Soup。" },
+        { q: "鶏ガラスープの値段は？", choices: ["$7", "$12", "$5"], why: "TORIGARA SOUP は $7 です。" }
+      ]
+    }
+  },
+  {
+    id: "pudding",
+    section: "dessert",
+    name: "TOKYO PUDDING", kana: "東京プリン", price: "$10", star: false,
+    menuText: "Classic Japanese Crème Caramel",
+    ja: {
+      part: "昔ながらの日本のプリン（カスタードプリン）",
+      talk: "「東京プリン」は、昔ながらの日本のプリンです。カラメルソースのかかったカスタードプリンです。",
+      points: [
+        "昔ながらの日本のプリン（Classic Japanese Crème Caramel）",
+        "カラメルソース",
+        "$10"
+      ],
+      questions: [
+        { q: "東京プリンはどんなデザート？", choices: ["昔ながらの日本のカスタードプリン", "抹茶のアイス", "メロンのかき氷"], why: "Classic Japanese Crème Caramel。" },
+        { q: "東京プリンの上にかかっているのは？", choices: ["カラメルソース", "黒みつときなこ", "チョコレートソース"], why: "Crème Caramel。カラメルです。" },
+        { q: "東京プリンの値段は？", choices: ["$10", "$6", "$12"], why: "TOKYO PUDDING は $10 です。" }
+      ]
+    }
+  },
+  {
+    id: "seasonaldessert",
+    section: "dessert",
+    name: "SEASONAL DESSERT", kana: "季節のデザート", price: "$MP", star: false,
+    menuText: "Ask For Today’s Curated Dessert",
+    ja: {
+      part: "その日の季節のデザート・時価",
+      talk: "「季節のデザート」は、その日によって内容が変わるデザートです。値段は時価（$MP）なので、その日のデザートと値段を確認してお伝えください。",
+      points: [
+        "その日によって変わる",
+        "$MP＝時価。今日のデザートと値段を確認して伝える"
+      ],
+      questions: [
+        { q: "季節のデザートを聞かれたら、どうする？", choices: ["今日のデザートと値段を確認して伝える", "「毎日同じです」と伝える", "メニューを指さすだけ"], why: "Ask For Today’s Curated Dessert。" },
+        { q: "季節のデザートの「$MP」の意味は？", choices: ["時価（その日によって変わる）", "$10 均一", "無料"], why: "MP = Market Price。" },
+        { q: "季節のデザートの内容は？", choices: ["その日によって変わる", "いつも東京プリン", "いつもメロンクリームソーダ"], why: "その日によって内容が変わります。" }
+      ]
+    }
+  },
+  {
+    id: "melonsoda",
+    section: "dessert",
+    name: "JAPANESE MELON CREAM SODA", kana: "メロンクリームソーダ", price: "$6 / $10", star: true,
+    menuText: "Retro Icecream Float",
+    ja: {
+      part: "メロンソーダにアイスをのせた、昔ながらのクリームソーダ",
+      talk: "「メロンクリームソーダ」は、緑色のメロンソーダにアイスクリームをのせた、日本の昔ながらのクリームソーダです。当店のおすすめ（★）です。",
+      points: [
+        "メロンソーダ＋アイスクリーム（Icecream Float）",
+        "日本の昔ながらの（レトロな）飲み物",
+        "★おすすめ・$6／$10"
+      ],
+      questions: [
+        { q: "メロンクリームソーダとは？", choices: ["メロンソーダにアイスクリームをのせたもの", "メロン味のかき氷", "メロンのスムージー"], why: "Retro Icecream Float。" },
+        { q: "メロンクリームソーダはどんな雰囲気の飲み物？", choices: ["日本の昔ながらのレトロな飲み物", "最新の健康ドリンク", "お酒のカクテル"], why: "Retro。日本の昔ながらの飲み物です。" },
+        { q: "デザートの中で★おすすめなのは？", choices: ["メロンクリームソーダ", "東京プリン", "季節のデザート"], why: "JAPANESE MELON CREAM SODA に★がついています。" }
+      ]
+    }
   }
 ];
 
@@ -1675,6 +2045,263 @@ const EN = {
       ["What is KUROBUTA?", ["Black pig", "Black Wagyu beef", "Black chicken"], "Premium Black-Pig."],
       ["What comes with KUROBUTA SAUSAGE?", ["Mustard", "Wasabi", "Yuzu-kosho"], "w/ Mustard."],
       ["How much is one KUROBUTA SAUSAGE?", ["$7", "$9", "$5"], "KUROBUTA SAUSAGE is $7."]
+    ]
+  },
+  uniajitama: {
+    part: "Ajitama (seasoned soft-boiled egg) topped with sea urchin and ikura, served on a spoon",
+    talk: "Uni on the Ajitama is an ajitama, a seasoned soft-boiled egg, topped with sea urchin and ikura, served on a spoon. One bite gives you uni, ikura and creamy egg together. ★ recommended.",
+    points: [
+      "Ajitama = seasoned soft-boiled egg",
+      "Sea urchin and ikura on top",
+      "Served on a spoon (one bite)",
+      "★ recommended, $15"
+    ],
+    questions: [
+      ["What is on top of UNI ON THE AJITAMA?", ["Sea urchin and ikura", "Mentaiko and shirasu", "Cheese and bacon"], "Sea Urchin, Ikura & Soft Egg."],
+      ["A guest asks, “What is ajitama?”", ["A seasoned soft-boiled egg", "A raw quail egg", "A rolled omelet"], "Ajitama is a seasoned soft-boiled egg."],
+      ["How is UNI ON THE AJITAMA served?", ["On a spoon, in one bite", "On a big plate to share", "On a skewer"], "On The Spoon."]
+    ]
+  },
+  shirasutofu: {
+    part: "Chilled tofu topped with whitebait and ikura",
+    talk: "Shirasu Tofu is chilled tofu topped with shirasu (whitebait, tiny young fish) and ikura. Shirasu and ikura are fish, so please tell vegetarian guests.",
+    points: [
+      "Hiyayakko = chilled tofu",
+      "Topped with shirasu (whitebait) and ikura",
+      "Shirasu and ikura are FISH. Tell vegetarian guests",
+      "$12"
+    ],
+    questions: [
+      ["What is on top of SHIRASU TOFU?", ["Whitebait (shirasu) and ikura", "Sea urchin and ikura", "Bonito flakes and negi"], "Fresh Whitebait & Ikura."],
+      ["A guest asks, “What is shirasu?”", ["Tiny young fish (whitebait)", "Japanese seaweed", "Something made from soybeans"], "Shirasu is whitebait: tiny young fish."],
+      ["How is the tofu in SHIRASU TOFU served?", ["Chilled", "Hot", "Deep-fried"], "Chilled Tofu."]
+    ]
+  },
+  misoq: {
+    part: "Cucumber sticks with chicken miso dip",
+    talk: "Miso Q is cucumber sticks with a miso dip made with chicken (tori-miso). It contains chicken, so please tell vegetarian guests.",
+    points: [
+      "Cucumber sticks + chicken miso dip",
+      "The miso dip contains CHICKEN. Tell vegetarian guests",
+      "$7"
+    ],
+    questions: [
+      ["What do you dip the cucumber in for MISO Q?", ["Miso with chicken (chicken miso)", "Mayonnaise", "Sesame dressing"], "Cucumber Sticks w/ Chicken Miso Dip."],
+      ["What do you tell a vegetarian guest about MISO Q?", ["The miso dip contains chicken", "It has bonito flakes", "It’s wrapped in pork"], "Chicken Miso Dip contains chicken."],
+      ["How much is MISO Q?", ["$7", "$5", "$10"], "MISO Q is $7."]
+    ]
+  },
+  chashu: {
+    part: "Chashu and ajitama (menu: Chicken Belly)",
+    talk: "Chashu Ajitama is chashu with ajitama, a seasoned soft-boiled egg. On the menu it says “Chicken Belly w/ Soft-Boiled Egg.”",
+    points: [
+      "Chashu + ajitama (seasoned soft-boiled egg)",
+      "Menu: Chicken Belly w/ Soft-Boiled Egg",
+      "$10"
+    ],
+    questions: [
+      ["What egg comes with CHASHU AJITAMA?", ["Ajitama (seasoned soft-boiled egg)", "Raw egg", "Quail egg"], "Soft-Boiled Egg = ajitama."],
+      ["How is CHASHU AJITAMA written on the menu?", ["Chicken Belly w/ Soft-Boiled Egg", "Pork Belly w/ Raw Egg", "Chicken Thigh w/ Quail Egg"], "Chicken Belly w/ Soft-Boiled Egg."],
+      ["How much is CHASHU AJITAMA?", ["$10", "$7", "$12"], "CHASHU AJITAMA is $10."]
+    ]
+  },
+  mentaiko: {
+    part: "Mentaiko (cod roe), lightly chargrilled outside, rare inside",
+    talk: "Mentaiko is cod roe marinated with chili and seasonings. We lightly chargrill the outside and keep the inside rare. It’s a little spicy.",
+    points: [
+      "Mentaiko = cod roe marinated with chili. A little spicy",
+      "Lightly chargrilled outside, rare inside",
+      "$9"
+    ],
+    questions: [
+      ["A guest asks, “What is mentaiko?”", ["Cod roe marinated with chili", "A kind of ikura", "Fish cake"], "Cod Roe."],
+      ["How is the MENTAIKO cooked?", ["Lightly chargrilled outside, rare inside", "Fully cooked through", "Completely raw"], "Lightly Chargrilled Rare."],
+      ["How much is MENTAIKO?", ["$9", "$7", "$12"], "MENTAIKO is $9."]
+    ]
+  },
+  chawanmushi: {
+    part: "Steamed egg custard with dashi — Ikura +$5 / Uni +$9",
+    talk: "Chawan-mushi is a smooth, savory Japanese steamed egg custard made with egg and dashi. You can add ikura for $5 or sea urchin for $9.",
+    points: [
+      "Savory steamed egg custard with dashi (NOT a sweet dessert)",
+      "Toppings: ikura +$5 / sea urchin +$9",
+      "$12"
+    ],
+    questions: [
+      ["A guest asks, “What is chawan-mushi?”", ["A smooth, savory steamed egg custard made with dashi", "A sweet pudding", "A rolled omelet"], "Steamed Egg Custard. It’s savory, not a dessert."],
+      ["What toppings can be added to CHAWAN-MUSHI?", ["Ikura +$5 / Uni +$9", "Ikura +$9 / Uni +$5", "Mentaiko +$5 / Cheese +$2"], "Ikura +$5 | Uni +$9."],
+      ["How much is CHAWAN-MUSHI (no topping)?", ["$12", "$10", "$15"], "CHAWAN-MUSHI is $12."]
+    ]
+  },
+  karaage: {
+    part: "Japanese-style fried chicken, 5 pieces",
+    talk: "Kara-age is Japanese-style fried chicken, 5 pieces. ★ recommended.",
+    points: [
+      "Japanese-style fried chicken",
+      "5 pieces",
+      "★ recommended, $16"
+    ],
+    questions: [
+      ["How many pieces of KARA-AGE?", ["5", "3", "8"], "5 Pieces."],
+      ["What meat is KARA-AGE?", ["Chicken", "Pork", "Beef"], "Japanese-Style Fried Chicken."],
+      ["How much is KARA-AGE?", ["$16", "$12", "$10"], "KARA-AGE is $16. ★ recommended."]
+    ]
+  },
+  dashimaki: {
+    part: "Rolled omelet made with dashi, with optional toppings",
+    talk: "Dashimaki Tamago is a classic Japanese rolled omelet: egg mixed with dashi, rolled up as it cooks. Toppings: mentaiko +$5, ikura +$9, sea urchin +$18.",
+    points: [
+      "Classic Japanese rolled omelet made with dashi",
+      "Toppings: mentaiko +$5 / ikura +$9 / uni +$18",
+      "Suggest a topping when taking the order",
+      "$15"
+    ],
+    questions: [
+      ["A guest asks, “What is dashimaki tamago?”", ["A Japanese rolled omelet made with dashi", "Steamed egg custard", "A seasoned soft-boiled egg"], "Classic Japanese Rolled Omelet. Steamed custard is chawan-mushi; seasoned soft-boiled egg is ajitama."],
+      ["Which toppings and prices are correct for DASHIMAKI TAMAGO?", ["Mentaiko +$5 / Ikura +$9 / Uni +$18", "Mentaiko +$9 / Ikura +$5 / Uni +$15", "Cheese +$2 / Negi +$1 / Uni +$9"], "Mentaiko +$5 / Ikura +$9 / Uni +$18."],
+      ["How much is DASHIMAKI TAMAGO (no topping)?", ["$15", "$12", "$10"], "DASHIMAKI TAMAGO is $15."]
+    ]
+  },
+  croquette: {
+    part: "Handmade croquettes with potato and Wagyu",
+    talk: "Wagyu Croquette is our handmade croquette made with potato and Wagyu beef. ★ recommended.",
+    points: [
+      "Potato + Wagyu beef",
+      "Handmade in house",
+      "★ recommended, $12"
+    ],
+    questions: [
+      ["What is inside the WAGYU CROQUETTE?", ["Potato and Wagyu beef", "Pumpkin and cheese", "Crab and cream"], "Potato & Wagyu Croquettes."],
+      ["What does “handmade” mean for our croquettes?", ["We make them in house", "We use frozen ones", "Guests make them themselves"], "Handmade in house."],
+      ["How much is WAGYU CROQUETTE?", ["$12", "$15", "$10"], "WAGYU CROQUETTE is $12. ★ recommended."]
+    ]
+  },
+  donabe: {
+    part: "White rice cooked in a claypot — takes 30 minutes",
+    talk: "Donabe Gohan is white rice cooked in a claypot (donabe). We cook it after you order, so please allow about 30 minutes.",
+    points: [
+      "White rice cooked in a claypot",
+      "[ALWAYS TELL GUESTS] Claypot rice takes 30 minutes",
+      "Suggest ordering it early",
+      "$10"
+    ],
+    questions: [
+      ["When a guest orders claypot rice, what must you always tell them?", ["It takes 30 minutes to cook", "Refills are free", "It’s served cold"], "Please allow 30 minutes."],
+      ["What do you suggest to guests who want claypot rice?", ["Order early, because it takes 30 minutes", "Order it at the very end", "Take it to go"], "It takes 30 minutes, so suggest ordering early."],
+      ["How much is DONABE GOHAN (white rice)?", ["$10", "$8", "$15"], "DONABE GOHAN is $10."]
+    ]
+  },
+  soboro: {
+    part: "Claypot rice with ground chicken and quail egg — takes 30 minutes",
+    talk: "Soboro Gohan is claypot rice topped with chicken soboro (seasoned ground chicken) and a quail egg. It’s cooked in a claypot, so it takes 30 minutes.",
+    points: [
+      "Claypot rice + chicken soboro (ground chicken)",
+      "Quail egg on top",
+      "Takes 30 minutes",
+      "$15"
+    ],
+    questions: [
+      ["What is on top of SOBORO GOHAN?", ["Ground chicken and a quail egg", "Whitebait and ikura", "Mentaiko and negi"], "Ground Chicken w/ Quail Egg On Top."],
+      ["What is the “soboro” in SOBORO GOHAN?", ["Ground chicken", "Ground pork", "Only scrambled egg"], "Ground Chicken."],
+      ["How much is SOBORO GOHAN?", ["$15", "$10", "$12"], "SOBORO GOHAN is $15."]
+    ]
+  },
+  seasonalrice: {
+    part: "Claypot rice with today’s seasonal ingredients — market price, takes 30 minutes",
+    talk: "Seasonal Claypot Rice is rice cooked in a claypot with today’s seasonal ingredients. The price is market price ($MP), so check today’s ingredients and price and tell the guest. It takes 30 minutes.",
+    points: [
+      "Cooked with today’s seasonal ingredients",
+      "$MP = Market Price. Check today’s ingredients and price and tell guests",
+      "Takes 30 minutes"
+    ],
+    questions: [
+      ["What does “$MP” on the menu mean?", ["Market price (changes day to day)", "Minimum price", "Most popular"], "MP = Market Price."],
+      ["What do you do before taking an order for SEASONAL CLAYPOT RICE?", ["Check today’s ingredients and price and tell the guest", "Show a photo of the menu", "Nothing"], "Ask For Today’s Seasonal Ingredients."],
+      ["How long does SEASONAL CLAYPOT RICE take?", ["30 minutes", "10 minutes", "1 hour"], "Claypot rice takes 30 minutes."]
+    ]
+  },
+  yakionigiri: {
+    part: "Grilled rice ball",
+    talk: "Yaki Onigiri is a rice ball grilled until the outside is toasty and fragrant.",
+    points: [
+      "Grilled rice ball",
+      "Toasty, fragrant outside",
+      "$8"
+    ],
+    questions: [
+      ["A guest asks, “What is yaki onigiri?”", ["A grilled rice ball", "White rice cooked in a claypot", "A rice cracker snack"], "Grilled Rice Ball."],
+      ["What is YAKI ONIGIRI like?", ["Toasty and fragrant outside", "Raw rice inside", "A sweet dessert"], "It’s grilled so the outside is toasty."],
+      ["How much is YAKI ONIGIRI?", ["$8", "$10", "$6"], "YAKI ONIGIRI is $8."]
+    ]
+  },
+  ramen: {
+    part: "Mini chicken-broth ramen, made in house",
+    talk: "Mini Tori-Tori Ramen is ramen in chicken broth, made in house. It’s a small, mini size, perfect to finish your meal.",
+    points: [
+      "Chicken-broth ramen",
+      "Mini (small) size",
+      "Made in house",
+      "$12"
+    ],
+    questions: [
+      ["What is the broth of MINI TORI-TORI RAMEN?", ["Chicken broth", "Pork bone (tonkotsu)", "Miso"], "Chicken-Broth Ramen."],
+      ["What size is the ramen?", ["Mini (small)", "Large", "For two"], "MINI."],
+      ["How much is MINI TORI-TORI RAMEN?", ["$12", "$7", "$15"], "MINI TORI-TORI RAMEN is $12."]
+    ]
+  },
+  torigara: {
+    part: "Rich soup made from chicken bones",
+    talk: "Torigara Soup is a rich chicken soup, slowly made from chicken bones (torigara).",
+    points: [
+      "Torigara = chicken bones",
+      "Rich chicken soup",
+      "$7"
+    ],
+    questions: [
+      ["A guest asks, “What is torigara?”", ["Chicken bones, used to make the soup", "Chicken skin", "Chicken eggs"], "Torigara = chicken bones."],
+      ["What is TORIGARA SOUP like?", ["Rich chicken soup", "Light vegetable soup", "Spicy soup"], "Rich Chicken Soup."],
+      ["How much is TORIGARA SOUP?", ["$7", "$12", "$5"], "TORIGARA SOUP is $7."]
+    ]
+  },
+  pudding: {
+    part: "Classic Japanese custard pudding",
+    talk: "Tokyo Pudding is a classic Japanese crème caramel: custard pudding with caramel sauce.",
+    points: [
+      "Classic Japanese crème caramel",
+      "Caramel sauce",
+      "$10"
+    ],
+    questions: [
+      ["What kind of dessert is TOKYO PUDDING?", ["Classic Japanese custard pudding", "Matcha ice cream", "Melon shaved ice"], "Classic Japanese Crème Caramel."],
+      ["What is on top of TOKYO PUDDING?", ["Caramel sauce", "Brown sugar syrup and kinako", "Chocolate sauce"], "Crème Caramel."],
+      ["How much is TOKYO PUDDING?", ["$10", "$6", "$12"], "TOKYO PUDDING is $10."]
+    ]
+  },
+  seasonaldessert: {
+    part: "Today’s seasonal dessert — market price",
+    talk: "The Seasonal Dessert changes day by day. The price is market price ($MP), so check today’s dessert and price and tell the guest.",
+    points: [
+      "Changes day by day",
+      "$MP = Market Price. Check today’s dessert and price and tell guests"
+    ],
+    questions: [
+      ["A guest asks about the SEASONAL DESSERT. What do you do?", ["Check today’s dessert and price and tell them", "Say it’s the same every day", "Just point at the menu"], "Ask For Today’s Curated Dessert."],
+      ["What does “$MP” mean for the SEASONAL DESSERT?", ["Market price (changes day to day)", "Always $10", "Free"], "MP = Market Price."],
+      ["What is the SEASONAL DESSERT?", ["It changes day by day", "Always Tokyo Pudding", "Always melon cream soda"], "It changes day by day."]
+    ]
+  },
+  melonsoda: {
+    part: "Melon soda topped with ice cream, a retro Japanese float",
+    talk: "Japanese Melon Cream Soda is bright green melon soda topped with ice cream, a retro Japanese float. ★ recommended.",
+    points: [
+      "Melon soda + ice cream (float)",
+      "A retro, old-school Japanese drink",
+      "★ recommended, $6 / $10"
+    ],
+    questions: [
+      ["What is JAPANESE MELON CREAM SODA?", ["Melon soda topped with ice cream", "Melon shaved ice", "A melon smoothie"], "Retro Icecream Float."],
+      ["What kind of drink is MELON CREAM SODA?", ["A retro, old-school Japanese drink", "A new health drink", "A cocktail"], "Retro."],
+      ["Which dessert is ★ recommended?", ["Japanese Melon Cream Soda", "Tokyo Pudding", "Seasonal Dessert"], "JAPANESE MELON CREAM SODA has the ★."]
     ]
   }
 };
