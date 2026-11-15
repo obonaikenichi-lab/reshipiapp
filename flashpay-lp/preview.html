@@ -25,7 +25,8 @@ iframe{border:1px solid var(--line);background:#fff;width:100%;height:100%;borde
 <div class="bar">
   <h1>フラッシュペイ LPデザイン案</h1>
   <div class="grp" id="designs">
-    <button data-k="a" aria-pressed="true">A 信頼ネイビー</button>
+    <button data-k="site" aria-pressed="true">★ 本番版（C案）</button>
+    <button data-k="a" aria-pressed="false">A 信頼ネイビー</button>
     <button data-k="b" aria-pressed="false">B スピード</button>
     <button data-k="c" aria-pressed="false">C やさしいミント</button>
   </div>
@@ -39,13 +40,14 @@ iframe{border:1px solid var(--line);background:#fff;width:100%;height:100%;borde
 
 <script>
 const D={
+  site:{src:"site/index.html",d:"C案で制作中の本番版。無料査定フォーム・運営会社・プライバシーポリシーを追加。フォームは入力チェックまで動きます（送信先は未設定）。"},
   a:{src:"design-a-trust.html",d:"紺×金・明朝体。法人向けの信頼感。最初の画面に申込フォーム、銀行融資との比較表つき。"},
   b:{src:"design-b-speed.html",d:"黒×黄・稲妻ロゴ。「60分で現金」のスピード訴求。他社との入金時間比較グラフつき。"},
   c:{src:"design-c-friendly.html",d:"白×ミント・丸ゴシック。フリーランス向けのやさしい雰囲気。受取額シミュレーターつき。"}
 };
 const f=document.getElementById('f'),desc=document.getElementById('desc'),stage=document.getElementById('stage');
 function show(k){
-  if(!D[k])k='a';
+  if(!D[k])k='site';
   f.src=D[k].src;desc.textContent=D[k].d+"（※文言・数値は仮）";
   document.querySelectorAll('#designs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
 }
