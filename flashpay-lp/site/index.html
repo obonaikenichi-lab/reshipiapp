@@ -3,19 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>フラッシュペイ｜請求書を最短60分で現金化 フリーランス・個人事業主のファクタリング</title>
-<meta name="description" content="フラッシュペイは、フリーランス・個人事業主・小規模法人のための請求書買取（ファクタリング）サービス。スマホで完結、最短60分でご入金。取引先に知られず、1万円から利用できます。">
+<title>フラッシュペイ｜宅配買取・LINE査定 ブランド品・家電・ゲーム機を高価買取</title>
+<meta name="description" content="フラッシュペイは送料・査定料・手数料すべて無料の宅配買取サービス。LINEで写真を送るだけで仮査定。ブランド品・時計・スマホ・ゲーム機・家電などを最短即日査定、スピード振込。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="フラッシュペイ｜「入金待ち」の不安、今日でおわり。">
-<meta property="og:description" content="請求書をスマホで送るだけ。最短60分でご入金。フリーランス・個人事業主にやさしいファクタリング。">
+<meta property="og:title" content="フラッシュペイ｜使わなくなったモノ、高く・早く買い取ります">
+<meta property="og:description" content="LINEで写真を送るだけで仮査定。送料・査定料・手数料すべて無料の宅配買取。">
 <meta property="og:url" content="https://flashpay.jp/">
 <meta name="theme-color" content="#14b8a6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314b8a6'/%3E%3Cpath d='M18 4 8 18h7l-2 10 11-15h-7z' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{--m:#14b8a6;--m2:#0e9384;--mbg:#e8f8f5;--p:#ff8a7a;--yel:#ffd66b;--ink:#253238;--mute:#64748b;--bg:#fffdf8;--line:#e7efee}
+:root{--m:#14b8a6;--m2:#0e9384;--mbg:#e8f8f5;--p:#ff8a7a;--p2:#e0655a;--yel:#ffd66b;--line-g:#06c755;--ink:#253238;--mute:#64748b;--bg:#fffdf8;--line:#e7efee}
 *{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{font-family:"M PLUS Rounded 1c",sans-serif;color:var(--ink);background:var(--bg);line-height:1.85;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
@@ -24,66 +25,79 @@ header{background:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 12px rg
 header .wrap{display:flex;justify-content:space-between;align-items:center;height:66px}
 .logo{font-family:"Quicksand";font-weight:700;font-size:24px;color:var(--m2);display:flex;align-items:center;gap:8px}
 .logo i{width:30px;height:30px;border-radius:10px;background:var(--m);display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-size:16px}
+.logo small{font-family:"M PLUS Rounded 1c";font-size:11px;color:var(--mute);font-weight:700;margin-left:4px}
 .hnav{display:flex;gap:10px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;border-radius:999px;padding:16px 32px;transition:.2s}
-.btn-m{background:var(--m);color:#fff;box-shadow:0 6px 0 var(--m2)}
-.btn-m:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--m2)}
-.btn-p{background:var(--p);color:#fff;box-shadow:0 6px 0 #e0655a}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;border-radius:999px;padding:16px 32px;transition:.2s;border:0;font-family:inherit;cursor:pointer}
+.btn-p{background:var(--p);color:#fff;box-shadow:0 6px 0 var(--p2)}
+.btn-l{background:var(--line-g);color:#fff;box-shadow:0 6px 0 #04913e}
+.btn-p:hover,.btn-l:hover{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.2)}
 .btn-sm{padding:9px 18px;font-size:13px;box-shadow:none}
+section{padding:90px 0}
+section[id]{scroll-margin-top:80px}
+.sh{text-align:center;margin-bottom:46px}
+.sh .en{font-family:"Quicksand";color:var(--m);font-weight:700;letter-spacing:.15em;font-size:14px}
+.sh h2{font-size:clamp(24px,3.4vw,34px);font-weight:800;text-wrap:balance}
+.sh p{color:var(--mute);margin-top:6px}
 /* hero */
 .hero{background:linear-gradient(180deg,var(--mbg) 0%,var(--bg) 100%);position:relative;overflow:hidden;padding:64px 0 90px}
-.blob{position:absolute;border-radius:50%;filter:blur(2px)}
+.blob{position:absolute;border-radius:50%}
 .b1{width:260px;height:260px;background:#c8f1ea;left:-80px;top:40px}
 .b2{width:140px;height:140px;background:#ffe3dd;right:8%;top:30px}
 .b3{width:80px;height:80px;background:#fff1c4;right:42%;bottom:40px}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;position:relative}
 .pill{display:inline-block;background:#fff;color:var(--m2);font-weight:800;font-size:14px;padding:6px 18px;border-radius:999px;box-shadow:0 4px 14px rgba(20,184,166,.15);margin-bottom:18px}
-.hero h1{font-size:clamp(30px,4.8vw,52px);line-height:1.4;font-weight:800}
-.hero h1 .hl{color:var(--m2);position:relative;white-space:nowrap}
-.hero h1 .hl:after{content:"";position:absolute;left:0;right:0;bottom:4px;height:12px;background:var(--yel);opacity:.6;z-index:-1;border-radius:6px}
+.hero h1{font-size:clamp(30px,4.6vw,50px);line-height:1.4;font-weight:800}
+.hl{color:var(--m2);position:relative;white-space:nowrap;z-index:0}
+.hl:after{content:"";position:absolute;left:0;right:0;bottom:4px;height:12px;background:var(--yel);opacity:.6;z-index:-1;border-radius:6px}
 .hero .lead{color:var(--mute);margin:18px 0 26px}
 .chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
 .chip{background:#fff;border:2px solid var(--line);border-radius:16px;padding:10px 16px;font-weight:700;font-size:14px}
-.chip b{color:var(--p);font-size:20px}
-.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
-/* illust */
-.phone{width:260px;height:480px;margin:0 auto;background:#fff;border-radius:40px;border:10px solid var(--ink);position:relative;box-shadow:0 30px 60px rgba(37,50,56,.18);padding:30px 18px;transform:rotate(4deg)}
-.phone .scr-h{font-size:12px;color:var(--mute)}
-.phone .amt{font-family:"Quicksand";font-size:36px;font-weight:700;color:var(--m2);margin:4px 0 14px}
-.phone .row{background:var(--mbg);border-radius:14px;padding:12px;margin-bottom:10px;font-size:12px;display:flex;justify-content:space-between}
-.phone .ok{margin-top:18px;background:var(--m);color:#fff;text-align:center;border-radius:14px;padding:12px;font-weight:800}
-.bubble{position:absolute;background:#fff;border-radius:18px;padding:10px 16px;font-size:13px;font-weight:800;box-shadow:0 10px 24px rgba(0,0,0,.1);white-space:nowrap}
-.bubble.a{left:-70px;top:90px;color:var(--p);transform:rotate(-4deg)}
-.bubble.b{right:-60px;bottom:110px;color:var(--m2);transform:rotate(-4deg)}
-section{padding:90px 0}
-.sh{text-align:center;margin-bottom:46px}
-.sh .en{font-family:"Quicksand";color:var(--m);font-weight:700;letter-spacing:.15em;font-size:14px}
-.sh h2{font-size:clamp(24px,3.4vw,34px);font-weight:800}
-.sh p{color:var(--mute);margin-top:6px}
-/* who */
-.who{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.who>div{background:#fff;border:2px solid var(--line);border-radius:24px;padding:24px 16px;text-align:center}
-.who .e{font-size:40px}
-.who b{display:block;margin-top:6px}
-.who small{color:var(--mute);font-size:12px}
+.chip b{color:var(--p2);font-size:20px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+/* LINE mock */
+.phone{width:270px;margin:0 auto;background:#8cabd9;border-radius:40px;border:10px solid var(--ink);box-shadow:0 30px 60px rgba(37,50,56,.18);padding:18px 14px 22px;transform:rotate(3deg);font-size:12.5px}
+.phone .top{background:rgba(255,255,255,.85);border-radius:12px;padding:6px 10px;font-weight:800;margin-bottom:12px;text-align:center}
+.msg{max-width:78%;padding:9px 12px;border-radius:16px;margin-bottom:10px;line-height:1.6}
+.msg.me{background:#a6e57a;margin-left:auto;border-top-right-radius:4px}
+.msg.you{background:#fff;border-top-left-radius:4px}
+.ph{width:120px;height:86px;margin-left:auto;border-radius:12px;background:linear-gradient(135deg,#f6e7c8,#d9b77a);display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:10px}
+.msg.you b{color:var(--p2);font-size:16px}
+/* items */
+.items{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.it{background:#fff;border:2px solid var(--line);border-radius:24px;padding:22px 14px;text-align:center}
+.it .e{font-size:38px;line-height:1.3}
+.it b{display:block;margin-top:6px}
+.it small{color:var(--mute);font-size:12px;display:block;line-height:1.6}
+.more{text-align:center;color:var(--mute);margin-top:20px;font-size:14px}
+/* prices */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pr{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(20,184,166,.08)}
+.pr .img{height:120px;display:flex;align-items:center;justify-content:center;font-size:54px}
+.pr .t{padding:18px 20px}
+.pr .cat{font-size:12px;color:var(--m2);font-weight:800}
+.pr h3{font-size:16px;line-height:1.5;margin:2px 0 8px}
+.pr .yen{font-family:"Quicksand";font-weight:700;font-size:28px;color:var(--p2);font-variant-numeric:tabular-nums}
+.pr .yen small{font-size:13px;color:var(--mute);font-family:"M PLUS Rounded 1c";margin-right:6px}
+.pnote{font-size:12px;color:var(--mute);text-align:center;margin-top:16px}
 /* points */
 .pts{display:grid;gap:28px}
 .pt{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;background:#fff;border-radius:32px;padding:28px;box-shadow:0 10px 30px rgba(20,184,166,.08)}
 .pt:nth-child(even){grid-template-columns:1fr 200px}
 .pt:nth-child(even) .ill{order:2}
 .ill{height:160px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:64px}
-.pt .lab{font-family:"Quicksand";color:var(--p);font-weight:700}
+.pt .lab{font-family:"Quicksand";color:var(--p2);font-weight:700}
 .pt h3{font-size:22px;margin:2px 0 8px}
 .pt p{color:var(--mute);font-size:15px}
-/* sim */
-.sim{background:var(--m);color:#fff;border-radius:40px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
-.sim h2{font-size:28px;font-weight:800}
-.sim p{opacity:.9}
-.sim .box{background:#fff;color:var(--ink);border-radius:24px;padding:28px}
-.sim label{font-size:13px;font-weight:700;color:var(--mute)}
-.sim input[type=range]{width:100%;accent-color:var(--m);margin:8px 0 16px}
-.sim .res{display:flex;justify-content:space-between;align-items:baseline;border-top:2px dashed var(--line);padding-top:16px}
-.sim .res b{font-family:"Quicksand";font-size:34px;color:var(--m2)}
+.zero{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.zero span{background:var(--mbg);color:var(--m2);font-weight:800;font-size:13px;padding:4px 12px;border-radius:999px}
+/* line band */
+.lband{background:var(--line-g);color:#fff;border-radius:40px;padding:44px 48px;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center}
+.lband h2{font-size:clamp(22px,3vw,30px);font-weight:800;line-height:1.5}
+.lband p{opacity:.92;margin-top:6px}
+.lband ol{list-style:none;background:#fff;color:var(--ink);border-radius:24px;padding:22px 24px;counter-reset:l}
+.lband li{padding:8px 0 8px 40px;position:relative;font-weight:700;font-size:15px}
+.lband li:before{counter-increment:l;content:counter(l);position:absolute;left:0;top:7px;width:28px;height:28px;border-radius:50%;background:var(--line-g);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Quicksand"}
+.lband .btn{background:#fff;color:var(--line-g);box-shadow:0 6px 0 rgba(0,0,0,.15);margin-top:20px}
 /* flow */
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .fs{background:#fff;border-radius:24px;padding:26px 18px;text-align:center;border:2px solid var(--line)}
@@ -97,35 +111,8 @@ section{padding:90px 0}
 .vc .top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .vc .av{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px}
 .vc small{color:var(--mute);font-size:12px;display:block}
+.vc .sold{display:inline-block;font-size:12px;font-weight:800;color:var(--m2);background:var(--mbg);border-radius:999px;padding:2px 10px;margin-bottom:8px}
 .vc p{font-size:14px}
-/* faq */
-.faq details{background:#fff;border-radius:20px;margin-bottom:12px;border:2px solid var(--line);overflow:hidden}
-.faq summary{padding:18px 22px;font-weight:800;cursor:pointer;list-style:none;display:flex;gap:12px}
-.faq summary:before{content:"Q";flex:none;width:28px;height:28px;border-radius:50%;background:var(--m);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Quicksand"}
-.faq details p{padding:0 22px 20px 62px;color:var(--mute);font-size:14px}
-.final{text-align:center}
-.final .in{background:linear-gradient(135deg,#fff3ef,#fff9e6);border-radius:40px;padding:56px 24px}
-.final h2{font-size:clamp(24px,3.6vw,36px);font-weight:800}
-.final p{color:var(--mute);margin:10px 0 28px}
-.final .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-top:2px solid var(--line)}
-.sp-bar{display:none}
-@media(max-width:860px){
-  .hero .wrap,.sim{grid-template-columns:1fr}
-  .phone{width:220px;height:400px;margin-top:20px}
-  .bubble.a{left:-40px}.bubble.b{right:-30px}
-  .who,.flow{grid-template-columns:1fr 1fr}
-  .voices{grid-template-columns:1fr}
-  .pt,.pt:nth-child(even){grid-template-columns:1fr}
-  .pt:nth-child(even) .ill{order:0}
-  .sim{padding:28px}
-  section{padding:64px 0}
-  .hnav .btn:first-child{display:none}
-  .sp-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:10px;right:10px;bottom:10px;z-index:30}
-  .sp-bar a{text-align:center;color:#fff;font-weight:800;padding:14px;border-radius:999px}
-  body{padding-bottom:76px}
-}
-
 /* form */
 .fwrap{background:#fff;border-radius:32px;padding:44px;box-shadow:0 10px 30px rgba(20,184,166,.10);max-width:760px;margin:0 auto}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
@@ -136,207 +123,265 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
 .fi{width:100%;font:inherit;font-size:16px;padding:13px 16px;border:2px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink)}
 .fi:focus{outline:none;border-color:var(--m);background:#fff}
 .fi.err{border-color:var(--p)}
-.emsg{color:#e0655a;font-size:12px;font-weight:700;min-height:1em;margin-top:4px}
+.emsg{color:var(--p2);font-size:12px;font-weight:700;min-height:1em;margin-top:4px}
 textarea.fi{min-height:110px;resize:vertical}
 .agree{display:flex;gap:10px;align-items:flex-start;font-size:14px;justify-content:center;margin-top:24px}
 .agree input{width:20px;height:20px;accent-color:var(--m);margin-top:3px}
 .agree a{color:var(--m2);text-decoration:underline}
-.fsubmit{width:100%;margin-top:20px;font-size:18px;border:0;cursor:pointer;font-family:inherit}
+.fsubmit{width:100%;margin-top:20px;font-size:18px}
 .fsubmit[disabled]{opacity:.6;cursor:wait}
 .fnote{text-align:center;font-size:12px;color:var(--mute);margin-top:12px}
 .thanks{text-align:center;padding:20px 0}
 .thanks .ok{width:72px;height:72px;border-radius:50%;background:var(--m);color:#fff;font-size:36px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
 .thanks h3{font-size:22px;margin-bottom:8px}
 .thanks p{color:var(--mute)}
+/* notice */
+.notice{max-width:820px;margin:0 auto;background:#fff;border:2px solid var(--line);border-radius:24px;padding:26px 30px}
+.notice h3{font-size:17px;margin-bottom:8px}
+.notice ul{padding-left:1.3em;color:var(--mute);font-size:14px}
+/* faq */
+.faq details{background:#fff;border-radius:20px;margin-bottom:12px;border:2px solid var(--line);overflow:hidden}
+.faq summary{padding:18px 22px;font-weight:800;cursor:pointer;list-style:none;display:flex;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:before{content:"Q";flex:none;width:28px;height:28px;border-radius:50%;background:var(--m);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Quicksand"}
+.faq details p{padding:0 22px 20px 62px;color:var(--mute);font-size:14px}
 /* company */
 .co{max-width:760px;margin:0 auto;background:#fff;border-radius:24px;border:2px solid var(--line);overflow:hidden}
 .co dl{display:grid;grid-template-columns:180px 1fr}
 .co dt,.co dd{padding:16px 22px;border-bottom:1px solid var(--line);font-size:14px}
 .co dt{background:var(--mbg);font-weight:800;color:var(--m2)}
 .co dl > :nth-last-child(-n+2){border-bottom:0}
+.final{text-align:center}
+.final .in{background:linear-gradient(135deg,#fff3ef,#fff9e6);border-radius:40px;padding:56px 24px}
+.final h2{font-size:clamp(24px,3.6vw,36px);font-weight:800}
+.final p{color:var(--mute);margin:10px 0 28px}
+.final .ctas{justify-content:center}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-top:2px solid var(--line)}
 footer a{margin:0 8px}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--yel);outline-offset:2px}
-html{scroll-behavior:smooth}
-section[id]{scroll-margin-top:80px}
+.sp-bar{display:none}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--yel);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-@media(max-width:860px){.fwrap{padding:26px 18px}.fgrid{grid-template-columns:1fr}.co dl{grid-template-columns:1fr}.co dt{border-bottom:0;padding-bottom:6px}.co dd{padding-top:6px}}
+@media(max-width:860px){
+  .hero .wrap,.lband{grid-template-columns:1fr}
+  .phone{width:240px;margin-top:20px}
+  .items,.flow{grid-template-columns:1fr 1fr}
+  .prices,.voices{grid-template-columns:1fr}
+  .pt,.pt:nth-child(even){grid-template-columns:1fr}
+  .pt:nth-child(even) .ill{order:0}
+  .ill{height:120px}
+  .lband{padding:30px 22px}
+  .fwrap{padding:26px 18px}.fgrid{grid-template-columns:1fr}
+  .co dl{grid-template-columns:1fr}.co dt{border-bottom:0;padding-bottom:6px}.co dd{padding-top:6px}
+  section{padding:64px 0}
+  .hnav .btn:first-child{display:none}
+  .logo small{display:none}
+  .sp-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:10px;right:10px;bottom:10px;z-index:30}
+  .sp-bar a{text-align:center;color:#fff;font-weight:800;padding:14px;border-radius:999px;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+  body{padding-bottom:76px}
+}
 </style>
 </head>
 <body>
-<div class="note" id="top">制作中プレビュー：文言・数値・会社情報は仮のものです（公開前に差し替え）</div>
+<div class="note" id="top">制作中プレビュー：買取価格・お客様の声・会社情報は仮のものです（公開前に差し替え）</div>
 <header><div class="wrap">
-  <a class="logo" href="#top"><i>⚡</i>flash pay</a>
-  <div class="hnav"><a class="btn btn-m btn-sm" href="#" data-line>LINEで相談</a><a class="btn btn-p btn-sm" href="#form">無料査定</a></div>
+  <a class="logo" href="#top"><i>⚡</i>flash pay<small>宅配買取</small></a>
+  <div class="hnav"><a class="btn btn-l btn-sm" href="#" data-line>LINE査定</a><a class="btn btn-p btn-sm" href="#form">無料査定</a></div>
 </div></header>
 
 <section class="hero">
   <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
   <div class="wrap">
     <div>
-      <span class="pill">フリーランス・個人事業主さんにやさしい</span>
-      <h1>「入金待ち」の不安、<br><span class="hl">今日でおわり。</span></h1>
-      <p class="lead">まだ入っていない報酬を、先に受け取れるサービスです。<br>むずかしい手続きはナシ。スマホひとつで、はじめてでも安心。</p>
+      <span class="pill">送料・査定料・手数料 すべて0円の宅配買取</span>
+      <h1>使わなくなったモノ、<br><span class="hl">高く・早く</span><br>買い取ります。</h1>
+      <p class="lead">LINEで写真を送るだけで、かんたん仮査定。<br>箱に詰めて送れば、査定から振込までスピード対応します。</p>
       <div class="chips">
-        <div class="chip">最短 <b>60分</b></div>
-        <div class="chip">手数料 <b>2%〜</b></div>
-        <div class="chip">1万円から <b>OK</b></div>
+        <div class="chip">査定 <b>最短即日</b></div>
+        <div class="chip">送料 <b>0円</b></div>
+        <div class="chip">返送料も <b>0円</b></div>
       </div>
       <div class="ctas">
-        <a class="btn btn-p" href="#form">かんたん無料査定 →</a>
-        <a class="btn btn-m" href="#" data-line>LINEで気軽に相談</a>
+        <a class="btn btn-l" href="#" data-line>LINEで写真査定 →</a>
+        <a class="btn btn-p" href="#form">無料査定を申し込む</a>
       </div>
     </div>
-    <div style="position:relative">
-      <div class="phone">
-        <div class="scr-h">お受け取り予定額</div>
-        <div class="amt">¥ 294,000</div>
-        <div class="row"><span>請求書額面</span><span>¥300,000</span></div>
-        <div class="row"><span>手数料（2%）</span><span>-¥6,000</span></div>
-        <div class="row"><span>入金予定</span><span>本日 14:30</span></div>
-        <div class="ok">✓ 入金完了</div>
-        <span class="bubble a">撮るだけ📷</span>
-        <span class="bubble b">今日入金🎉</span>
+    <div>
+      <div class="phone" aria-label="LINE査定のイメージ">
+        <div class="top">flash pay 買取</div>
+        <div class="ph">👜</div>
+        <div class="msg me">このバッグいくらになりますか？</div>
+        <div class="msg you">お写真ありがとうございます！<br>仮査定額は<br><b>¥00,000〜¥00,000</b><br>です☺</div>
+        <div class="msg me">送ります！</div>
       </div>
     </div>
   </div>
 </section>
 
-<section style="padding-top:20px">
+<section id="items" style="padding-top:20px">
   <div class="wrap">
-    <div class="sh"><div class="en">FOR YOU</div><h2>こんな方に選ばれています</h2></div>
-    <div class="who">
-      <div><div class="e">🎨</div><b>フリーランス</b><small>デザイナー・ライター等</small></div>
-      <div><div class="e">🔨</div><b>一人親方</b><small>建設・内装・設備</small></div>
-      <div><div class="e">🚚</div><b>軽貨物ドライバー</b><small>個人事業主</small></div>
-      <div><div class="e">🏢</div><b>小さな会社</b><small>創業1年目でもOK</small></div>
+    <div class="sh"><div class="en">ITEMS</div><h2>こんなモノを買い取っています</h2><p>1点からOK。まとめて送るほど査定額アップのチャンスも。</p></div>
+    <div class="items">
+      <div class="it"><div class="e">👜</div><b>ブランド品</b><small>バッグ・財布・小物</small></div>
+      <div class="it"><div class="e">⌚</div><b>腕時計</b><small>国内・海外ブランド</small></div>
+      <div class="it"><div class="e">📱</div><b>スマホ・タブレット</b><small>iPhone・iPad など</small></div>
+      <div class="it"><div class="e">🎮</div><b>ゲーム機・ソフト</b><small>本体・周辺機器</small></div>
+      <div class="it"><div class="e">📷</div><b>カメラ・レンズ</b><small>一眼・ミラーレス</small></div>
+      <div class="it"><div class="e">🎧</div><b>家電・オーディオ</b><small>イヤホン・美容家電</small></div>
+      <div class="it"><div class="e">💍</div><b>貴金属・アクセサリー</b><small>金・プラチナ・ジュエリー</small></div>
+      <div class="it"><div class="e">🧸</div><b>ホビー・フィギュア</b><small>トレカ・プラモデル</small></div>
     </div>
+    <p class="more">ここにないモノも、まずはお気軽にご相談ください。</p>
   </div>
 </section>
 
-<section style="background:var(--mbg)">
+<section id="prices" style="background:var(--mbg)">
   <div class="wrap">
-    <div class="sh"><div class="en">POINT</div><h2>フラッシュペイの安心ポイント</h2></div>
+    <div class="sh"><div class="en">PRICE</div><h2>買取価格の一例</h2></div>
+    <div class="prices">
+      <div class="pr"><div class="img" style="background:#fff1c4">👜</div><div class="t"><div class="cat">ブランドバッグ</div><h3>〇〇〇〇 ショルダーバッグ（美品）</h3><div class="yen"><small>買取価格</small>¥00,000</div></div></div>
+      <div class="pr"><div class="img" style="background:#ffe3dd">📱</div><div class="t"><div class="cat">スマートフォン</div><h3>iPhone 〇〇 128GB（SIMフリー）</h3><div class="yen"><small>買取価格</small>¥00,000</div></div></div>
+      <div class="pr"><div class="img" style="background:#c8f1ea">🎮</div><div class="t"><div class="cat">ゲーム機</div><h3>〇〇〇〇 本体（付属品完備）</h3><div class="yen"><small>買取価格</small>¥00,000</div></div></div>
+    </div>
+    <p class="pnote">※買取価格は商品の状態・付属品・相場により変動します。掲載価格は過去の実績例です。</p>
+  </div>
+</section>
+
+<section id="points">
+  <div class="wrap">
+    <div class="sh"><div class="en">POINT</div><h2>フラッシュペイが選ばれる理由</h2></div>
     <div class="pts">
-      <div class="pt"><div class="ill" style="background:#fff1c4">⏱️</div><div><div class="lab">POINT 01</div><h3>最短60分でお振込み</h3><p>お申込みからご入金まで、スタッフがしっかりサポート。急なお支払いにも間に合います。</p></div></div>
-      <div class="pt"><div class="ill" style="background:#ffe3dd">🤝</div><div><div class="lab">POINT 02</div><h3>はじめてでも、ていねいに</h3><p>専任スタッフが一人ひとりに寄り添ってご説明。わからないことは何でも聞いてください。</p></div></div>
-      <div class="pt"><div class="ill" style="background:#c8f1ea">🔐</div><div><div class="lab">POINT 03</div><h3>取引先に知られません</h3><p>お客さまと当社だけのご契約。取引先へのご連絡は一切ありません。</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="sim">
-      <div><h2>いくら受け取れる？<br>かんたんシミュレーション</h2><p>請求書の金額を動かしてみてください（目安）。</p></div>
-      <div class="box">
-        <label>請求書の金額：<span id="v">300,000</span>円</label>
-        <input type="range" id="r" min="10000" max="3000000" step="10000" value="300000">
-        <div class="res"><span>お受け取り目安</span><b>¥<span id="o">294,000</span></b></div>
-        <a class="btn btn-p" href="#form" id="simGo" style="width:100%;margin-top:18px">この金額で無料査定 →</a>
-      </div>
+      <div class="pt"><div class="ill" style="background:#c8f1ea">🆓</div><div><div class="lab">POINT 01</div><h3>かかる費用はすべて0円</h3><p>送料も査定料も振込手数料も、すべて当社負担。査定額にご納得いただけない場合の返送料も無料です。</p><div class="zero"><span>送料0円</span><span>査定料0円</span><span>振込手数料0円</span><span>返送料0円</span></div></div></div>
+      <div class="pt"><div class="ill" style="background:#fff1c4">📸</div><div><div class="lab">POINT 02</div><h3>LINEで写真を送るだけで仮査定</h3><p>送る前におおよその金額がわかるので安心。ちょっと気になるモノだけの相談でも大歓迎です。</p></div></div>
+      <div class="pt"><div class="ill" style="background:#ffe3dd">⚡</div><div><div class="lab">POINT 03</div><h3>到着当日に査定、スピード振込</h3><p>お品物が届いたその日に査定してご連絡。査定額にご承認いただいた後、すぐにお振込み手続きを行います。</p></div></div>
     </div>
   </div>
 </section>
 
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="sh"><div class="en">FLOW</div><h2>ご利用はかんたん4ステップ</h2></div>
-    <div class="flow">
-      <div class="fs"><div class="num">1</div><div class="e">📝</div><b>お申込み</b><p>Web・LINEで24時間</p></div>
-      <div class="fs"><div class="num">2</div><div class="e">📷</div><b>書類を撮影</b><p>請求書と通帳を送るだけ</p></div>
-      <div class="fs"><div class="num">3</div><div class="e">✍️</div><b>スマホで契約</b><p>電子契約でラクラク</p></div>
-      <div class="fs"><div class="num">4</div><div class="e">💰</div><b>お振込み</b><p>最短60分でご入金</p></div>
+    <div class="lband">
+      <div><h2>まずはLINEで、<br>写真を送ってみませんか？</h2><p>友だち追加して写真を送るだけ。仮査定は無料、売るかどうかはあとで決めてOKです。</p><a class="btn" href="#" data-line>LINEで友だち追加 →</a></div>
+      <ol><li>LINEで友だち追加</li><li>売りたいモノの写真を送る</li><li>仮査定額をお知らせ</li></ol>
     </div>
   </div>
 </section>
 
-<section style="background:var(--mbg)">
+<section id="flow" style="background:var(--mbg)">
+  <div class="wrap">
+    <div class="sh"><div class="en">FLOW</div><h2>宅配買取はかんたん4ステップ</h2></div>
+    <div class="flow">
+      <div class="fs"><div class="num">1</div><div class="e">📝</div><b>お申込み</b><p>フォーム・LINEから24時間受付</p></div>
+      <div class="fs"><div class="num">2</div><div class="e">📦</div><b>箱に詰めて発送</b><p>無料の集荷でご自宅から送れます</p></div>
+      <div class="fs"><div class="num">3</div><div class="e">🔍</div><b>査定・ご連絡</b><p>到着当日に査定額をお知らせ</p></div>
+      <div class="fs"><div class="num">4</div><div class="e">💰</div><b>お振込み</b><p>ご承認後、ご指定口座へ</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="voice">
   <div class="wrap">
     <div class="sh"><div class="en">VOICE</div><h2>ご利用者さまの声</h2></div>
     <div class="voices">
-      <div class="vc"><div class="top"><div class="av" style="background:#ffe3dd">👩</div><div><b>Webデザイナー</b><small>30代・フリーランス</small></div></div><p>報酬の入金が2ヶ月先で困っていたけど、LINEでやさしく教えてもらえて安心でした。</p></div>
-      <div class="vc"><div class="top"><div class="av" style="background:#fff1c4">👨</div><div><b>内装業 一人親方</b><small>40代・個人事業主</small></div></div><p>現場の合間にスマホで全部できた。材料費の支払いに間に合って助かりました。</p></div>
-      <div class="vc"><div class="top"><div class="av" style="background:#c8f1ea">🧑</div><div><b>軽貨物ドライバー</b><small>20代・個人事業主</small></div></div><p>はじめてで不安だったけど、手数料も最初に全部教えてくれて明朗でした。</p></div>
+      <div class="vc"><div class="top"><div class="av" style="background:#ffe3dd">👩</div><div><b>30代・女性</b><small>東京都</small></div></div><span class="sold">ブランドバッグ 2点</span><p>クローゼットに眠っていたバッグを送りました。LINEの仮査定とほぼ同じ金額で、やりとりも丁寧でした。</p></div>
+      <div class="vc"><div class="top"><div class="av" style="background:#fff1c4">👨</div><div><b>40代・男性</b><small>大阪府</small></div></div><span class="sold">ゲーム機・ソフト一式</span><p>集荷に来てもらえるので、箱に詰めるだけで済みました。届いた日に連絡があってスピーディーでした。</p></div>
+      <div class="vc"><div class="top"><div class="av" style="background:#c8f1ea">🧑</div><div><b>20代・男性</b><small>福岡県</small></div></div><span class="sold">iPhone・イヤホン</span><p>機種変更で使わなくなったスマホを売却。送料も手数料もかからないのがうれしいです。</p></div>
     </div>
   </div>
 </section>
 
-<section id="form">
+<section id="form" style="background:var(--mbg)">
   <div class="wrap">
-    <div class="sh"><div class="en">FREE CHECK</div><h2>かんたん無料査定</h2><p>入力は1分ほど。担当者から原則30分以内にご連絡します（営業時間内）。</p></div>
+    <div class="sh"><div class="en">FREE CHECK</div><h2>無料査定のお申込み</h2><p>入力は1分ほど。担当者から査定のご案内をお送りします。</p></div>
     <div class="fwrap">
       <form id="appForm" novalidate>
         <div class="fgrid">
           <div><label class="fl" for="f-name">お名前<span class="req">必須</span></label><input class="fi" id="f-name" name="お名前" autocomplete="name" placeholder="山田 太郎" required><div class="emsg"></div></div>
-          <div><label class="fl" for="f-biz">屋号・会社名<span class="opt">任意</span></label><input class="fi" id="f-biz" name="屋号・会社名" autocomplete="organization" placeholder="やまだデザイン"></div>
           <div><label class="fl" for="f-tel">電話番号<span class="req">必須</span></label><input class="fi" id="f-tel" name="電話番号" type="tel" autocomplete="tel" inputmode="tel" placeholder="090-0000-0000" required pattern="[0-9０-９\-－ ]{10,14}"><div class="emsg"></div></div>
-          <div><label class="fl" for="f-mail">メールアドレス<span class="req">必須</span></label><input class="fi" id="f-mail" name="メールアドレス" type="email" autocomplete="email" placeholder="example@mail.com" required><div class="emsg"></div></div>
-          <div><label class="fl" for="f-type">ご職業<span class="req">必須</span></label>
-            <select class="fi" id="f-type" name="ご職業" required><option value="">選択してください</option><option>フリーランス</option><option>個人事業主（一人親方など）</option><option>法人</option><option>その他</option></select><div class="emsg"></div></div>
-          <div><label class="fl" for="f-amt">請求書の金額<span class="req">必須</span></label>
-            <select class="fi" id="f-amt" name="請求書の金額" required><option value="">選択してください</option><option>〜10万円</option><option>10〜50万円</option><option>50〜100万円</option><option>100〜300万円</option><option>300万円以上</option></select><div class="emsg"></div></div>
-          <div class="full"><label class="fl" for="f-when">ご希望の入金時期<span class="opt">任意</span></label>
-            <select class="fi" id="f-when" name="ご希望の入金時期"><option>できるだけ早く（本日中）</option><option>2〜3日以内</option><option>1週間以内</option><option>まずは相談したい</option></select></div>
-          <div class="full"><label class="fl" for="f-msg">ご相談内容<span class="opt">任意</span></label><textarea class="fi" id="f-msg" name="ご相談内容" placeholder="取引先の業種、入金予定日など、わかる範囲でご記入ください"></textarea></div>
+          <div class="full"><label class="fl" for="f-mail">メールアドレス<span class="req">必須</span></label><input class="fi" id="f-mail" name="メールアドレス" type="email" autocomplete="email" placeholder="example@mail.com" required><div class="emsg"></div></div>
+          <div><label class="fl" for="f-cat">お品物のジャンル<span class="req">必須</span></label>
+            <select class="fi" id="f-cat" name="ジャンル" required><option value="">選択してください</option><option>ブランド品</option><option>腕時計</option><option>スマホ・タブレット</option><option>ゲーム機・ソフト</option><option>カメラ・レンズ</option><option>家電・オーディオ</option><option>貴金属・アクセサリー</option><option>ホビー・フィギュア</option><option>その他</option></select><div class="emsg"></div></div>
+          <div><label class="fl" for="f-cond">状態<span class="req">必須</span></label>
+            <select class="fi" id="f-cond" name="状態" required><option value="">選択してください</option><option>未使用に近い</option><option>目立つ傷や汚れなし</option><option>使用感あり</option><option>傷・汚れ・故障あり</option></select><div class="emsg"></div></div>
+          <div class="full"><label class="fl" for="f-item">商品名・型番<span class="opt">任意</span></label><input class="fi" id="f-item" name="商品名・型番" placeholder="例：iPhone 15 128GB、〇〇の長財布 など"></div>
+          <div><label class="fl" for="f-qty">点数<span class="opt">任意</span></label>
+            <select class="fi" id="f-qty" name="点数"><option>1点</option><option>2〜5点</option><option>6〜10点</option><option>11点以上</option></select></div>
+          <div><label class="fl" for="f-how">ご希望の方法<span class="opt">任意</span></label>
+            <select class="fi" id="f-how" name="ご希望の方法"><option>まずは仮査定だけ</option><option>宅配買取（集荷希望）</option><option>宅配買取（自分で発送）</option></select></div>
+          <div class="full"><label class="fl" for="f-msg">備考<span class="opt">任意</span></label><textarea class="fi" id="f-msg" name="備考" placeholder="付属品の有無、購入時期など、わかる範囲でご記入ください"></textarea></div>
         </div>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
         <label class="agree"><input type="checkbox" id="f-agree" required><span><a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する</span></label>
         <div class="emsg" id="agreeMsg" style="text-align:center"></div>
         <button class="btn btn-p fsubmit" type="submit">無料で査定を申し込む →</button>
-        <p class="fnote">査定・ご相談は無料です。お申込み後のキャンセルもできます。</p>
+        <p class="fnote">写真があるとより正確に査定できます。写真はLINEからお送りください。</p>
       </form>
       <div class="thanks" id="thanks" hidden>
         <div class="ok">✓</div>
         <h3>お申込みありがとうございます</h3>
-        <p>内容を確認のうえ、担当者よりお電話またはメールでご連絡します。<br>しばらくお待ちください。</p>
+        <p>内容を確認のうえ、担当者よりメールまたはお電話でご連絡します。<br>しばらくお待ちください。</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="faq">
-  <div class="wrap" style="max-width:820px">
-    <div class="sh"><div class="en">Q&amp;A</div><h2>よくあるご質問</h2></div>
-    <details open><summary>借金になりますか？</summary><p>いいえ。請求書（売掛金）の買取なので、借入にはあたりません。</p></details>
-    <details><summary>開業したばかりでも大丈夫？</summary><p>はい、大丈夫です。取引実績がある請求書があればご相談いただけます。</p></details>
-    <details><summary>必要なものは？</summary><p>請求書・通帳のコピー・本人確認書類の3つだけです。</p></details>
+<section id="notice" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="notice">
+      <h3>お取引についてのご注意</h3>
+      <ul>
+        <li>古物営業法に基づき、お取引の際に本人確認書類の提出をお願いしています。</li>
+        <li>18歳未満の方からの買取はお受けしておりません。</li>
+        <li>お支払いが完了していない商品（分割払い・ローン・後払いの支払い中のものなど）は買取できません。</li>
+        <li>盗品・偽造品・模倣品など、法令で取引が禁止されている商品は買取できません。</li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<section style="padding-top:0" class="final">
-  <div class="wrap"><div class="in">
-    <h2>まずは気軽に、相談からどうぞ。</h2>
-    <p>査定は無料。相談だけでも大歓迎です☺</p>
-    <div class="ctas"><a class="btn btn-p" href="#form">かんたん無料査定 →</a><a class="btn btn-m" href="#" data-line>LINEで相談する</a></div>
-  </div></div>
+<section class="faq" id="faq">
+  <div class="wrap" style="max-width:820px">
+    <div class="sh"><div class="en">Q&amp;A</div><h2>よくあるご質問</h2></div>
+    <details open><summary>本当に費用はかかりませんか？</summary><p>はい。送料・査定料・振込手数料はすべて無料です。査定額にご納得いただけずキャンセルされる場合の返送料も当社が負担します。</p></details>
+    <details><summary>傷や汚れがあっても買い取ってもらえますか？</summary><p>はい、状態に応じて査定いたします。故障品や付属品がないものもご相談ください。</p></details>
+    <details><summary>入金はいつになりますか？</summary><p>お品物の到着後に査定し、査定額をご承認いただいた後、速やかにお振込み手続きを行います。</p></details>
+    <details><summary>必要なものはありますか？</summary><p>本人確認書類（運転免許証・マイナンバーカードなど）の写しと、お振込み先の口座情報が必要です。</p></details>
+    <details><summary>梱包する箱がありません。</summary><p>ご希望の方には無料の梱包キットをお送りします。お申込み時の備考欄またはLINEでお知らせください。</p></details>
+  </div>
 </section>
+
 <section id="company" style="background:var(--mbg)">
   <div class="wrap">
     <div class="sh"><div class="en">COMPANY</div><h2>運営会社</h2></div>
     <div class="co"><dl>
       <dt>会社名</dt><dd>株式会社〇〇〇〇【要差替】</dd>
-      <dt>サービス名</dt><dd>フラッシュペイ</dd>
+      <dt>サービス名</dt><dd>フラッシュペイ（宅配買取）</dd>
       <dt>代表者</dt><dd>代表取締役 〇〇 〇〇【要差替】</dd>
       <dt>所在地</dt><dd>〒000-0000 東京都〇〇区〇〇 0-0-0【要差替】</dd>
-      <dt>電話番号</dt><dd>0120-000-000（受付 9:00〜19:00）【要差替】</dd>
-      <dt>事業内容</dt><dd>売掛債権の買取（ファクタリング）事業</dd>
+      <dt>電話番号</dt><dd>0120-000-000（受付 10:00〜19:00）【要差替】</dd>
+      <dt>古物商許可</dt><dd>〇〇県公安委員会 第000000000000号【要差替】</dd>
+      <dt>事業内容</dt><dd>中古品の宅配買取・販売</dd>
     </dl></div>
   </div>
 </section>
-<footer><a href="#company">運営会社</a>｜<a href="privacy.html">プライバシーポリシー</a><br>© flash pay</footer>
-<div class="sp-bar"><a href="#form" style="background:var(--p)">無料査定</a><a href="#" data-line style="background:#06c755">LINE相談</a></div>
+
+<section class="final">
+  <div class="wrap"><div class="in">
+    <h2>眠っているモノ、いくらになるか見てみませんか？</h2>
+    <p>査定は無料。写真1枚から、お気軽にどうぞ☺</p>
+    <div class="ctas"><a class="btn btn-l" href="#" data-line>LINEで写真査定 →</a><a class="btn btn-p" href="#form">無料査定を申し込む</a></div>
+  </div></div>
+</section>
+<footer><a href="#company">運営会社</a>｜<a href="privacy.html">プライバシーポリシー</a><br>古物商許可 〇〇県公安委員会 第000000000000号<br>© flash pay</footer>
+<div class="sp-bar"><a href="#" data-line style="background:var(--line-g)">LINE査定</a><a href="#form" style="background:var(--p)">無料査定</a></div>
 <script>
 /* ===== 設定（公開前にここを差し替え） ===== */
-const FORM_ENDPOINT = "";   // 例: https://formspree.io/f/xxxxxxx （空のままだと送信せず完了画面だけ表示）
-const LINE_URL = "";        // 例: https://lin.ee/xxxxxxx
+const FORM_ENDPOINT = "";   // フォームの送信先（メール受信サービスのURL）。空のままだと送信せず完了画面だけ表示
+const LINE_URL = "";        // LINE公式アカウントの友だち追加URL（例: https://lin.ee/xxxxxxx）
 /* ======================================== */
-document.querySelectorAll('[data-line]').forEach(a=>{ if(LINE_URL){a.href=LINE_URL;a.target="_blank";a.rel="noopener"} else a.addEventListener('click',e=>{e.preventDefault();alertLine()}) });
-function alertLine(){const t=document.getElementById('f-msg');location.hash='form';if(t&&!t.value)t.value='LINEでの相談を希望します';}
-const r=document.getElementById('r'),v=document.getElementById('v'),o=document.getElementById('o');
-function u(){const n=+r.value;v.textContent=n.toLocaleString();o.textContent=Math.round(n*.98).toLocaleString()}
-r.addEventListener('input',u);
-document.getElementById('simGo').addEventListener('click',()=>{const n=+r.value,sel=document.getElementById('f-amt');
-  sel.value=n<100000?'〜10万円':n<500000?'10〜50万円':n<1000000?'50〜100万円':n<3000000?'100〜300万円':'300万円以上';});
+document.querySelectorAll('[data-line]').forEach(a=>{
+  if(LINE_URL){a.href=LINE_URL;a.target="_blank";a.rel="noopener"}
+  else a.addEventListener('click',e=>{e.preventDefault();location.hash='form';const t=document.getElementById('f-how');if(t)t.value='まずは仮査定だけ';});
+});
 const form=document.getElementById('appForm');
 function check(el){const m=el.parentElement.querySelector('.emsg');let msg='';
   if(el.required&&!el.value.trim())msg='入力してください';
