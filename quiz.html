@@ -275,6 +275,7 @@ table.res td.your{color:var(--bad)}
    ・answer は常に choices の 1 番目に書く（画面では毎回シャッフル）
    ========================================================= */
 const SECTIONS = [
+  { id: "kodawari",   ja: "お店のこだわり", en: "OUR COMMITMENTS" },
   { id: "otoshi",     ja: "お通し",       en: "OTOSHI" },
   { id: "yakitori",   ja: "焼き鳥",       en: "YAKITORI" },
   { id: "premium",    ja: "プレミアム",   en: "PREMIUM MEAT" },
@@ -288,6 +289,92 @@ const SECTIONS = [
 ];
 
 const MENU = [
+  {
+    id: "concept",
+    section: "kodawari",
+    name: "OUR CONCEPT", kana: "コンセプト", price: "", star: false,
+    menuText: "A Japanese yakitori-ya, brought to LA as it is",
+    ja: {
+      part: "日本の焼き鳥屋をそのままロスに持ってきた・ローカライズしない",
+      talk: "当店は、日本の焼き鳥屋をそのままロサンゼルスに持ってきたお店です。アメリカ向けにアレンジ（ローカライズ）はせず、日本の焼き鳥屋と同じ味とスタイルでお出ししています。お通しなどの日本の居酒屋の習慣も、そのまま体験していただけます。",
+      points: [
+        "コンセプト：日本の焼き鳥屋を「そのまま」ロスに持ってきた",
+        "ローカライズ（アメリカ向けのアレンジ）はしない",
+        "お通しなど日本の居酒屋の習慣も、そのまま体験してもらう"
+      ],
+      questions: [
+        { q: "当店のコンセプトは？", choices: ["日本の焼き鳥屋を、そのままロサンゼルスに持ってきた", "アメリカ人向けにアレンジした焼き鳥", "日本とアメリカのフュージョン料理"], why: "日本の焼き鳥屋をそのままロスに持ってきた、がコンセプトです。" },
+        { q: "当店の味つけやスタイルの考え方は？", choices: ["ローカライズ（アメリカ向けにアレンジ）しない", "アメリカ人の好みに合わせて変える", "お客様ごとに味を変える"], why: "ローカライズはせず、日本の焼き鳥屋そのままの味とスタイルでお出しします。" },
+        { q: "お客様に「アメリカ風にアレンジしているの？」と聞かれたら？", choices: ["いいえ、日本の焼き鳥屋をそのまま持ってきたお店です", "はい、アメリカ人向けに変えています", "わかりません"], why: "アレンジせず、日本の焼き鳥屋そのままです。" },
+        { q: "お通しやおかわりなど、日本の居酒屋の習慣を説明するのはなぜ？", choices: ["日本の焼き鳥屋・居酒屋のスタイルをそのまま体験してもらうため", "値段を高くするため", "アメリカのルールだから"], why: "日本のスタイルをそのまま楽しんでいただくのが当店のコンセプトです。" }
+      ]
+    }
+  },
+  {
+    id: "organic",
+    section: "kodawari",
+    name: "ORGANIC SEASONINGS", kana: "オーガニック", price: "", star: false,
+    menuText: "Organic seasonings",
+    ja: {
+      part: "オーガニックの調味料を日本から直接取り寄せている",
+      talk: "当店では、しょうゆ・きび砂糖・みりん・七味などのオーガニックの調味料を、日本から直接取り寄せて使っています。たとえば、おろし肉にかける有機しょうゆもそのひとつです。お客様に安心して、本場の味を楽しんでいただくためのこだわりです。",
+      points: [
+        "当店の調味料は「オーガニック」",
+        "しょうゆ・きび砂糖・みりん・七味などを「日本から直接取り寄せ」ている",
+        "例：おろし肉の有機しょうゆ",
+        "お客様に「オーガニック？」と聞かれたら「調味料はオーガニックのものを使っています」と答える"
+      ],
+      questions: [
+        { q: "当店の調味料のこだわりは？", choices: ["オーガニックのものを使っている", "すべて輸入品を使っている", "化学調味料をたっぷり使っている"], why: "当店の調味料はオーガニックのものを使っています。" },
+        { q: "お客様に「調味料はオーガニック？」と聞かれたら？", choices: ["はい、調味料はオーガニックのものを使っています", "わかりません", "いいえ、普通のものです"], why: "調味料はオーガニックのものを使っている、と自信を持って伝えましょう。" },
+        { q: "当店のオーガニックの調味料は、どこから仕入れている？", choices: ["日本から直接取り寄せている", "近くのスーパーで買っている", "お店で手作りしている"], why: "しょうゆ・きび砂糖・みりん・七味などを、日本から直接取り寄せています。" },
+        { q: "日本から直接取り寄せているオーガニックの調味料の例として正しいのは？", choices: ["しょうゆ・きび砂糖・みりん・七味", "ケチャップ・マヨネーズ・ソース", "オリーブオイル・バルサミコ・塩"], why: "しょうゆ・きび砂糖・みりん・七味などを日本から取り寄せています。" },
+        { q: "おろし肉にかけているしょうゆは？", choices: ["有機（オーガニック）しょうゆ", "減塩しょうゆ", "たまりしょうゆ"], why: "おろし肉には有機しょうゆをかけています。" }
+      ]
+    }
+  },
+  {
+    id: "binchotan",
+    section: "kodawari",
+    name: "BINCHOTAN CHARCOAL", kana: "備長炭", price: "", star: false,
+    menuText: "Charcoal-grilled over premium binchotan",
+    ja: {
+      part: "焼き鳥は高級備長炭を使った炭火焼き",
+      talk: "当店の焼き鳥は、高級な備長炭を使って炭火で焼いています。備長炭は日本の高級な炭で、高い温度で長く燃え、煙やにおいが少ないのが特徴です。外は香ばしく、中はジューシーに焼き上がります。",
+      points: [
+        "焼き鳥は「高級備長炭」を使った炭火焼き",
+        "備長炭＝日本の高級な炭。高温で長く燃え、煙やにおいが少ない",
+        "外は香ばしく、中はジューシーに焼ける",
+        "焼きおにぎりも焼き場の備長炭で焼いている"
+      ],
+      questions: [
+        { q: "当店の焼き鳥は何で焼いている？", choices: ["高級備長炭の炭火", "ガスの火", "電気のグリル"], why: "高級備長炭を使った炭火焼きです。" },
+        { q: "お客様に「BINCHOTAN って何？」と聞かれたら？", choices: ["日本の高級な炭で、高温で長く燃え、煙やにおいが少ない炭です", "日本の木のお皿です", "焼き鳥のタレの名前です"], why: "備長炭は日本の高級な炭です。" },
+        { q: "備長炭で焼くと、焼き鳥はどうなる？", choices: ["外は香ばしく、中はジューシーに焼ける", "中まで固くなる", "煙のにおいが強くつく"], why: "高温で焼けるので、外は香ばしく中はジューシーになります。" },
+        { q: "焼き鳥のほかに、焼き場の備長炭で焼いているメニューは？", choices: ["焼きおにぎり", "茶碗蒸し", "東京プリン"], why: "焼きおにぎりも焼き場の備長炭で焼いています。" }
+      ]
+    }
+  },
+  {
+    id: "jidori",
+    section: "kodawari",
+    name: "JIDORI CHICKEN", kana: "JIDORIチキン", price: "", star: false,
+    menuText: "We use fresh JIDORI chicken",
+    ja: {
+      part: "鶏肉はJIDORIチキンだけを使用・新鮮なお肉",
+      talk: "当店で使う鶏肉は、こだわりのJIDORIチキンだけです。新鮮なお肉を使っています。",
+      points: [
+        "鶏肉は「JIDORIチキン」だけを使用（ほかの鶏肉は使わない）",
+        "新鮮なお肉を使うのがこだわり"
+      ],
+      questions: [
+        { q: "当店の焼き鳥に使っている鶏肉は？", choices: ["JIDORIチキンの新鮮なお肉", "冷凍の輸入チキン", "スーパーのチキン"], why: "こだわりのJIDORIチキンの新鮮なお肉を使っています。" },
+        { q: "お客様に「どんな鶏肉を使っているの？」と聞かれたら？", choices: ["鶏肉はすべて、新鮮なJIDORIチキンだけを使っています", "わかりません", "安い鶏肉です"], why: "鶏肉はJIDORIチキンだけを使っています。" },
+        { q: "JIDORIチキンを使っているのはどのメニュー？", choices: ["当店の鶏肉を使うメニューすべて", "焼き鳥コースだけ", "ゴキゲン串だけ"], why: "当店で使う鶏肉はJIDORIチキンだけです。" },
+        { q: "当店のお店のこだわり3つとして正しい組み合わせは？", choices: ["日本から取り寄せたオーガニックの調味料・高級備長炭・JIDORIチキン", "冷凍の鶏肉・ガスの火・普通の調味料", "輸入の炭・電気グリル・化学調味料"], why: "オーガニックの調味料、高級備長炭の炭火焼き、JIDORIチキンの新鮮なお肉です。" }
+      ]
+    }
+  },
   {
     id: "otoshi",
     section: "otoshi",
@@ -1469,6 +1556,68 @@ const MENU = [
    the first choice is always the correct answer)
    ========================================================= */
 const EN = {
+  concept: {
+    part: "A Japanese yakitori restaurant brought to LA as it is — no localizing",
+    talk: "We are a yakitori restaurant from Japan, brought to Los Angeles just as it is. We don’t adapt (localize) it for the US: the flavor and style are the same as a yakitori restaurant in Japan, including izakaya customs like otoshi.",
+    points: [
+      "Concept: a Japanese yakitori restaurant brought to LA JUST AS IT IS",
+      "We don’t localize (no adapting for American tastes)",
+      "Guests experience Japanese izakaya customs like otoshi as they are"
+    ],
+    questions: [
+      ["What is our restaurant concept?", ["A Japanese yakitori restaurant brought to Los Angeles just as it is", "Yakitori adapted for American tastes", "Japanese–American fusion"], "Our concept: a yakitori restaurant from Japan, brought to LA as it is."],
+      ["What is our approach to flavor and style?", ["We don’t localize (no adapting for the US)", "We change it to American tastes", "We change the flavor for each guest"], "We don’t localize. Same flavor and style as a yakitori restaurant in Japan."],
+      ["A guest asks, “Did you adapt this for Americans?”", ["No, we brought a Japanese yakitori restaurant here just as it is", "Yes, we changed it for Americans", "I don’t know"], "No adapting: it’s a Japanese yakitori restaurant as it is."],
+      ["Why do we explain Japanese izakaya customs like otoshi?", ["So guests can experience a real Japanese yakitori / izakaya style", "To raise the price", "Because it’s an American rule"], "Our concept is for guests to enjoy the Japanese style as it is."]
+    ]
+  },
+  organic: {
+    part: "Organic seasonings imported directly from Japan",
+    talk: "We use organic seasonings such as soy sauce, kibi sugar (Japanese cane sugar), mirin and shichimi, imported directly from Japan. The organic soy sauce on our Oroshi Niku is one of them. It’s our commitment so guests can enjoy authentic Japanese flavor with peace of mind.",
+    points: [
+      "Our seasonings are ORGANIC",
+      "Soy sauce, kibi sugar, mirin, shichimi and more are IMPORTED DIRECTLY FROM JAPAN",
+      "Example: the organic soy sauce on Oroshi Niku",
+      "If a guest asks “Is it organic?”: “We use organic seasonings.”"
+    ],
+    questions: [
+      ["What is our commitment for seasonings?", ["We use organic seasonings", "Everything is imported", "We use lots of MSG"], "We use organic seasonings."],
+      ["A guest asks, “Are your seasonings organic?”", ["Yes, we use organic seasonings", "I don’t know", "No, they’re regular"], "Tell guests with confidence: we use organic seasonings."],
+      ["Where do our organic seasonings come from?", ["Imported directly from Japan", "The local supermarket", "We make them in house"], "Soy sauce, kibi sugar, mirin, shichimi and more come directly from Japan."],
+      ["Which are examples of the organic seasonings we import from Japan?", ["Soy sauce, kibi sugar, mirin, shichimi", "Ketchup, mayonnaise, steak sauce", "Olive oil, balsamic, salt"], "Soy sauce, kibi sugar, mirin, shichimi and more."],
+      ["What soy sauce goes on OROSHI NIKU?", ["Organic soy sauce", "Low-sodium soy sauce", "Tamari"], "Oroshi Niku uses organic soy sauce."]
+    ]
+  },
+  binchotan: {
+    part: "Our yakitori is grilled over premium binchotan charcoal",
+    talk: "Our yakitori is grilled over premium binchotan charcoal. Binchotan is high-quality Japanese charcoal: it burns very hot for a long time with little smoke or smell. The outside gets nicely charred and the inside stays juicy.",
+    points: [
+      "Yakitori is grilled over PREMIUM BINCHOTAN charcoal",
+      "Binchotan = high-quality Japanese charcoal. Burns hot and long, little smoke or smell",
+      "Charred outside, juicy inside",
+      "Yaki Onigiri is also grilled over binchotan at the yakiba"
+    ],
+    questions: [
+      ["What do we grill our yakitori over?", ["Premium binchotan charcoal", "A gas flame", "An electric grill"], "Premium binchotan charcoal."],
+      ["A guest asks, “What is binchotan?”", ["High-quality Japanese charcoal that burns hot and long with little smoke or smell", "A Japanese wooden plate", "The name of our yakitori sauce"], "Binchotan is high-quality Japanese charcoal."],
+      ["What does grilling over binchotan do to the yakitori?", ["Charred outside, juicy inside", "Makes it tough all the way through", "Gives it a strong smoky smell"], "It burns very hot, so the outside chars and the inside stays juicy."],
+      ["Besides yakitori, what else do we grill over binchotan at the yakiba?", ["Yaki Onigiri", "Chawan-mushi", "Tokyo Pudding"], "Yaki Onigiri is also grilled over binchotan."]
+    ]
+  },
+  jidori: {
+    part: "We use only JIDORI chicken — fresh",
+    talk: "The only chicken we use is JIDORI chicken. We use fresh chicken.",
+    points: [
+      "We use ONLY JIDORI chicken (no other chicken)",
+      "Using fresh chicken is our commitment"
+    ],
+    questions: [
+      ["What chicken do we use for our yakitori?", ["Fresh JIDORI chicken", "Frozen imported chicken", "Supermarket chicken"], "We use fresh JIDORI chicken."],
+      ["A guest asks, “What kind of chicken do you use?”", ["All our chicken is fresh JIDORI chicken, nothing else", "I don’t know", "Cheap chicken"], "We use only JIDORI chicken."],
+      ["Which dishes use JIDORI chicken?", ["Every dish that uses chicken", "Only the Omakase Course", "Only Gokigen Kushi"], "The only chicken we use is JIDORI chicken."],
+      ["Which are our three commitments?", ["Organic seasonings from Japan, premium binchotan, JIDORI chicken", "Frozen chicken, gas flame, regular seasonings", "Imported charcoal, electric grill, MSG"], "Organic seasonings, premium binchotan charcoal, and fresh JIDORI chicken."]
+    ]
+  },
   otoshi: {
     part: "Cabbage + our original homemade dressing, unlimited refills",
     talk: "Otoshi is part of Japanese izakaya culture: a small dish to nibble on while you wait for your food. Here we serve cabbage, which is said to help break down alcohol, with our original homemade dressing. It is $5 per person, and cabbage refills are unlimited. Just say “more otoshi” for a refill. Would you like it?",
